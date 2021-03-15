@@ -1,0 +1,67 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@iconify/icons-bx": "^1.1.0",
+    "@iconify/icons-clarity": "^1.1.0",
+    "@iconify/icons-el": "^1.1.0",
+    "@iconify/icons-emojione-v1": "^1.1.0",
+    "@iconify/icons-fluent": "^1.1.8",
+    "@iconify/icons-ic": "^1.1.3",
+    "@iconify/icons-ion": "^1.1.2",
+    "@iconify/icons-map": "^1.1.0",
+    "@iconify/react": "^1.1.4",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.1",
+    "axios": "^0.21.1",
+    "formik": "^2.2.6",
+    "node-sass": "^5.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-helmet-async": "^1.0.9",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.1.0",
+    "webpack-dev-server": "^3.11.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "scss": "node-sass --watch src/scss -o src/css"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@iconify/icons-bx": "^1.1.0",
+    "@iconify/icons-clarity": "^1.1.0",
+    "@iconify/icons-el": "^1.1.0",
+    "@iconify/icons-emojione-v1": "^1.1.0",
+    "@iconify/icons-fluent": "^1.1.8",
+    "@iconify/icons-ic": "^1.1.3",
+    "@iconify/icons-ion": "^1.1.2",
+    "@iconify/icons-map": "^1.1.0",
+    "@iconify/react": "^1.1.4"
+  },
+  "proxy": "http://localhost:8080/"
+}

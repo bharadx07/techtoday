@@ -1,0 +1,56 @@
+.contact {
+  margin: 11rem auto;
+  text-align: center;
+ 
+
+  h1 {
+    color: $subbackground;
+    font-size: 2.7rem;
+    margin: 2.5rem auto;
+    padding: 0 .8rem;
+
+  }
+  h3 {
+    margin: 2.5rem auto;
+    font-size: 1.7rem;
+    font-weight: 300;
+    padding: 0 .8rem;
+  }
+
+  section {
+    background-color: #f3f2f2;
+    width: 350px;
+    margin: 0 auto;
+    border-radius: 4px;
+
+
+    img {
+      border-radius: 10%;
+      width: 47%;
+      margin-top: 1rem;
+      border: 10px solid white;
+    }
+
+    p {
+      padding: 1.3rem;
+      font-weight: 300;
+      line-height: 1.875rem;
+      text-align: left;
+      margin: 0 auto;
+      font-weight: normal;
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+      background-color: $subbackground;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 0.8rem 0;
+      cursor: pointer;
+      font-size: 1.2rem;
+      margin-top: 0.7rem;
+    }
+  }
+}
