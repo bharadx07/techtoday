@@ -346,7 +346,40 @@ footer {
         text-decoration: none; }
 
 .topics-content {
-  margin-top: 8rem; }
+  margin-top: 11rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 2.5rem;
+  justify-items: center; }
+  .topics-content section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 250px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f7f7f7; }
+    .topics-content section img {
+      width: 100%; }
+    .topics-content section h1 {
+      font-weight: normal;
+      font-size: 30px;
+      margin: .5rem auto;
+      text-align: center;
+      color: #000000; }
+    .topics-content section p {
+      padding: 0 2rem; }
+    .topics-content section button {
+      width: 100%;
+      margin-top: 1rem;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      background-color: #cb4745;
+      color: white;
+      padding: .6rem 0;
+      cursor: pointer; }
 
 @media (max-width: 540px) {
   .info-topics section {

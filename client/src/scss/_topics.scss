@@ -1,4 +1,46 @@
 .topics-content {
-    margin-top: $navTop;
+  margin-top: 11rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 2.5rem;
+  justify-items: center;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 250px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f7f7f7;
+
+    img {
+      width: 100%;
+    }
+
+    h1 {
+      font-weight: normal;
+      font-size: 30px;
+      margin: .5rem auto;
+      text-align: center;
+      color: #000000;
+    }
     
+    p {
+        padding: 0 2rem;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 1rem;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        background-color: $subbackground;
+        color: white;
+        padding: .6rem 0;
+        cursor: pointer;
+    }
+  }
 }

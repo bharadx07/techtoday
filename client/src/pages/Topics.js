@@ -34,7 +34,7 @@ function Topics({ history }) {
     <div>
       <CustomTitle page="Topics" />
       <NavBar variant="privateouter" />
-      <ClientTopicContent />
+      <ClientTopicContent user={user} />
     </div>
   );
 }
