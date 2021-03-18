@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
 //Utils
-const generateTemplate = require("../utils/ForgotPasswordTemplate")
+const generateTemplate = require("../utils/ForgotPasswordTemplate");
 
 //DB Schemas
 const User = require("../models/User");
@@ -15,7 +15,7 @@ const User = require("../models/User");
 const RegisterValidation = require("../validation/RegisterValidation");
 const LoginValidation = require("../validation/LoginValidation");
 const ForgotPasswordValidation = require("../validation/ForgotPasswordValidation");
-
+const ValidateToken = require("../validation/ValidateToken");
 
 router.post("/login", async (req, res) => {
   if (!req.body) {
@@ -107,9 +107,9 @@ router.post("/forgot-password", async (req, res) => {
       },
     });
 
-    changePasswordToken = jwt.sign({ _id: user.id }, process.env.TOKEN_SECRET, {expiresIn: 60*60*24 });
-
-    
+    changePasswordToken = jwt.sign({ _id: user.id }, process.env.TOKEN_SECRET, {
+      expiresIn: 60 * 30,
+    });
 
     //Message To User
     messageToUser = generateTemplate(changePasswordToken);
@@ -133,7 +133,39 @@ router.post("/forgot-password", async (req, res) => {
   res.send("If Email Exists, Email Sent");
 });
 
+router.put("/change-password", ValidateToken, async (req, res) => {
+  if (req.body.password === "") {
+    return res.status(400).send("Password is Required");
+  } else if (req.body.password.length < 6) {
+    return res.status(400).send("Needs to be 6+ Characters Long");
+  }
+  //Hash the password
+  const salt = await bycrypt.genSalt(10);
+  const hashedPassword = await bycrypt.hash(req.body.password, salt);
 
+  //Find a Valid User
+  const user = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { password: hashedPassword },
+    { useFindAndModify: false }
+  );
+
+  const loginUser = {
+    email: user.email,
+    password: req.body.password,
+  };
+
+  return res.status(200).send("Password Changed");
+});
+
+router.get("/auth", ValidateToken, async (req, res) => {
+  const user = await User.findOne({ _id: req.user._id });
+
+  if (user) {
+    res.status(200).json(user);
+  } else {
+    return res.status(400).send("Error Finding User");
+  }
+});
 
 module.exports = router;
-  

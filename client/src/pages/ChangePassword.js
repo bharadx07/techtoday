@@ -3,20 +3,62 @@ import CustomTitle from "../components/CustomTitle";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import HeadLogo from "../images/HeadLogo.svg";
 import axios from "axios";
-import { Icon } from "@iconify/react";
-import successStandardLine from "@iconify/icons-clarity/success-standard-line";
 import { Link } from "react-router-dom";
 
+function ChangePassword({ match, history }) {
+  const changeId = match.params.changeid;
+  return (
+    <div className="change-password">
+      <CustomTitle page="Forgot Password" />
+      <Formik
+        initialValues={{ password: "" }}
+        validateOnChange={false}
+        validateOnSubmit={true}
+        validateOnBlur={false}
+        validate={async (values) => {
+          const errors = {};
+       
 
+          try {
+            const config = {
+              headers: {
+                "Content-Type": "application/json",
+                "auth-token": changeId,
+              },
+            };
+            await axios.put("/api/v1/users/change-password", values, config);
+          } catch (error) {
+            errors.password = error.response.data;
+          }
 
-
-function ChangePassword({match}) {
-    const changeId = match.params.changeId;
-    return (
-        <div className="change-password">
-      <h1>Change Password In Progress</h1>
-        </div>
-    )
+          return errors;
+        }}
+        onSubmit={async (values, { setSubmitting }) => {
+          setSubmitting(false);
+          history.push("/login?origin=fp")
+        }}
+      >
+        {({ isSubmitting, values }) => (
+          <Form className="form">
+            <Link to="/">
+              <img src={HeadLogo} alt="Logo" />
+            </Link>
+            <h1>Change Password</h1>
+            <h4>Enter a new password below to change your password</h4>
+            <label>New Password</label>
+            <Field className="input" type="text" name="password" />
+            <ErrorMessage name="password" component="div" />
+            <button
+              type="submit"
+              disabled={isSubmitting}
+            >
+              Change Password
+            </button>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
 }
 
-export default ChangePassword
+export default ChangePassword;

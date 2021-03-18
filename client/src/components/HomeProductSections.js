@@ -16,7 +16,7 @@ function HomeProductSections() {
           <p>
             Catch up with all the current events taking place in many
             industries. Learn about the topic by reading quick news snippets or
-            if you are instrested, view the full article withone click.
+            if you are instrested, view the full article with one click.
           </p>
         </div>
         <Icon

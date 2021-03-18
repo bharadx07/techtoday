@@ -20,7 +20,7 @@ function Contact() {
           He enjoyes coding, hardware and design. If you have any bugs or
           tweaks, or just want to contact him, click the link below.
         </p>
-        <button>Contact Bharadwaj</button>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAWXmeWFGRH3NciBCGrH0-4H2Z9S2UFgoQtSwToE37UFJshA/viewform?usp=sf_link" target="_blank"  rel="noreferrer"><button>Contact Bharadwaj</button></a>
       </section>
       </main>
       

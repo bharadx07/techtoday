@@ -3,6 +3,7 @@
 @import "home";
 @import "register-login-forgotPassword.";
 @import "contact";
+@import "topics";
 @import "homeMediaQueries";
 
 $globalfontface: "Roboto", sans-serif;
@@ -17,4 +18,4 @@ $globalfontface: "Roboto", sans-serif;
 html {
   font-family: $globalfontface;
 }
- 
+  

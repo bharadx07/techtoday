@@ -1,6 +1,8 @@
+$navTop : 8rem;
+
 .home-top {
   text-align: center;
-  margin-top: 8rem;
+  margin-top: $navTop;
 
   h1 {
     font-weight: 300;
@@ -13,7 +15,7 @@
     color: black;
     font-weight: normal;
     padding: 0 2rem;
-    margin-top: 1.9rem;
+    margin-top: 1.3rem;
   }
 
   button {
@@ -39,7 +41,7 @@
 
 .home-products-section {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
 
   h1 {
     font-size: 1.87rem;

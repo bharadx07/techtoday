@@ -7,30 +7,27 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 function Login({ history }) {
+  //Only check if jwt is not empty
   if (localStorage.jwt) {
-    setTimeout(() => {
+    //Secure Check for JWT
+    const makeRequest = async () => {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.jwt,
+        },
+      };
+      await axios.get("/api/v1/users/auth", config).catch((err) => {
+        return "";
+      });
+
       history.push("/topics");
-    }, 2500);
-    return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100vh",
-          textAlign: "center",
-          padding: "0 2rem",
-          fontSize: "1.1rem",
-          fontWeight: "normal",
-        }}
-      >
-        <h3>You Cannot Login Again</h3>
-        <br />
-        <h3>Redirecting To Topics Page</h3>
-      </div>
-    );
+    };
+
+    makeRequest();
+    return <></>;
   }
+
   return (
     <div className="login">
       <CustomTitle page="Login" />

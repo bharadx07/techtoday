@@ -6,7 +6,7 @@ function CustomTitle({ page }) {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>TechToday</title>
+        <title>TechToday: Your Tech Hub</title>
       </Helmet>
     </HelmetProvider>
   );
