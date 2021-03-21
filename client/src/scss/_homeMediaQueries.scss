@@ -2,10 +2,8 @@ $subbackground: #cb4745;
 
 @media (max-width: 540px) {
   .info-topics {
- 
     section {
       flex-direction: column;
-
     }
   }
 
@@ -15,14 +13,11 @@ $subbackground: #cb4745;
     }
   }
 
- 
-
 
 }
 
 @media (max-width: 740px) {
   .home-products-section {
-    
     section {
       flex-direction: column;
       width: 100%;
@@ -54,38 +49,37 @@ $subbackground: #cb4745;
   }
 
   .home-features {
-    section { 
-        flex-direction: column;
-        width: 100%;
+    section {
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+
+      div {
         text-align: center;
-        justify-content: center;
+      }
 
-        div {
-            text-align: center;
-        }
-
-        .icon {
-            display: none;
-        }
+      .icon {
+        display: none;
+      }
     }
+  }
+
+  .topics-content {
+    width: 100%;
+   
   }
 }
 
 @media (max-width: 940px) {
+  
   :root {
     font-size: 14px;
   }
 
-  
   .menuicon {
     display: block;
- 
-   
-
-    
-
   }
-
 
   nav {
     flex-direction: column;

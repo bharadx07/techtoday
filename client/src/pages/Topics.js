@@ -4,6 +4,7 @@ import ClientTopicContent from "../components/ClientTopicContent";
 import CustomTitle from "../components/CustomTitle";
 import NavBar from "../components/NavBar";
 
+
 function Topics({ history }) {
   const [user, setUser] = useState("");
   //Simple Check To Speed Up Time (No as Secure)
@@ -26,15 +27,18 @@ function Topics({ history }) {
     };
 
     makeRequest().catch((error) => {
-      history.push("/login");
+      if(!error.message.includes("500")) {
+        history.push("/login")
+      }
     });
   }, [history]);
 
   return (
-    <div>
+    <div >
       <CustomTitle page="Topics" />
       <NavBar variant="privateouter" />
       <ClientTopicContent user={user} />
+
     </div>
   );
 }

@@ -24,6 +24,7 @@
     "react-helmet-async": "^1.0.9",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.1.0",
     "webpack-dev-server": "^3.11.1"
   },

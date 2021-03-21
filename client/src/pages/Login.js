@@ -17,8 +17,10 @@ function Login({ history }) {
           "auth-token": localStorage.jwt,
         },
       };
-      await axios.get("/api/v1/users/auth", config).catch((err) => {
-        return "";
+      await axios.get("/api/v1/users/auth", config).catch((error) => {
+        if (!error.message.includes("500")) {
+          return "";
+        }
       });
 
       history.push("/topics");

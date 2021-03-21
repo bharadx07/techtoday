@@ -4,12 +4,13 @@ import bxCodeAlt from '@iconify/icons-bx/bx-code-alt';
 import hardwareChip from '@iconify/icons-ion/hardware-chip';
 import businessIcon from '@iconify/icons-ion/business';
 import financeIcon from '@iconify/icons-map/finance';
+import { Link } from 'react-router-dom';
 
 function HomeTopics() {
     return (
         <div className="info-topics">
             <h1>Topics</h1>
-            <h3>Explore Information in Tech, Buisness and Other Related Topics</h3>
+            <h3>Explore information in Tech, Buisness and Other Related Fields</h3>
             <section>
                 <div>
                 <Icon icon={bxCodeAlt} style={{color: '#cb4745', fontSize: '69px'}} />
@@ -34,6 +35,7 @@ function HomeTopics() {
 
                 </div>
             </section>
+            <h2><Link to='/login'>View All Topics ⇾</Link></h2>
         </div>
     )
 }

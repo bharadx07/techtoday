@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
     return (
         <footer>
-            &copy; Bharadwaj Duggaraju 2021
+            &copy; TechToday 2021 | All Rights Reserved
         </footer>
     )
 }

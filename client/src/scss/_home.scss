@@ -125,6 +125,18 @@ $navTop : 8rem;
     font-weight: 300;
   }
 
+  h2 {
+    * {
+      color: $subbackground;
+      text-decoration: none;
+    }
+
+    text-align: center;
+
+    margin-top: 1rem;
+    font-weight: 500;
+    font-size: 1.3rem;
+  }
   section {
     display: flex;
     justify-content: center;
