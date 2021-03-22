@@ -50,7 +50,8 @@ nav {
   font-size: 2.5rem;
   display: none;
   margin: 1.5rem 0;
-  margin-right: 3rem; }
+  margin-right: 3rem;
+  cursor: pointer; }
 
 .closeicon {
   color: white;
@@ -357,14 +358,16 @@ footer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   grid-gap: 3rem;
-  margin: 11rem auto 5rem auto;
-  justify-items: center; }
+  justify-items: center;
+  justify-content: center;
+  margin-top: 9rem;
+  margin-bottom: 3rem; }
   .topics-content section {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    width: 300px;
+    width: 305px;
     text-align: center;
     cursor: pointer;
     background-color: #f7f7f7; }
@@ -393,6 +396,116 @@ footer {
         color: white;
         padding: 0.7rem 0;
         cursor: pointer; }
+
+.settings {
+  margin: 9rem auto;
+  text-align: center;
+  background-color: #e5e5e5;
+  width: 80%;
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1); }
+  .settings h1 {
+    padding: 1.3rem 1.3rem;
+    border-bottom: 3px solid lightgray;
+    width: 100%;
+    background-color: white;
+    text-align: left; }
+  .settings .wrapper {
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between; }
+  .settings .profile,
+  .settings .preferences {
+    display: flex;
+    margin: 3rem auto;
+    justify-content: center; }
+    .settings .profile .form,
+    .settings .preferences .form {
+      background-color: white;
+      padding: 2.1rem;
+      margin: 0 auto;
+      border-radius: 6px;
+      text-align: center;
+      box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.1); }
+      .settings .profile .form *,
+      .settings .preferences .form * {
+        display: block; }
+      .settings .profile .form img,
+      .settings .preferences .form img {
+        width: 35px;
+        margin: 0 auto; }
+      .settings .profile .form h1,
+      .settings .preferences .form h1 {
+        font-weight: normal;
+        font-size: 1.8rem;
+        color: #000000;
+        margin: 1.2rem auto; }
+      .settings .profile .form h4,
+      .settings .profile .form p,
+      .settings .preferences .form h4,
+      .settings .preferences .form p {
+        padding: 0 0 0.3rem 0;
+        font-weight: 300;
+        margin: 0 auto;
+        max-width: 250px; }
+      .settings .profile .form label,
+      .settings .preferences .form label {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1rem;
+        line-height: 23px;
+        margin: 0.7rem 0;
+        text-align: left;
+        color: #000000; }
+      .settings .profile .form .input,
+      .settings .profile .form .input:focus,
+      .settings .profile .form .input:hover,
+      .settings .preferences .form .input,
+      .settings .preferences .form .input:focus,
+      .settings .preferences .form .input:hover {
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #808080;
+        height: 33px;
+        outline: none;
+        padding-left: 0.4rem;
+        display: block; }
+      .settings .profile .form input:-webkit-autofill,
+      .settings .preferences .form input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important; }
+      .settings .profile .form button,
+      .settings .preferences .form button {
+        width: 100%;
+        padding: 0.5rem 0;
+        margin: 1.1rem 0;
+        border: none;
+        outline: none;
+        background-color: #cb4745;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 4px; }
+      .settings .profile .form div,
+      .settings .preferences .form div {
+        text-align: left;
+        color: red;
+        padding-top: 0.5rem;
+        font-size: 0.9rem; }
+      .settings .profile .form .Link,
+      .settings .preferences .form .Link {
+        color: black;
+        text-decoration: none;
+        text-align: left;
+        width: 100%;
+        display: flex; }
+        .settings .profile .form .Link span,
+        .settings .preferences .form .Link span {
+          color: #cb4745;
+          padding-left: 0.3rem; }
+      .settings .profile .form .Forgot,
+      .settings .preferences .form .Forgot {
+        color: #cb4745;
+        margin: 1.2rem 0 0 0; }
 
 @media (max-width: 540px) {
   .info-topics section {

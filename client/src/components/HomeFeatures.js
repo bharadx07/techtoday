@@ -11,14 +11,14 @@ function HomeFeatures() {
             <Icon icon={cursorHandClickLine} style={{color: '#cb4745', fontSize: '100px'}} className="icon"/>
                 <div>
                     <h1>Once Click Away</h1>
-                    <p>Though you can view quick snippets, and bits of information regarding products, news, and jobs, you are allways one click way from seeing the entire article/product</p>
+                    <p>Though you can view quick snippets, and bits of information regarding current news, and jobs, you are allways one click way from seeing the entire story</p>
                 </div>
             </section>
             <section>
             <Icon icon={websiteIcon} style={{color: '#cb4745', fontSize: '55px'}} className="icon"/>
                 <div>
                     <h1>Clean User Interface</h1>
-                    <p>TechToday has a clean UI that allows you to find the information you need without trouble</p>
+                    <p>TechToday has a clean User Interace that allows you to find the information you need without trouble or confusion</p>
                 </div>
             </section>
         </div>

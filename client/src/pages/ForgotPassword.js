@@ -1,5 +1,4 @@
 import React from "react";
-import CustomTitle from "../components/CustomTitle";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import HeadLogo from "../images/HeadLogo.svg";
 import axios from "axios";
@@ -12,7 +11,6 @@ function ForgotPassword({ history }) {
 
   return (
     <div className="forgot-password">
-      <CustomTitle page="Forgot Password" />
       <Formik
         initialValues={{ email: "" }}
         validateOnChange={false}

@@ -1,5 +1,4 @@
 import React from "react";
-import CustomTitle from "../components/CustomTitle";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import HeadLogo from "../images/HeadLogo.svg";
 import axios from "axios";
@@ -9,7 +8,6 @@ function ChangePassword({ match, history }) {
   const changeId = match.params.changeid;
   return (
     <div className="change-password">
-      <CustomTitle page="Forgot Password" />
       <Formik
         initialValues={{ password: "" }}
         validateOnChange={false}
@@ -17,7 +15,6 @@ function ChangePassword({ match, history }) {
         validateOnBlur={false}
         validate={async (values) => {
           const errors = {};
-       
 
           try {
             const config = {
@@ -35,7 +32,7 @@ function ChangePassword({ match, history }) {
         }}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(false);
-          history.push("/login?origin=fp")
+          history.push("/login?origin=fp");
         }}
       >
         {({ isSubmitting, values }) => (
@@ -48,10 +45,7 @@ function ChangePassword({ match, history }) {
             <label>New Password</label>
             <Field className="input" type="text" name="password" />
             <ErrorMessage name="password" component="div" />
-            <button
-              type="submit"
-              disabled={isSubmitting}
-            >
+            <button type="submit" disabled={isSubmitting}>
               Change Password
             </button>
           </Form>

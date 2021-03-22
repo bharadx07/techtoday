@@ -1,6 +1,5 @@
 import React from "react";
 import CTA from "../components/CTA";
-import CustomTitle from "../components/CustomTitle";
 import Footer from "../components/Footer";
 import HomeFeatures from "../components/HomeFeatures";
 import HomeProductSections from "../components/HomeProductSections";
@@ -12,7 +11,6 @@ import NavBar from "../components/NavBar";
 function Home() {
   return (
     <section>
-        <CustomTitle page="Home" />
         <NavBar variant="public" />
         <HomeTop />
         <HomeProductSections />

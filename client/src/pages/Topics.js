@@ -1,9 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ClientTopicContent from "../components/ClientTopicContent";
-import CustomTitle from "../components/CustomTitle";
 import NavBar from "../components/NavBar";
-
 
 function Topics({ history }) {
   const [user, setUser] = useState("");
@@ -27,18 +25,16 @@ function Topics({ history }) {
     };
 
     makeRequest().catch((error) => {
-      if(!error.message.includes("500")) {
-        history.push("/login")
+      if (!error.message.includes("500")) {
+        history.push("/login");
       }
     });
   }, [history]);
 
   return (
-    <div >
-      <CustomTitle page="Topics" />
+    <div>
       <NavBar variant="privateouter" />
       <ClientTopicContent user={user} />
-
     </div>
   );
 }

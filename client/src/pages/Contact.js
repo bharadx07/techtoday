@@ -1,5 +1,4 @@
 import React from "react";
-import CustomTitle from "../components/CustomTitle";
 import NavBar from "../components/NavBar";
 import PFP from "../images/pfp.png";
 
@@ -7,7 +6,7 @@ import PFP from "../images/pfp.png";
 function Contact() {
   return (
     <div className="contact-wrapper" >
-      <CustomTitle page="Contact" />
+    
       <NavBar variant="public" />
       <main className="contact">
       <h1>Meet The Creator</h1>

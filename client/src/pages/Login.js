@@ -1,5 +1,4 @@
-import React from "react";
-import CustomTitle from "../components/CustomTitle";
+import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import HeadLogo from "../images/HeadLogo.svg";
 import "../css/styles.css";
@@ -8,32 +7,32 @@ import { Link } from "react-router-dom";
 
 function Login({ history }) {
   //Only check if jwt is not empty
-  if (localStorage.jwt) {
-    //Secure Check for JWT
-    const makeRequest = async () => {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.jwt,
-        },
-      };
-      await axios.get("/api/v1/users/auth", config).catch((error) => {
-        if (!error.message.includes("500")) {
-          return "";
+  useEffect(() => {
+    if (localStorage.jwt) {
+      //Secure Check for JWT
+      const makeRequest = async () => {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.jwt,
+          },
+        };
+        try {
+          await axios.get("/api/v1/users/auth", config);
+          history.push("/topics");
+        } catch (error) {
+          if (!error.message.includes("500")) {
+            return "";
+          }
         }
-      });
+      };
 
-      history.push("/topics");
-    };
-
-    makeRequest();
-    return <></>;
-  }
+      makeRequest();
+    }
+  }, [history]);
 
   return (
     <div className="login">
-      <CustomTitle page="Login" />
-
       <Formik
         initialValues={{ email: "", password: "" }}
         validateOnChange={false}

@@ -1,5 +1,5 @@
 import React from "react";
-import CustomTitle from "../components/CustomTitle";
+
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import HeadLogo from "../images/HeadLogo.svg";
 import "../css/styles.css";
@@ -10,7 +10,7 @@ function Register({ history }) {
 
   return (
     <div className="register">
-      <CustomTitle page="Register" />
+
 
       <Formik
         initialValues={{ name: "", email: "", password: "" }}

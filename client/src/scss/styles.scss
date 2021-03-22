@@ -4,7 +4,9 @@
 @import "register-login-forgotPassword.";
 @import "contact";
 @import "topics";
+@import "settings";
 @import "homeMediaQueries";
+
 
 $globalfontface: "Roboto", sans-serif;
 
@@ -18,4 +20,4 @@ $globalfontface: "Roboto", sans-serif;
 html {
   font-family: $globalfontface;
 }
-  
+   

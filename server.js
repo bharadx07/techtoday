@@ -26,9 +26,11 @@ if (process.env.NODE_ENV === "development") {
 
 //Import Routes
 const UserRoutes = require("./routes/user");
+const InformationRoutes = require("./routes/techinfo")
 
 //Use Routes
 app.use("/api/v1/users", UserRoutes);
+app.use("/api/v1/techtoday", InformationRoutes)
 
 //Client Routes
 app.use(express.static("client/build"));

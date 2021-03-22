@@ -2,17 +2,19 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   grid-gap: 3rem;
-
-  margin: 11rem auto 5rem auto;
   justify-items: center;
+  justify-content: center;
+  margin-top: 9rem;
+  margin-bottom: 3rem;
 
   section {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; 
+   
 
     margin: 0 auto;
-    width: 300px;
+    width: 305px;
     text-align: center;
     cursor: pointer;
     background-color: #f7f7f7;

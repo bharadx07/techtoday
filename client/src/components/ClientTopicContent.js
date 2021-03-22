@@ -9,6 +9,8 @@ import Security from "../images/Security.jfif";
 import ARVR from "../images/VRAR.jfif";
 import AI from "../images/AI.jfif";
 import { Link } from "react-router-dom";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import { v4 as uuidv4 } from "uuid";
 
 function ClientTopicContent({ user }) {
@@ -16,7 +18,15 @@ function ClientTopicContent({ user }) {
 
   if(userTopics === "Loading") {
     return (
-      <h1>Loading...</h1>
+      <div style={{marginTop: "10rem", display: "flex", justifyContent: "center", height: "70vh", alignItems: "center"}}>
+      
+      <Loader
+        type="TailSpin"
+        color="#cb4745"
+        height={50}
+        width={50}
+      />
+      </div>
     )
   }
 
@@ -61,7 +71,7 @@ function ClientTopicContent({ user }) {
             <h1>{topic}</h1>
             <p>{TopicsInfo[topic].description}</p>
 
-            <Link className="button" to={`/topic/${topic.toLowerCase()}/news`}>
+            <Link className="button" to={`/topic/${topic === "VR/AR" ? "vrar" : topic.toLowerCase()}/news`}>
               <button>Explore</button>
             </Link>
           </section>

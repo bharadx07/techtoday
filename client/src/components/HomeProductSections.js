@@ -8,14 +8,14 @@ function HomeProductSections() {
     <div className="home-products-section">
       <h1>Your Personal Hub</h1>
       <h5>
-        Find all the Information you are Intrested In, Collected In One Place
+        All the Current Tech Information You Want
       </h5>
       <section className="right">
         <div>
           <h1>News</h1>
           <p>
             Catch up with all the current events taking place in many
-            industries. Learn about the topic by reading quick news snippets or
+            industries. Learn about the news by reading quick news snippets, or
             if you are instrested, view the full article with one click.
           </p>
         </div>
@@ -34,7 +34,7 @@ function HomeProductSections() {
         <div>
           <h1>Jobs</h1>
           <p>
-            Wanting to find a job in a certain topic. Check the job section of
+            Wanting to find a job in a certain topic? Check the job section of
             certain field and view the availible jobs near you in that industry
           </p>
         </div>
