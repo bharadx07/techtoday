@@ -1,8 +1,9 @@
 import React from "react";
-import {Formik, Form, Field, ErrorMessage} from "formik"
-import StartPFP from "../images/StartPFP.jfif"
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import StartPFP from "../images/StartPFP.jfif";
 
-function AccountPreferences() {
+function AccountPreferences({user}) {
+ 
   return (
     <div className="preferences">
       <Formik
@@ -20,17 +21,7 @@ function AccountPreferences() {
           <Form className="form">
             <h2>Preferences</h2>
             <label>Your Name</label>
-            <Field className="input" type="text" name="name" />
-            <ErrorMessage name="name" component="div" />
-            <label>Your Email</label>
-            <Field className="input" type="text" name="email" />
-            <ErrorMessage name="email" component="div" />
-            <label>Your PFP</label>
-            <img src={StartPFP} alt="pfp" />
-            <Field className="input" type="file" name="pfp" />
-            <button type="submit" disabled={isSubmitting}>
-              Update Profile
-            </button>
+            
           </Form>
         )}
       </Formik>

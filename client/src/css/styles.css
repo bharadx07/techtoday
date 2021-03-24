@@ -422,6 +422,7 @@ footer {
     .settings .preferences .form {
       background-color: white;
       padding: 2.1rem;
+      width: 300px;
       margin: 0 auto;
       border-radius: 6px;
       text-align: center;
@@ -431,8 +432,10 @@ footer {
         display: block; }
       .settings .profile .form img,
       .settings .preferences .form img {
-        width: 35px;
-        margin: 0 auto; }
+        width: 50%;
+        cursor: pointer;
+        border-radius: 100%;
+        margin: 1rem auto; }
       .settings .profile .form h1,
       .settings .preferences .form h1 {
         font-weight: normal;
@@ -473,6 +476,9 @@ footer {
       .settings .profile .form input:-webkit-autofill,
       .settings .preferences .form input:-webkit-autofill {
         -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important; }
+      .settings .profile .form input[type=file],
+      .settings .preferences .form input[type=file] {
+        display: none; }
       .settings .profile .form button,
       .settings .preferences .form button {
         width: 100%;
@@ -493,10 +499,11 @@ footer {
         font-size: 0.9rem; }
       .settings .profile .form .Link,
       .settings .preferences .form .Link {
-        color: black;
+        color: #cb4745;
         text-decoration: none;
         text-align: left;
         width: 100%;
+        margin-top: 1rem;
         display: flex; }
         .settings .profile .form .Link span,
         .settings .preferences .form .Link span {

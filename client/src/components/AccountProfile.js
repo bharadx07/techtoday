@@ -1,9 +1,19 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import React from "react";
+import React, { useRef } from "react";
 import StartPFP from "../images/StartPFP.jfif";
 import { Link } from "react-router-dom";
 
-function AccountProfile() {
+function AccountProfile({user}) {
+  const PFPRef = useRef(null);
+  const triggerFileWindow = () => {
+    PFPRef.current.click();
+  };
+  let showDefaultPFP = true;
+
+  if(user) {
+    showDefaultPFP = user.pfp === "" ? true: false
+  }
+
   return (
     <div className="profile">
       <Formik
@@ -21,14 +31,19 @@ function AccountProfile() {
           <Form className="form">
             <h2>Profile</h2>
             <label>Your Name</label>
-            <Field className="input" type="text" name="name" />
+            <Field className="input" type="text" name="name" placeholder={user.name ?? ""}/>
             <ErrorMessage name="name" component="div" />
             <label>Your Email</label>
-            <Field className="input" type="text" name="email" />
+            <Field className="input" type="text" name="email" placeholder={user.email ?? ""}/>
             <ErrorMessage name="email" component="div" />
-            <label>Your PFP</label>
-            <img src={StartPFP} alt="pfp" />
-            <Field className="input" type="file" name="pfp" />
+
+            <label>Your Profile Picture</label>
+            <img src={showDefaultPFP ? StartPFP: user.pfp} alt="pfp" onClick={() => triggerFileWindow()} />
+            <input className="input" type="file" name="pfp" ref={PFPRef} />
+            <Link to="/change-password" className="Link">
+              Change Password
+            </Link>
+            <button>Delete Account</button>
             <button type="submit" disabled={isSubmitting}>
               Update Profile
             </button>

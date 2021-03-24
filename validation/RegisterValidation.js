@@ -10,4 +10,4 @@ const RegisterValidation = (data) => {
   return schema.validate(data, { abortEarly: false });
 };
 
-module.exports = RegisterValidation;
+module.exports = RegisterValidation;  

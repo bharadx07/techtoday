@@ -14,10 +14,9 @@
   }
 
   .wrapper {
-      padding-bottom: 1rem;
-      display: flex;
-      justify-content: space-between;
-
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
   }
 
   .profile,
@@ -25,12 +24,11 @@
     display: flex;
     margin: 3rem auto;
     justify-content: center;
-    
 
     .form {
       background-color: white;
       padding: 2.1rem;
-
+      width: 300px;
       margin: 0 auto;
       border-radius: 6px;
       text-align: center;
@@ -41,8 +39,10 @@
       }
 
       img {
-        width: 35px;
-        margin: 0 auto;
+        width: 50%;
+        cursor: pointer;
+        border-radius: 100%;
+        margin: 1rem auto;
       }
 
       h1 {
@@ -89,6 +89,10 @@
         -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
       }
 
+      input[type=file] {
+        display: none;
+      }
+
       button {
         width: 100%;
         padding: 0.5rem 0;
@@ -110,10 +114,11 @@
       }
 
       .Link {
-        color: black;
+        color: $subbackground;
         text-decoration: none;
         text-align: left;
         width: 100%;
+        margin-top: 1rem;
         display: flex;
 
         span {
@@ -129,4 +134,3 @@
     }
   }
 }
-
