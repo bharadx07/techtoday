@@ -415,9 +415,17 @@ footer {
     justify-content: space-between; }
   .settings .profile,
   .settings .preferences {
-    display: flex;
-    margin: 3rem auto;
-    justify-content: center; }
+    margin: 3rem auto; }
+    .settings .profile label,
+    .settings .preferences label {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1rem;
+      line-height: 23px;
+      margin: 0.7rem 0;
+      text-align: left;
+      color: #000000; }
     .settings .profile .form,
     .settings .preferences .form {
       background-color: white;
@@ -427,12 +435,22 @@ footer {
       border-radius: 6px;
       text-align: center;
       box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.1); }
+      .settings .profile .form .flexed,
+      .settings .preferences .form .flexed {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem; }
+        .settings .profile .form .flexed label,
+        .settings .preferences .form .flexed label {
+          padding-left: .5rem;
+          line-height: initial;
+          margin: 0; }
       .settings .profile .form *,
       .settings .preferences .form * {
         display: block; }
       .settings .profile .form img,
       .settings .preferences .form img {
-        width: 50%;
+        width: 65%;
         cursor: pointer;
         border-radius: 100%;
         margin: 1rem auto; }
@@ -450,16 +468,6 @@ footer {
         font-weight: 300;
         margin: 0 auto;
         max-width: 250px; }
-      .settings .profile .form label,
-      .settings .preferences .form label {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 1rem;
-        line-height: 23px;
-        margin: 0.7rem 0;
-        text-align: left;
-        color: #000000; }
       .settings .profile .form .input,
       .settings .profile .form .input:focus,
       .settings .profile .form .input:hover,
@@ -476,8 +484,8 @@ footer {
       .settings .profile .form input:-webkit-autofill,
       .settings .preferences .form input:-webkit-autofill {
         -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important; }
-      .settings .profile .form input[type=file],
-      .settings .preferences .form input[type=file] {
+      .settings .profile .form input[type="file"],
+      .settings .preferences .form input[type="file"] {
         display: none; }
       .settings .profile .form button,
       .settings .preferences .form button {

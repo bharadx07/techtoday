@@ -170,4 +170,69 @@ router.get("/auth", ValidateToken, async (req, res) => {
   }
 });
 
+router.post("/change-email", ValidateToken, async (req, res) => {
+  const newEmail = req.body.newemail;
+
+  if (!newEmail) {
+    return res.status(400).send("Email is Required");
+  }
+
+  const testEmail = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(newEmail);
+
+  if (testEmail) {
+    return res.status(400).send("Invalid Email");
+  }
+
+  const isUser = await User.findOne({ email: newEmail });
+
+  const currUser = await User.findOne({ _id: req.user._id });
+
+  if (isUser.name !== currUser.name) {
+    return res.status(400).send("Email is Taken");
+  }
+
+  const user = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { email: newEmail },
+    { useFindAndModify: false }
+  );
+
+  return res.status(200).send(newEmail);
+});
+
+router.post("/change-name", ValidateToken, async (req, res) => {
+  const newName = req.body.newname;
+
+  if (!newName) {
+    return res.status(400).send("Name is Required");
+  }
+
+  const user = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { name: newName },
+    { useFindAndModify: false }
+  );
+
+  return res.status(200).send(newName);
+});
+
+router.post("/change-pfp", ValidateToken, async (req, res) => {
+  const newPFP = req.body.newpfp;
+
+  if (!newPFP) {
+    return res.status(400).send("PFP URL is Required");
+  }
+
+  const user = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { pfp: newPFP },
+    { useFindAndModify: false }
+  );
+
+  return res.status(200).send(newPFP);
+});
+
+
+
+
 module.exports = router;

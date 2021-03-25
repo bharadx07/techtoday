@@ -21,9 +21,22 @@
 
   .profile,
   .preferences {
-    display: flex;
+ 
     margin: 3rem auto;
-    justify-content: center;
+    
+
+    
+    label {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1rem;
+      line-height: 23px;
+      margin: 0.7rem 0;
+      text-align: left;
+
+      color: #000000;
+    }
 
     .form {
       background-color: white;
@@ -33,13 +46,24 @@
       border-radius: 6px;
       text-align: center;
       box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.1);
+      .flexed {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        label {
+          padding-left: .5rem;
+          line-height: initial;
+          margin: 0;
+        }
+      }
 
       * {
         display: block;
       }
 
       img {
-        width: 50%;
+        width: 65%;
         cursor: pointer;
         border-radius: 100%;
         margin: 1rem auto;
@@ -61,17 +85,6 @@
         max-width: 250px;
       }
 
-      label {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 1rem;
-        line-height: 23px;
-        margin: 0.7rem 0;
-        text-align: left;
-
-        color: #000000;
-      }
 
       .input,
       .input:focus,
@@ -89,7 +102,7 @@
         -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
       }
 
-      input[type=file] {
+      input[type="file"] {
         display: none;
       }
 

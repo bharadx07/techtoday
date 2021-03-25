@@ -34,7 +34,7 @@ function TopicNews({ match, history }) {
   useEffect(() => {
     let news = getNews();
     console.log(news);
-    news = requestNews(match.params.topicname);
+    news = requestNews(match.params.topicname, localStorage.jwt);
     news.then((x) => {
       console.log(x);
     });

@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
 
   topics: {
     type: Array,
-    default: ["Programming", "Hardware", "Finance", "Buisness", "Security", "Medical", "VR/AR", "AI"],
+    default: ["Programming", "Hardware", "Finance", "Business", "Security", "Medical", "VR/AR", "AI"],
   },
 
   jobDefaultCount: {

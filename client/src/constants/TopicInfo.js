@@ -14,8 +14,8 @@ const TopicsInfo = {
     description:
       "Information regarding financing, crypo-currency, budgets and more",
   },
-  Buisness: {
-    name: "Buisness",
+  Business: {
+    name: "Business",
     description: "Information regarding e-marketing, e-commerce and more",
   },
   Security: {
@@ -35,5 +35,7 @@ const TopicsInfo = {
       description: "Information about Machine Learning, AI, Neural Networks and more"
   },
 };
+
+export const TopicsList = ["Programming", "Hardware", "Finance", "Business", "Security", "Medical", "VR/AR", "AI"]
 
 export default TopicsInfo;

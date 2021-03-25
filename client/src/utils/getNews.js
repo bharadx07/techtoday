@@ -10,8 +10,12 @@ export const getNews = () => {
   };
 };
 
-export const requestNews = async (topic) => {
-  const req = await axios.post("/api/v1/techtoday/news");
+export const requestNews = async (topic, token) => {
+  const req = await axios.post("/api/v1/techtoday/news", null , {
+    headers: {
+      "auth-token": token
+    }
+  });
   news[topic] = req.data;
   haveNews = true;
 

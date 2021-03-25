@@ -23,7 +23,7 @@ function PrivateOuterNav() {
     <header>
       <section className="nav-wrap">
         <div className="nav-brand">
-          <Link to="/">
+          <Link to="/topics">
             <img src={Logo} alt="Logo" />
           </Link>
         </div>
