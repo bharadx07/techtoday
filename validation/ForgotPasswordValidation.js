@@ -8,4 +8,4 @@ const ForgotPasswordValidation = (data) => {
 };
 
 
-module.exports = ForgotPasswordValidation;
+module.exports = ForgotPasswordValidation; 

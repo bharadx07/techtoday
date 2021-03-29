@@ -120,7 +120,7 @@ nav {
     align-items: center;
     width: 650px;
     margin: auto;
-    margin-top: 1rem; }
+    margin-top: .3rem; }
     .home-products-section section .icon {
       color: #cb4745;
       font-size: 11rem;
@@ -412,7 +412,10 @@ footer {
   .settings .wrapper {
     padding-bottom: 1rem;
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    margin: auto; }
   .settings .profile,
   .settings .preferences {
     margin: 3rem auto; }
@@ -439,10 +442,10 @@ footer {
       .settings .preferences .form .flexed {
         display: flex;
         align-items: center;
-        margin-bottom: 1rem; }
+        margin-bottom: 0.86rem; }
         .settings .profile .form .flexed label,
         .settings .preferences .form .flexed label {
-          padding-left: .5rem;
+          padding-left: 0.5rem;
           line-height: initial;
           margin: 0; }
       .settings .profile .form *,
@@ -450,7 +453,8 @@ footer {
         display: block; }
       .settings .profile .form img,
       .settings .preferences .form img {
-        width: 65%;
+        width: 150px;
+        height: 150px;
         cursor: pointer;
         border-radius: 100%;
         margin: 1rem auto; }
@@ -487,6 +491,10 @@ footer {
       .settings .profile .form input[type="file"],
       .settings .preferences .form input[type="file"] {
         display: none; }
+      .settings .profile .form input[type="number"],
+      .settings .preferences .form input[type="number"] {
+        height: 28px;
+        text-align: center; }
       .settings .profile .form button,
       .settings .preferences .form button {
         width: 100%;
@@ -521,6 +529,36 @@ footer {
       .settings .preferences .form .Forgot {
         color: #cb4745;
         margin: 1.2rem 0 0 0; }
+
+@media (max-width: 850px) {
+  .settings {
+    width: 90%; }
+    .settings h1 {
+      text-align: center; }
+    .settings .wrapper {
+      flex-direction: column; }
+    .settings .profile,
+    .settings .preferences {
+      margin: 0 auto;
+      margin-top: 1.3rem; }
+      .settings .profile .form,
+      .settings .preferences .form {
+        width: 300px; } }
+
+@media (max-width: 350px) {
+  .settings {
+    width: 90%; }
+    .settings h1 {
+      text-align: center; }
+    .settings .wrapper {
+      flex-direction: column; }
+    .settings .profile,
+    .settings .preferences {
+      margin: 0 auto;
+      margin-top: 1.3rem; }
+      .settings .profile .form,
+      .settings .preferences .form {
+        width: 100%; } }
 
 @media (max-width: 540px) {
   .info-topics section {

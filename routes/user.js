@@ -152,6 +152,7 @@ router.put("/change-password", ValidateToken, async (req, res) => {
     { useFindAndModify: false }
   );
 
+
   const loginUser = {
     email: user.email,
     password: req.body.password,
@@ -160,17 +161,7 @@ router.put("/change-password", ValidateToken, async (req, res) => {
   return res.status(200).send("Password Changed");
 });
 
-router.get("/auth", ValidateToken, async (req, res) => {
-  const user = await User.findOne({ _id: req.user._id });
-
-  if (user) {
-    res.status(200).json(user);
-  } else {
-    return res.status(400).send("Error Finding User");
-  }
-});
-
-router.post("/change-email", ValidateToken, async (req, res) => {
+router.put("/change-email", ValidateToken, async (req, res) => {
   const newEmail = req.body.newemail;
 
   if (!newEmail) {
@@ -187,7 +178,9 @@ router.post("/change-email", ValidateToken, async (req, res) => {
 
   const currUser = await User.findOne({ _id: req.user._id });
 
-  if (isUser.name !== currUser.name) {
+ 
+
+  if (isUser?.name !== currUser.name && isUser) {
     return res.status(400).send("Email is Taken");
   }
 
@@ -200,7 +193,7 @@ router.post("/change-email", ValidateToken, async (req, res) => {
   return res.status(200).send(newEmail);
 });
 
-router.post("/change-name", ValidateToken, async (req, res) => {
+router.put("/change-name", ValidateToken, async (req, res) => {
   const newName = req.body.newname;
 
   if (!newName) {
@@ -216,7 +209,7 @@ router.post("/change-name", ValidateToken, async (req, res) => {
   return res.status(200).send(newName);
 });
 
-router.post("/change-pfp", ValidateToken, async (req, res) => {
+router.put("/change-pfp", ValidateToken, async (req, res) => {
   const newPFP = req.body.newpfp;
 
   if (!newPFP) {
@@ -232,7 +225,111 @@ router.post("/change-pfp", ValidateToken, async (req, res) => {
   return res.status(200).send(newPFP);
 });
 
+router.get(
+  "/change-password-internal-get-token",
+  ValidateToken,
+  async (req, res) => {
+    changePasswordToken = jwt.sign({ _id: req.user._id }, process.env.TOKEN_SECRET, {
+      expiresIn: 60 * 30,
+    });
+    res.status(200).send(changePasswordToken);
+  }
+);
 
+router.put("/change-topics", ValidateToken, async (req, res) => {
+  const newtopics = req.body.newtopics;
 
+  if (!newtopics) {
+    return res.status(400).send("Bad Topics Format");
+  }
+
+  if (newtopics.length < 1) {
+    return res.status(400).send("Must Have Atleast One Topic");
+  }
+
+  const user = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { topics: newtopics },
+    { useFindAndModify: false }
+  );
+
+  return res.status(200).send(newtopics);
+});
+
+router.put(
+  "/change-default-settings/:section",
+  ValidateToken,
+  async (req, res) => {
+    const newValue = req.body.newvalue;
+    const section = req.params.section;
+
+    
+
+    if (section !== "news" && section !== "jobs") {
+      return res.status(404).send("Cannot Change That Preference");
+    }
+
+    if (!newValue) {
+      return res.status(400).send("Value is Required");
+    }
+
+    if(newValue <1 || newValue>9) {
+      return res.status(400).send("Value must be between 1-9")
+    }  
+
+    let user;
+
+    try {
+      switch (section) {
+        case "news":
+          user = await User.findOneAndUpdate(
+            { _id: req.user._id },
+            { newsDefaultCount: newValue },
+            { useFindAndModify: false }
+          );
+          break;
+        case "jobs":
+          user = await User.findOneAndUpdate(
+            { _id: req.user._id },
+            { jobDefaultCount: newValue },
+            { useFindAndModify: false }
+          );
+          break;
+        default:
+          break;
+      }
+
+      return res.status(200).send("Changed Settings Value")
+    } catch (error) {
+      return res.status(400).send("Failed to Change Value");
+    }
+  }
+);
+
+router.delete("/delete-account", ValidateToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      return res.status(400).send("Account Does Not Exist");
+    }
+
+    await user.remove();
+
+    return res.status(200).send("Deleted Account");
+  } catch (error) {
+    return res.status(500).send("Failed to Delete Account");
+  }
+});
+
+router.get("/auth", ValidateToken, async (req, res) => {
+  const user = await User.findOne({ _id: req.user._id });
+
+  if (user) {
+    res.status(200).json(user);
+  } else {
+    return res.status(400).send("Error Finding User");
+  }
+});
 
 module.exports = router;

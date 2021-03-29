@@ -15,10 +15,7 @@ const UserSchema = new mongoose.Schema({
     min: 6,
   },
 
-  pfp: {
-    type: String,
-    default: "",
-  },
+
 
   topics: {
     type: Array,

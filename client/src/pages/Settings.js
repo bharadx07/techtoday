@@ -33,7 +33,7 @@ function Settings({history}) {
   return (
     <div>
       <NavBar variant="privateouter" />
-      <AccountSettings user={user} />
+      <AccountSettings user={user}  history={history} />
     </div>
   );
 }

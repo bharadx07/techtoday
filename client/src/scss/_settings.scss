@@ -17,15 +17,15 @@
     padding-bottom: 1rem;
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
   }
 
   .profile,
   .preferences {
- 
     margin: 3rem auto;
-    
 
-    
     label {
       font-family: "Roboto";
       font-style: normal;
@@ -45,14 +45,15 @@
       margin: 0 auto;
       border-radius: 6px;
       text-align: center;
+
       box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.1);
       .flexed {
         display: flex;
         align-items: center;
-        margin-bottom: 1rem;
+        margin-bottom: 0.86rem;
 
         label {
-          padding-left: .5rem;
+          padding-left: 0.5rem;
           line-height: initial;
           margin: 0;
         }
@@ -63,7 +64,8 @@
       }
 
       img {
-        width: 65%;
+        width: 150px;
+        height: 150px;
         cursor: pointer;
         border-radius: 100%;
         margin: 1rem auto;
@@ -85,7 +87,6 @@
         max-width: 250px;
       }
 
-
       .input,
       .input:focus,
       .input:hover {
@@ -104,6 +105,11 @@
 
       input[type="file"] {
         display: none;
+      }
+
+      input[type="number"] {
+        height: 28px;
+        text-align: center;
       }
 
       button {
@@ -144,6 +150,59 @@
         color: $subbackground;
         margin: 1.2rem 0 0 0;
       }
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .settings {
+    width: 90%;
+
+    h1 {
+      text-align: center;
+    }
+    .wrapper {
+      flex-direction: column;
+      
+    }
+
+    .profile,
+    .preferences {
+      margin: 0 auto;
+      margin-top: 1.3rem;
+
+      .form {
+        width: 300px;
+      }
+    
+
+    }
+  }
+}
+
+
+@media (max-width: 350px) {
+  .settings {
+    width: 90%;
+
+    h1 {
+      text-align: center;
+    }
+    .wrapper {
+      flex-direction: column;
+      
+    }
+
+    .profile,
+    .preferences {
+      margin: 0 auto;
+      margin-top: 1.3rem;
+
+      .form {
+        width: 100%;
+      }
+    
+
     }
   }
 }

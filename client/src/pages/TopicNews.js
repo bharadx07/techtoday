@@ -5,7 +5,9 @@ import { getNews, requestNews } from "../utils/getNews";
 
 function TopicNews({ match, history }) {
   const [user, setUser] = useState("");
-  //Simple Check To Speed Up Time (No as Secure)
+  //Simple Check To Speed Up Time (No as Secure)'
+
+  console.log(user)
 
   if (!localStorage.jwt) {
     history.push("/login");

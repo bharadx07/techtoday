@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 function ChangePassword({ match, history }) {
   const changeId = match.params.changeid;
+
   return (
     <div className="change-password">
       <Formik
@@ -32,7 +33,12 @@ function ChangePassword({ match, history }) {
         }}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(false);
-          history.push("/login?origin=fp");
+          const url = window.location.href;
+          if (url.includes("?from=settings")) {
+            history.push("/settings?change=success");
+          } else {
+            history.push("/login");
+          }
         }}
       >
         {({ isSubmitting, values }) => (

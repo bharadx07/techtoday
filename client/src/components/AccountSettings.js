@@ -3,7 +3,7 @@ import AccountPreferences from "./AccountPreferences";
 import AccountProfile from "./AccountProfile";
 import Loader from "react-loader-spinner"
 
-function AccountSettings({user}) {
+function AccountSettings({user, history}) {
   if(!user) {
     return (
       <div style={{marginTop: "10rem", display: "flex", justifyContent: "center", height: "70vh", alignItems: "center"}}>
@@ -21,8 +21,8 @@ function AccountSettings({user}) {
     <section className="settings">
       <h1>Account Settings</h1>
       <section className="wrapper">
-        <AccountProfile user={user}/>
-        <AccountPreferences user={user} />
+        <AccountProfile serversentuser={user} history={history}/>
+        <AccountPreferences serversentuser={user} />
       </section>
     </section>
   );
