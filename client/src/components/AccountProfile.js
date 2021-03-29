@@ -8,12 +8,6 @@ function AccountProfile({ serversentuser, history }) {
   const [success, setSuccess] = useState(false);
   const [changepasswordlink, setchangepasswordlink] = useState("");
 
-  const chooseRedirect = (errorstatus) => {
-    if (errorstatus === 403 || errorstatus === 401) {
-      history.push("/login");
-    }
-  };
-
   const makereq = async () => {
     const req = await axios.get(
       "/api/v1/users/change-password-internal-get-token",
@@ -26,8 +20,8 @@ function AccountProfile({ serversentuser, history }) {
   useEffect(() => {
     makereq();
     const url = window.location.href;
-    if(url.includes("?change=success")) {
-      setSuccess(true)
+    if (url.includes("?change=success")) {
+      setSuccess(true);
     }
   }, []);
 
@@ -38,13 +32,8 @@ function AccountProfile({ serversentuser, history }) {
         headers: { "auth-token": localStorage.jwt },
       });
 
-
-      history.push("/")
-
-      
-
-      
-    } 
+      history.push("/");
+    }
   };
 
   return (
@@ -56,6 +45,12 @@ function AccountProfile({ serversentuser, history }) {
         validateOnBlur={false}
         validate={async (values) => {
           const errors = {};
+
+          const chooseRedirect = (errorstatus) => {
+            if (errorstatus === 403 || errorstatus === 401) {
+              history.push("/login");
+            }
+          };
 
           const commonauthconfig = {
             headers: {
@@ -109,12 +104,9 @@ function AccountProfile({ serversentuser, history }) {
 
           setUser({ ...user, name: newname, email: newemail });
 
-          console.log(user);
-
           return errors;
         }}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
-          console.log(user);
           resetForm();
         }}
       >

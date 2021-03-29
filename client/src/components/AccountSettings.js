@@ -22,7 +22,7 @@ function AccountSettings({user, history}) {
       <h1>Account Settings</h1>
       <section className="wrapper">
         <AccountProfile serversentuser={user} history={history}/>
-        <AccountPreferences serversentuser={user} />
+        <AccountPreferences serversentuser={user} history={history}/>
       </section>
     </section>
   );

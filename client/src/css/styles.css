@@ -540,7 +540,7 @@ footer {
     .settings .profile,
     .settings .preferences {
       margin: 0 auto;
-      margin-top: 1.3rem; }
+      margin-top: 1rem; }
       .settings .profile .form,
       .settings .preferences .form {
         width: 300px; } }
@@ -555,7 +555,7 @@ footer {
     .settings .profile,
     .settings .preferences {
       margin: 0 auto;
-      margin-top: 1.3rem; }
+      margin-top: 1rem; }
       .settings .profile .form,
       .settings .preferences .form {
         width: 100%; } }
