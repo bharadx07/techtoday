@@ -1,7 +1,7 @@
 import axios from "axios";
 
 let news = {};
-let haveNews = false;
+let haveNews = {};
 
 export const getNews = () => {
   return {
@@ -17,7 +17,7 @@ export const requestNews = async (topic, token) => {
     }
   });
   news[topic] = req.data;
-  haveNews = true;
+  haveNews[topic] = true;
 
   return {
     haveNews,

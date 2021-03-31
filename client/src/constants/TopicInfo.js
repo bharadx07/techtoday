@@ -38,4 +38,6 @@ const TopicsInfo = {
 
 export const TopicsList = ["Programming", "Hardware", "Finance", "Business", "Security", "Medical", "VR/AR", "AI"]
 
+export const TopicListURLQueries = ["programming", "hardware", "finance", "business", "security", "medical", "vrar", "ai"]
+
 export default TopicsInfo;

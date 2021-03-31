@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@iconify/icons-akar-icons": "^1.1.5",
     "@iconify/icons-bx": "^1.1.0",
     "@iconify/icons-clarity": "^1.1.0",
     "@iconify/icons-el": "^1.1.0",

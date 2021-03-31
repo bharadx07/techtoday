@@ -5,11 +5,11 @@ import PublicNav from './PublicNav'
 
 
 
-function NavBar({variant}) {
+function NavBar({variant, path}) {
     return (
         <div>
            {variant === "public" && <PublicNav />}
-           {variant === "privateinner" && <PrivateInnerNav />}
+           {variant === "privateinner" && <PrivateInnerNav path={path} />}
            {variant === "privateouter" && <PrivateOuterNav />}
         </div>
     )
