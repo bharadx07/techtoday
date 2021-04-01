@@ -18,26 +18,26 @@ const TopicsInfo = {
     name: "Business",
     description: "Information regarding e-marketing, e-commerce and more",
   },
-  Security: {
-      name: "Security",
-      description: "Information about computer viruses, hacking, cyber security and more"
+  Auto: {
+      name: "Auto",
+      description: "Information about cars, car motors, automotive technology and more"
   },
   Medical: {
       name: "Medical",
       description: "Information about medical equipment, medical tech and more"
   },
-  "VR/AR": {
-      name: "AR/VR",
-      description: "Information about the Augmented Reality, Virtual Reality and more."
+  Travel: {
+      name: "Travel",
+      description: "Information about the plane travel system such as new tech, crashes, engines and more"
   },
-  AI: {
-      name: "AI",
-      description: "Information about Machine Learning, AI, Neural Networks and more"
+  Retail: {
+      name: "Retail",
+      description: "Information similar to Business, but about setting up shops, sellings, clients and more"
   },
 };
 
-export const TopicsList = ["Programming", "Hardware", "Finance", "Business", "Security", "Medical", "VR/AR", "AI"]
+export const TopicsList = ["Programming", "Hardware", "Finance", "Business", "Auto", "Medical", "Travel", "Retail"]
 
-export const TopicListURLQueries = ["programming", "hardware", "finance", "business", "security", "medical", "vrar", "ai"]
+export const TopicListURLQueries = ["programming", "hardware", "finance", "business", "auto", "medical", "travel", "retail"]
 
 export default TopicsInfo;

@@ -397,6 +397,62 @@ footer {
         padding: 0.7rem 0;
         cursor: pointer; }
 
+.news {
+  margin-top: 9rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center; }
+  .news h1 {
+    font-weight: normal; }
+  .news section {
+    display: grid;
+    padding: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-gap: 4rem;
+    justify-items: center;
+    justify-content: center;
+    margin-bottom: 3rem; }
+    .news section article {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      width: 605px;
+      text-align: center;
+      cursor: pointer;
+      background-color: #f7f7f7; }
+      .news section article div {
+        display: flex; }
+        .news section article div div {
+          display: block;
+          text-align: left;
+          margin: 1rem 2rem; }
+          .news section article div div h2 {
+            font-size: 1.3rem;
+            margin-top: 1rem; }
+          .news section article div div p {
+            margin-top: .7rem;
+            color: #808080;
+            font-size: 1rem; }
+          .news section article div div h5 {
+            margin-top: .7rem; }
+          .news section article div div div {
+            margin: 0;
+            display: flex;
+            justify-content: space-between; }
+        .news section article div img {
+          width: 50px; }
+      .news section article .button {
+        color: white;
+        text-decoration: none;
+        background-color: #cb4745;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 0.5rem 0;
+        font-size: 1rem; }
+
 .settings {
   margin: 9rem auto;
   text-align: center;

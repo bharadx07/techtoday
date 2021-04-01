@@ -152,7 +152,6 @@ router.put("/change-password", ValidateToken, async (req, res) => {
     { useFindAndModify: false }
   );
 
-
   const loginUser = {
     email: user.email,
     password: req.body.password,
@@ -177,8 +176,6 @@ router.put("/change-email", ValidateToken, async (req, res) => {
   const isUser = await User.findOne({ email: newEmail });
 
   const currUser = await User.findOne({ _id: req.user._id });
-
- 
 
   if (isUser?.name !== currUser.name && isUser) {
     return res.status(400).send("Email is Taken");
@@ -209,29 +206,17 @@ router.put("/change-name", ValidateToken, async (req, res) => {
   return res.status(200).send(newName);
 });
 
-router.put("/change-pfp", ValidateToken, async (req, res) => {
-  const newPFP = req.body.newpfp;
-
-  if (!newPFP) {
-    return res.status(400).send("PFP URL is Required");
-  }
-
-  const user = await User.findOneAndUpdate(
-    { _id: req.user._id },
-    { pfp: newPFP },
-    { useFindAndModify: false }
-  );
-
-  return res.status(200).send(newPFP);
-});
-
 router.get(
   "/change-password-internal-get-token",
   ValidateToken,
   async (req, res) => {
-    changePasswordToken = jwt.sign({ _id: req.user._id }, process.env.TOKEN_SECRET, {
-      expiresIn: 60 * 30,
-    });
+    changePasswordToken = jwt.sign(
+      { _id: req.user._id },
+      process.env.TOKEN_SECRET,
+      {
+        expiresIn: 60 * 30,
+      }
+    );
     res.status(200).send(changePasswordToken);
   }
 );
@@ -263,8 +248,6 @@ router.put(
     const newValue = req.body.newvalue;
     const section = req.params.section;
 
-    
-
     if (section !== "news" && section !== "jobs") {
       return res.status(404).send("Cannot Change That Preference");
     }
@@ -273,9 +256,9 @@ router.put(
       return res.status(400).send("Value is Required");
     }
 
-    if(newValue <1 || newValue>9) {
-      return res.status(400).send("Value must be between 1-9")
-    }  
+    if (newValue < 1 || newValue > 9) {
+      return res.status(400).send("Value must be between 1-9");
+    }
 
     let user;
 
@@ -299,7 +282,7 @@ router.put(
           break;
       }
 
-      return res.status(200).send("Changed Settings Value")
+      return res.status(200).send("Changed Settings Value");
     } catch (error) {
       return res.status(400).send("Failed to Change Value");
     }

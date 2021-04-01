@@ -11,10 +11,48 @@ export const getNews = () => {
 };
 
 export const requestNews = async (topic, token) => {
-  const req = await axios.post("/api/v1/techtoday/news", null , {
+  let reqtopic;
+  switch (topic) {
+    case "programming":
+      reqtopic = "Technology";
+
+      break;
+    case "hardware":
+      reqtopic = "Personal Tech";
+
+      break;
+    case "buisness":
+      reqtopic = "Business";
+
+      break;
+    case "finance":
+      reqtopic = "Financial";
+
+      break;
+    case "medical":
+      reqtopic = "Health";
+
+      break;
+    case "auto":
+      reqtopic = "Automobiles";
+
+      break;
+    case "travel":
+      reqtopic = "Planes";
+
+      break;
+    case "retail":
+      reqtopic = "Retail";
+
+      break;
+
+    default:
+      break;
+  }
+  const req = await axios.post(`/api/v1/techtoday/news/${reqtopic}`, null, {
     headers: {
-      "auth-token": token
-    }
+      "auth-token": token,
+    },
   });
   news[topic] = req.data;
   haveNews[topic] = true;

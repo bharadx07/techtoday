@@ -5,9 +5,9 @@ import Hardware from "../images/Hardware.png";
 import Finance from "../images/Finance.png";
 import Buisness from "../images/Buisness.png";
 import Medical from "../images/Medical.jfif";
-import Security from "../images/Security.jfif";
-import ARVR from "../images/VRAR.jfif";
-import AI from "../images/AI.jfif";
+import Auto from "../images/Auto.jfif";
+import Travel from "../images/Travel.jfif";
+import Retail from "../images/Retail.jfif";
 import { Link } from "react-router-dom";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
@@ -41,7 +41,7 @@ function ClientTopicContent({ user }) {
           case "Hardware":
             topicImage = Hardware;
             break;
-          case "Buisness":
+          case "Business":
             topicImage = Buisness;
             break;
           case "Finance":
@@ -51,14 +51,14 @@ function ClientTopicContent({ user }) {
           case "Medical":
             topicImage = Medical;
             break;
-          case "Security":
-            topicImage = Security;
+          case "Auto":
+            topicImage = Auto;
             break;
-          case "AI":
-            topicImage = AI;
+          case "Retail":
+            topicImage = Retail;
             break;
-          case "VR/AR":
-            topicImage = ARVR;
+          case "Travel":
+            topicImage = Travel;
             break;
 
           default:
@@ -71,7 +71,7 @@ function ClientTopicContent({ user }) {
             <h1>{topic}</h1>
             <p>{TopicsInfo[topic].description}</p>
 
-            <Link className="button" to={`/topic/${topic === "VR/AR" ? "vrar" : topic.toLowerCase()}/news`}>
+            <Link className="button" to={`/topic/${topic.toLowerCase()}/news`}>
               <button>Explore</button>
             </Link>
           </section>
