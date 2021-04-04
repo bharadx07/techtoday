@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { TopicListURLQueries } from "../constants/TopicInfo";
 import NavBar from "../components/NavBar";
-
 import { getNews, requestNews } from "../utils/getNews";
 import ClientNewsContent from "../components/ClientNewsContent";
 
 function TopicNews({ match, history }) {
   const [user, setUser] = useState("");
   const [news, setNews] = useState(null);
+  const [pagination, setpagination] = useState(1);
   //Simple Check To Speed Up Time (No as Secure)'
 
   const topicName = match.params.topicname;
@@ -43,23 +43,42 @@ function TopicNews({ match, history }) {
 
   useEffect(() => {
     const makeNewsReq = async () => {
-    let news = getNews();
-    if (news.haveNews[topicName]) {
-      setNews(news.news[topicName]);
-    } else {
-      news = await requestNews(topicName, localStorage.jwt);
-      setNews(news.news[topicName])
-    } }
+      let requestedNews = getNews();
+      
+      if (requestedNews.haveNews[topicName][pagination]) {
+        if (pagination === 1) {
+          setNews(requestedNews.news[topicName][pagination].response.docs);
+        } else {
+          setNews(news => [...news, ...requestedNews.news[topicName][pagination].response.docs]);
+        }
+      } else {
+        requestedNews = await requestNews(
+          topicName,
+          localStorage.jwt,
+          pagination
+        );
+        if (pagination === 1) {
+          setNews(requestedNews.news[topicName][pagination].response.docs);; 
+        } else {
+          
+          setNews(news => [...news, ...requestedNews.news[topicName][pagination].response.docs]);
+        }
+      }
+    };
 
-    makeNewsReq()
-
-  }, [topicName]);
+    makeNewsReq();
+  }, [topicName, pagination]);
 
   return (
     <div>
       <NavBar variant="privateinner" path={topicName} />
-      <ClientNewsContent user={user} news={news} page={topicName} />
-      
+      <ClientNewsContent
+        user={user}
+        news={news}
+        page={topicName}
+        pagination={pagination}
+        setpagination={setpagination}
+      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-let news = {};
-let haveNews = {};
+let news = {programming: {}, hardware: {},finance: {},business: {},medical: {},auto: {},travel: {},retail: {}};
+let haveNews = {programming: {}, hardware: {},finance: {},business: {},medical: {},auto: {},travel: {},retail: {}};
 
 export const getNews = () => {
   return {
@@ -10,7 +10,7 @@ export const getNews = () => {
   };
 };
 
-export const requestNews = async (topic, token) => {
+export const requestNews = async (topic, token, page) => {
   let reqtopic;
   switch (topic) {
     case "programming":
@@ -21,7 +21,7 @@ export const requestNews = async (topic, token) => {
       reqtopic = "Personal Tech";
 
       break;
-    case "buisness":
+    case "business":
       reqtopic = "Business";
 
       break;
@@ -49,13 +49,16 @@ export const requestNews = async (topic, token) => {
     default:
       break;
   }
-  const req = await axios.post(`/api/v1/techtoday/news/${reqtopic}`, null, {
+  const req = await axios.post(`/api/v1/techtoday/news/${reqtopic}/${page}`, null, {
     headers: {
       "auth-token": token,
     },
   });
-  news[topic] = req.data;
-  haveNews[topic] = true;
+
+  
+  news[topic][page] = req.data;
+  haveNews[topic][page] = true;
+
 
   return {
     haveNews,

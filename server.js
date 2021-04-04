@@ -36,7 +36,8 @@ app.use("/api/v1/techtoday", InformationRoutes)
 app.use(express.static("client/build"));
 //Serve Routes on Site
 app.get("/*", (req, res) =>
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  // res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  res.send("TechToday Coming 2021")
 );
 
 //Run Server on Dynamic Port

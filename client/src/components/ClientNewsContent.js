@@ -1,9 +1,23 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Loader from "react-loader-spinner";
 import { v4 as uuidv4 } from "uuid";
 import StockNews from "../images/StockNews.jfif";
 
-function ClientNewsContent({ user, news, page }) {
+function ClientNewsContent({ user, news, page, pagination, setpagination }) {
+  const [buttoncontent, setButtoncontent] = useState("Show More")
+
+
+
+  useEffect(() => {
+    if(pagination === 3) {
+      setButtoncontent("Show Less")
+
+    } else {
+      setButtoncontent("Show More")
+    }
+    
+  }, [pagination])
+
   let newsItems;
   if (!user || !news) {
     return (
@@ -21,7 +35,8 @@ function ClientNewsContent({ user, news, page }) {
     );
   }
 
-  console.log(news);
+  
+
   let finalpage;
   if (page === "Ai") {
     finalpage = "AI News";
@@ -33,9 +48,14 @@ function ClientNewsContent({ user, news, page }) {
       page.substring(1, page.length) +
       " News";
   }
-  newsItems = news.response.docs.slice(0, user.newsDefaultCount);
+
+  
+  
+  newsItems = news.slice(0, user.newsDefaultCount*pagination);
 
   const IMAGE_STATIC_URI = "https://static01.nyt.com/";
+
+
 
   return (
     <main className="news">
@@ -44,7 +64,8 @@ function ClientNewsContent({ user, news, page }) {
         {newsItems.map((newsItem) => {
           const abstract = newsItem.abstract;
           const author = newsItem.byline.original;
-          const dt = newsItem.pub_date;
+          const dt = new Date(newsItem.pub_date);
+          const formatted_dt = dt.toDateString()
           const web_url = newsItem.web_url;
           const headline = newsItem.headline.main;
 
@@ -59,7 +80,7 @@ function ClientNewsContent({ user, news, page }) {
                 <div>
                   <div>
                   <h6>NY Times</h6>
-                  <h6>{dt}</h6>
+                  <h6>{formatted_dt}</h6>
                   </div>
                   <h2>{headline}</h2>
                   <p>{abstract}</p>
@@ -73,6 +94,12 @@ function ClientNewsContent({ user, news, page }) {
           );
         })}
       </section>
+      
+      <button onClick={() => {pagination === 3 ? setpagination(1) : setpagination(pagination+1)}}>{buttoncontent}</button>
+      
+    
+      
+
     </main>
   );
 }
