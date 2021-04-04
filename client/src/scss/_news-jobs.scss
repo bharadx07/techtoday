@@ -5,20 +5,18 @@
   margin-right: auto;
   justify-items: center;
 
-
   h1 {
     font-weight: normal;
   }
 
   button {
-      background-color: black;
-      color: white;
-      margin: 0 auto 2rem auto;
-      border: none;
-      outline: none;
-      padding: .7rem 5rem;
-      cursor: pointer;
-      
+    background-color: black;
+    color: white;
+    margin: 0 auto 2rem auto;
+    border: none;
+    outline: none;
+    padding: 0.7rem 5rem;
+    cursor: pointer;
   }
 
   section {
@@ -27,9 +25,8 @@
     grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
     grid-gap: 4rem;
     justify-items: center;
-    
-    justify-content: center;
 
+    justify-content: center;
 
     article {
       display: flex;
@@ -40,7 +37,6 @@
       width: 605px;
       text-align: center;
       cursor: pointer;
-      
 
       div {
         display: flex;
@@ -55,19 +51,18 @@
           margin: 1rem 2rem;
 
           h2 {
-              font-size: 1.3rem;
-              margin-top: 1rem;
+            font-size: 1.3rem;
+            margin-top: 1rem;
           }
-         p {
-             margin-top: .7rem;
-             color: #808080;
-             font-size: 1rem;
+          p {
+            margin-top: 0.7rem;
+            color: #808080;
+            font-size: 1rem;
+          }
 
-         }
-
-         h5 {
-             margin-top: .7rem;
-         }
+          h5 {
+            margin-top: 0.7rem;
+          }
 
           div {
             margin: 0;
@@ -96,31 +91,97 @@
   }
 }
 
+.jobs {
+  margin-top: 9rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center;
+
+  h1 {
+    font-weight: normal;
+  }
+
+  button {
+    background-color: black;
+    color: white;
+    margin: 0 auto 2rem auto;
+    border: none;
+    outline: none;
+    padding: 0.7rem 5rem;
+    cursor: pointer;
+  }
+
+  section {
+    display: grid;
+    padding: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-gap: 4rem;
+    justify-items: center;
+
+    justify-content: center;
+
+    article {
+      background-color: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      width: 405px;
+      text-align: center;
+      cursor: pointer;
+
+      .button {
+        color: white;
+        text-decoration: none;
+        background-color: $subbackground;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 0.5rem 0;
+        font-size: 1rem;
+      }
+
+      div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 1rem 1rem;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      
+      }
+      p {
+        padding: .7rem 1rem;
+        color: #808080;
+        font-size: 1rem;
+      }
+    }
+  }
+}
 
 @media (max-width: 700px) {
-    .news {
-        
-        section {
-            
-            
-            article {
-                width: 80%;
-                * {
-                    text-align: center;
-                }
-                img {
-                    display: none;
-                }
-            }
+  .news {
+    section {
+      article {
+        width: 80%;
+        * {
+          text-align: center;
         }
+        img {
+          display: none;
+        }
+      }
     }
-
+  }
 }
 
 @media (max-width: 500px) {
-    .news section article {
-        width: 50%;
-    }
-    
-
+  .news section article {
+    width: 50%;
+  }
 }

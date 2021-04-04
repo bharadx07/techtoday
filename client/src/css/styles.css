@@ -411,7 +411,7 @@ footer {
     margin: 0 auto 2rem auto;
     border: none;
     outline: none;
-    padding: .7rem 5rem;
+    padding: 0.7rem 5rem;
     cursor: pointer; }
   .news section {
     display: grid;
@@ -443,11 +443,11 @@ footer {
             font-size: 1.3rem;
             margin-top: 1rem; }
           .news section article div div p {
-            margin-top: .7rem;
+            margin-top: 0.7rem;
             color: #808080;
             font-size: 1rem; }
           .news section article div div h5 {
-            margin-top: .7rem; }
+            margin-top: 0.7rem; }
           .news section article div div div {
             margin: 0;
             display: flex;
@@ -463,6 +463,61 @@ footer {
         border: none;
         outline: none;
         padding: 0.5rem 0;
+        font-size: 1rem; }
+
+.jobs {
+  margin-top: 9rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center; }
+  .jobs h1 {
+    font-weight: normal; }
+  .jobs button {
+    background-color: black;
+    color: white;
+    margin: 0 auto 2rem auto;
+    border: none;
+    outline: none;
+    padding: 0.7rem 5rem;
+    cursor: pointer; }
+  .jobs section {
+    display: grid;
+    padding: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-gap: 4rem;
+    justify-items: center;
+    justify-content: center; }
+    .jobs section article {
+      background-color: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      width: 405px;
+      text-align: center;
+      cursor: pointer; }
+      .jobs section article .button {
+        color: white;
+        text-decoration: none;
+        background-color: #cb4745;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 0.5rem 0;
+        font-size: 1rem; }
+      .jobs section article div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 1rem 1rem; }
+      .jobs section article h2 {
+        font-size: 1.3rem; }
+      .jobs section article p {
+        padding: .7rem 1rem;
+        color: #808080;
         font-size: 1rem; }
 
 @media (max-width: 700px) {

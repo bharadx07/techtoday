@@ -1,48 +1,63 @@
-import React, {useState, useEffect} from 'react'
-import ClientJobsContent from '../components/ClientJobsContent';
-import axios from "axios"
-import {TopicListURLQueries} from "../constants/TopicInfo"
-import NavBar from '../components/NavBar'
+import React, { useState, useEffect } from "react";
+import ClientJobsContent from "../components/ClientJobsContent";
+import axios from "axios";
+import { TopicListURLQueries } from "../constants/TopicInfo";
+import NavBar from "../components/NavBar";
 
+function TopicJobs({ match, history }) {
+  const [user, setUser] = useState("");
+  const [jobs, setJobs] = useState(null);
 
-function TopicJobs({match, history}) {
-    const [user, setUser] = useState("");
+  const jobTopic = match.params.topicname;
 
-    const jobTopic = match.params.topicname;
+  if (!TopicListURLQueries.includes(jobTopic)) {
+    history.push("/404");
+  }
 
-    if (!TopicListURLQueries.includes(jobTopic)) {
-        history.push("/404");
-      }
-    
-      if (!localStorage.jwt) {
+  if (!localStorage.jwt) {
+    history.push("/login");
+  }
+
+  //Secure Check for JWT
+  useEffect(() => {
+    const makeRequest = async () => {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.jwt,
+        },
+      };
+      const request = await axios.get("/api/v1/users/auth", config);
+      setUser(request?.data);
+    };
+
+    makeRequest().catch((error) => {
+      if (!error.message.includes("500")) {
         history.push("/login");
       }
-    
-      //Secure Check for JWT
-      useEffect(() => {
-        const makeRequest = async () => {
-          const config = {
-            headers: {
-              "Content-Type": "application/json",
-              "auth-token": localStorage.jwt,
-            },
-          };
-          const request = await axios.get("/api/v1/users/auth", config);
-          setUser(request?.data);
-        };
-    
-        makeRequest().catch((error) => {
-          if (!error.message.includes("500")) {
-            history.push("/login");
-          }
-        });
-      }, [history]);
-    return (
-        <div>
-            <NavBar variant="privateinner" path={jobTopic} />
-            <ClientJobsContent user={user} page={jobTopic} jobs={[]}/>
-        </div>
-    )
+    });
+  }, [history]);
+
+  useEffect(() => {
+    const makeJobsReq = async () => {
+      const res = await axios.post("/api/v1/techtoday/jobs/hardware/jim", null, {
+        headers: {
+          "auth-token": localStorage.jwt,
+        },
+      });
+  
+      setJobs(res.data)
+    }
+
+    makeJobsReq();
+  }, []);
+
+  return (
+    <div>
+      <NavBar variant="privateinner" path={jobTopic} />
+      <ClientJobsContent user={user} page={jobTopic} jobs={jobs} />
+    </div>
+  );
 }
 
-export default TopicJobs
+export default TopicJobs;

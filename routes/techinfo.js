@@ -13,17 +13,17 @@ router.post("/news/:topic/:page", ValidateToken, async (req, res) => {
 
   const response = await request.json();
 
-  res.send(response);
+  return res.send(response);
 });
 
 router.post("/jobs/:topic/:page", ValidateToken, async (req, res) => {
   const request = await fetch(
-    "https://jobs.github.com/positions.json?description=python"
+    `https://jobs.github.com/positions.json?description=${req.params.topic}`
   );
 
   const response = await request.json();
 
-  res.send(response);
+  return res.send(response);
 });
 
 module.exports = router;
