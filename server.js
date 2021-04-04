@@ -29,15 +29,20 @@ const UserRoutes = require("./routes/user");
 const InformationRoutes = require("./routes/techinfo")
 
 //Use Routes
-app.use("/api/v1/users", UserRoutes);
-app.use("/api/v1/techtoday", InformationRoutes)
+// app.use("/api/v1/users", UserRoutes);
+// app.use("/api/v1/techtoday", InformationRoutes)
 
 //Client Routes
-app.use(express.static("client/build"));
+// app.use(express.static("client/build"));
 //Serve Routes on Site
-app.get("/*", (req, res) =>
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-);
+// app.get("/*", (req, res) =>
+//   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+// );
+
+app.get("/", (req,res) => {
+  res.send("TechToday Coming May 2021")
+
+})
 
 //Run Server on Dynamic Port
 const PORT = process.env.PORT || 8080;
