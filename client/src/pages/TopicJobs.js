@@ -40,7 +40,7 @@ function TopicJobs({ match, history }) {
 
   useEffect(() => {
     const makeJobsReq = async () => {
-      const res = await axios.post("/api/v1/techtoday/jobs/hardware/jim", null, {
+      const res = await axios.post(`/api/v1/techtoday/jobs/${jobTopic}`, null, {
         headers: {
           "auth-token": localStorage.jwt,
         },
@@ -50,7 +50,7 @@ function TopicJobs({ match, history }) {
     }
 
     makeJobsReq();
-  }, []);
+  }, [jobTopic]);
 
   return (
     <div>

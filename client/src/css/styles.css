@@ -484,18 +484,17 @@ footer {
   .jobs section {
     display: grid;
     padding: 2rem 0;
-    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(33rem, 1fr));
     grid-gap: 4rem;
     justify-items: center;
     justify-content: center; }
     .jobs section article {
-      background-color: #f7f7f7;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
       margin: 0 auto;
       width: 405px;
+      align-items: center;
       text-align: center;
       cursor: pointer; }
       .jobs section article .button {
@@ -508,17 +507,20 @@ footer {
         padding: 0.5rem 0;
         font-size: 1rem; }
       .jobs section article div {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding: 1rem 1rem; }
-      .jobs section article h2 {
-        font-size: 1.3rem; }
-      .jobs section article p {
-        padding: .7rem 1rem;
-        color: #808080;
-        font-size: 1rem; }
+        background-color: #f7f7f7; }
+        .jobs section article div div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          padding: 1rem 1rem; }
+        .jobs section article div h2 {
+          font-size: 1.3rem;
+          padding: 0 2rem; }
+        .jobs section article div p {
+          padding: 0.7rem 1rem;
+          color: #808080;
+          font-size: 1rem; }
 
 @media (max-width: 700px) {
   .news section article {
@@ -526,10 +528,16 @@ footer {
     .news section article * {
       text-align: center; }
     .news section article img {
-      display: none; } }
+      display: none; }
+  .jobs section article {
+    width: 70%; } }
 
 @media (max-width: 500px) {
   .news section article {
+    width: 50%; } }
+
+@media (max-width: 350px) {
+  .jobs section article {
     width: 50%; } }
 
 .settings {

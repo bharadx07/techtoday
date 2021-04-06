@@ -115,20 +115,20 @@
   section {
     display: grid;
     padding: 2rem 0;
-    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(33rem, 1fr));
     grid-gap: 4rem;
     justify-items: center;
 
     justify-content: center;
 
     article {
-      background-color: #f7f7f7;
+      
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
       margin: 0 auto;
       width: 405px;
+      align-items: center;
       text-align: center;
       cursor: pointer;
 
@@ -144,21 +144,24 @@
       }
 
       div {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding: 1rem 1rem;
-      }
+        background-color: #f7f7f7;
+        div {
+          display: flex;
+          justify-content: space-between; 
+          align-items: center;
+          width: 100%;
+          padding: 1rem 1rem;
+        }
 
-      h2 {
-        font-size: 1.3rem;
-      
-      }
-      p {
-        padding: .7rem 1rem;
-        color: #808080;
-        font-size: 1rem;
+        h2 {
+          font-size: 1.3rem;
+          padding: 0 2rem;
+        }
+        p {
+          padding: 0.7rem 1rem;
+          color: #808080;
+          font-size: 1rem;
+        }
       }
     }
   }
@@ -178,10 +181,25 @@
       }
     }
   }
+
+  .jobs section article {
+    width: 70%;
+  }
 }
 
 @media (max-width: 500px) {
   .news section article {
     width: 50%;
   }
+
+  
+}
+
+
+@media (max-width: 350px) {
+  .jobs section article {
+    width: 50%;
+  }
+
+  
 }
