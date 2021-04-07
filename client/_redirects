@@ -1,0 +1,3 @@
+/* index.html
+/api/v1/users/* https://tech-today.herokuapp.com/api/v1/users/:splat 200
+/api/v1/techtoday/* https://tech-today.herokuapp.com/api/v1/techtoday/:splat 200
