@@ -19,7 +19,7 @@ router.post("/news/:topic/:page", ValidateToken, async (req, res) => {
 router.post("/jobs/:topic/", ValidateToken, async (req, res) => {
   try {
   const request = await fetch(
-    `https://jobs.github.com/positions.json?description=${req.params.topic}`
+    `https://api.adzuna.com/v1/api/jobs/gb/search/10?app_id=${process.env.JOBS_APPLICATION_KEY}&app_key=${process.env.JOBS_API_KEY}&results_per_page=27&what=${req.params.topic}&content-type=application/json`
   );
 
   const response = await request.json();
@@ -32,3 +32,4 @@ router.post("/jobs/:topic/", ValidateToken, async (req, res) => {
 });
 
 module.exports = router; 
+ 

@@ -4,9 +4,13 @@ import axios from "axios";
 import { TopicListURLQueries } from "../constants/TopicInfo";
 import NavBar from "../components/NavBar";
 
+let jobs_cache = null;
+
 function TopicJobs({ match, history }) {
   const [user, setUser] = useState("");
   const [jobs, setJobs] = useState(null);
+
+ 
 
   const jobTopic = match.params.topicname;
 
@@ -45,11 +49,21 @@ function TopicJobs({ match, history }) {
           "auth-token": localStorage.jwt,
         },
       });
-  
-      setJobs(res.data)
+
+      setJobs(res.data);
+
+      jobs_cache = res.data;
+
+
+    };
+
+    if (!jobs_cache) {
+      makeJobsReq();
+    } else {
+      setJobs(jobs_cache)
     }
 
-    makeJobsReq();
+
   }, [jobTopic]);
 
   return (

@@ -14,11 +14,11 @@ export const requestNews = async (topic, token, page) => {
   let reqtopic;
   switch (topic) {
     case "programming":
-      reqtopic = "Technology";
+      reqtopic = "Personal Tech";
 
       break;
     case "hardware":
-      reqtopic = "Personal Tech";
+      reqtopic = "Tech";
 
       break;
     case "business":

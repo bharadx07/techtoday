@@ -34,7 +34,8 @@ function ClientJobsContent({ user, page, jobs }) {
 
   
 
-  const jobDisplay = jobs.slice(0, user.jobDefaultCount*pagination);
+  const jobDisplay = jobs.results.slice(0, user.jobDefaultCount*pagination);
+  console.log(jobDisplay)
 
   return (
     <main className="jobs">
@@ -45,12 +46,11 @@ function ClientJobsContent({ user, page, jobs }) {
       </h1>
       <section>
         {jobDisplay.map((jobItem) => {
-          console.log(jobItem);
-          const company = jobItem.company;
-          const location = jobItem.location;
+          const company = jobItem.company.display_name;
+          const location = jobItem.location.display_name;
           const title = jobItem.title;
           const description = jobItem.description;
-          const url = jobItem.url;
+          const url = jobItem.redirect_url;
           return (
             <article key={uuidv4()}>
               <div>
@@ -58,7 +58,7 @@ function ClientJobsContent({ user, page, jobs }) {
                 <h6>{company}</h6>
                 <h6>{location}</h6>
               </div>
-              <h2>{title}</h2>
+              <h2>{title.replace(/<\/?[^>]+(>|$)/g, "")}</h2>
               <p>{description.substring(0, 200).replace(/<\/?[^>]+(>|$)/g, "") + "..."}</p>
               </div>
               <a href={url} target="_blank" rel="noreferrer" className="button">
