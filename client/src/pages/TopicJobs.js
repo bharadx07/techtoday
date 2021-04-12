@@ -4,7 +4,7 @@ import axios from "axios";
 import { TopicListURLQueries } from "../constants/TopicInfo";
 import NavBar from "../components/NavBar";
 
-let jobs_cache = null;
+let jobs_cache = {};
 
 function TopicJobs({ match, history }) {
   const [user, setUser] = useState("");
@@ -43,7 +43,7 @@ function TopicJobs({ match, history }) {
   }, [history]);
 
   useEffect(() => {
-    const makeJobsReq = async () => {
+    const makeJobsReq = async () => { 
       const res = await axios.post(`/api/v1/techtoday/jobs/${jobTopic}`, null, {
         headers: {
           "auth-token": localStorage.jwt,
@@ -52,15 +52,17 @@ function TopicJobs({ match, history }) {
 
       setJobs(res.data);
 
-      jobs_cache = res.data;
+      jobs_cache[jobTopic] = res.data;
 
 
     };
 
-    if (!jobs_cache) {
+
+
+    if (jobs_cache[jobTopic] === undefined) {
       makeJobsReq();
     } else {
-      setJobs(jobs_cache)
+      setJobs(jobs_cache[jobTopic])
     }
 
 
@@ -72,6 +74,6 @@ function TopicJobs({ match, history }) {
       <ClientJobsContent user={user} page={jobTopic} jobs={jobs} />
     </div>
   );
-}
+} 
 
 export default TopicJobs;

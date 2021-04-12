@@ -1,8 +1,8 @@
 const generateTemplate = (token) => {
 
-changePasswordLink = `${process.env.WEBSITE_HOST}change-password/${token}/`;
+  changePasswordLink = `${process.env.WEBSITE_HOST}change-password/${token}/`;
 
-const template = `
+  const template = `
 
 
 <body>
@@ -17,9 +17,10 @@ const template = `
 
 
 
-`
+`;
 
-return template;
-}
+  return template;
+};
 
 module.exports = generateTemplate;
+ 
