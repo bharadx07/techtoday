@@ -1,3 +1,5 @@
+//TechToday Server EntryPoint
+
 //Packages
 const express = require("express");
 const colors = require("colors");
