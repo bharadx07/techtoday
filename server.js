@@ -1,4 +1,4 @@
-//TechToday Server EntryPoint
+//TechToday Server 
 
 //Packages
 const express = require("express");
