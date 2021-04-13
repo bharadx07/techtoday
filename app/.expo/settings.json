@@ -1,0 +1,10 @@
+{
+  "hostType": "tunnel",
+  "lanType": "ip",
+  "dev": true,
+  "minify": false,
+  "urlRandomness": "hp-ge5",
+  "https": false,
+  "scheme": null,
+  "devClient": false
+}
