@@ -8,7 +8,7 @@ function ClientJobsContent({ user, page, jobs }) {
 
   useEffect(() => {
     if(pagination === 3) {
-      setButton("Show Less")
+      setButton("Show Less") 
     } else {
       setButton("Show More")
     }

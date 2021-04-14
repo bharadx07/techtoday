@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer} from "@react-navigation/native";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
+import Icon from "react-native-vector-icons/FontAwesome";
 //Pages
 import Contact from "./pages/Contact";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -10,43 +11,134 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Settings from "./pages/Settings";
-import TopicJobs from "./pages/TopicJobs"; 
+import TopicJobs from "./pages/TopicJobs";
 import TopicNews from "./pages/TopicNews";
 import Topics from "./pages/Topics";
-import Navbar from "./components/NavBar"
+import Navbar from "./components/NavBar";
+import {navigationRef} from './/RootNavigation';
+import * as RootNavigation from './RootNavigation';
+
+
 
 const Stack = createStackNavigator();
 
 
-
 export default function App() {
+  const [showLinks, setshowLinks] = useState(false);
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator>
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ headerTitle: (props) => <Navbar {...props}/> }}
+          options={{
+            headerTitle: (props) => (
+              <Navbar
+                {...props}
+                setshowLinks={setshowLinks}
+                showLinks={showLinks}
+              />
+            ),
+            headerLeft: null
+          }}
+          header
+
+          
         />
-        <Stack.Screen name="Forgot Password" component={ForgotPassword} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="Forgot Password" component={ForgotPassword} options={{
+            headerTitle: (props) => (
+              <Navbar
+                {...props}
+                setshowLinks={setshowLinks}
+                showLinks={showLinks}
+              />
+            ),
+            headerLeft: null
+          }}/>
+        <Stack.Screen name="Login" component={Login} options={{
+            headerTitle: (props) => (
+              <Navbar
+                {...props}
+                setshowLinks={setshowLinks}
+                showLinks={showLinks}
+              />
+            ),
+            headerLeft: null
+          }} />
+        <Stack.Screen name="Register" component={Register} options={{
+            headerTitle: (props) => (
+              <Navbar
+                {...props}
+                setshowLinks={setshowLinks}
+                showLinks={showLinks}
+              />
+            ),
+            headerLeft: null
+          }} />
+        <Stack.Screen name="Settings" component={Settings}  />
         <Stack.Screen name="Topics" component={Topics} />
         <Stack.Screen name="Jobs" component={TopicJobs} />
         <Stack.Screen name="News" component={TopicNews} />
-        <Stack.Screen name="Contact" component={Contact} />
+        <Stack.Screen name="Contact" component={Contact} options={{
+            headerTitle: (props) => (
+              <Navbar
+                {...props}
+                setshowLinks={setshowLinks}
+                showLinks={showLinks}
+              />
+            ),
+            headerLeft: null
+          }} />
       </Stack.Navigator>
       <StatusBar style="auto" />
+      {showLinks === true && (
+        <View style={styles.navLinks}>
+          <View style={styles.wrapper}>
+            <Icon
+              name="close"
+              onPress={() => {
+                setshowLinks(false);
+              }}
+              style={styles.close}
+              size={30}
+              color="white"
+            ></Icon>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Home'); setshowLinks(false)}}>Home</Text>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Contact');setshowLinks(false)}}>Contact</Text>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Login');setshowLinks(false)}}>Login</Text>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Register');setshowLinks(false)}}>Register</Text>
+          </View>
+        </View>
+      )}
     </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
+  navLinks: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    width: "100%",
+    height: "50%",
+    padding: 0,
+    margin: 0,
+    backgroundColor: "#cb4745",
+  },
+  wrapper: {
+    display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    height: "100%",
+  },
+  close: {
+    position: "absolute",
+    top: 20,
+    right: 20,
+  },
+  text: {
+    color: "white",
+    marginTop: 5,
+    marginBottom: 5,
   },
 });
