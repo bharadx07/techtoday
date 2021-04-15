@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import swal from "sweetalert";
 
 function AccountProfile({ serversentuser, history }) {
   const [user, setUser] = useState(serversentuser);
@@ -26,12 +27,19 @@ function AccountProfile({ serversentuser, history }) {
   }, []);
 
   const handleDeleteAccount = async () => {
-    const areyousure = window.confirm("Are You Sure You Want To Do This");
+    const areyousure = await swal({
+      title: "Are you sure?",
+      text: "If you delete your account, you cannot retrive it!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    });
+
     if (areyousure) {
       await axios.delete("/api/v1/users/delete-account", {
         headers: { "auth-token": localStorage.jwt },
       });
-
+      localStorage.clear()
       history.push("/");
     }
   };

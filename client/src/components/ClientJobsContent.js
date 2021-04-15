@@ -35,7 +35,7 @@ function ClientJobsContent({ user, page, jobs }) {
   
 
   const jobDisplay = jobs.results.slice(0, user.jobDefaultCount*pagination);
-  console.log(jobDisplay)
+
 
   return (
     <main className="jobs">
