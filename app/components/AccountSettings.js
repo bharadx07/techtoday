@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner"
 
 function AccountSettings({user, history}) {
   if(!user) {
-    return (
+    return ( 
       <div style={{marginTop: "10rem", display: "flex", justifyContent: "center", height: "70vh", alignItems: "center"}}>
       
       <Loader

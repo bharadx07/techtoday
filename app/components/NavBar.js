@@ -28,7 +28,7 @@ const { wrapper, headText, navLinks } = StyleSheet.create({
   },
   headText: {
     color: "#cb4745",
-    fontSize: "1rem",
+    fontSize: "1.3rem",
   }
 });
 

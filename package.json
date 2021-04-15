@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Bharadwaj Duggaraju",
   "license": "ISC",

@@ -1,17 +1,18 @@
 import React from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
+
 
 const Home = () => {
   return (
-    <ScrollView>
-      <Text>TechToday</Text>
+    <ScrollView style={styles.main}>
+      <Text style={styles.name}>TechToday</Text>
       <Text>
         TechToday is the Source for Technology Related News and Jobs in Many
         Industries
       </Text>
       <Text>Your Personal Hub</Text>
       <Text>All the Current Tech Information You Want</Text>
-      <View>
+      <View> 
         <Text>News</Text>
         <Text>
           Catch up with all the current events taking place in many industries.
@@ -75,6 +76,21 @@ const Home = () => {
     </ScrollView>
   );
 }; 
+
+const styles = StyleSheet.create({
+  main: {
+    textAlign: "center",
+
+  },
+
+  name: {
+    color: "red",
+    margin: "1rem auto"
+  }
+  
+})
+
+
 
 export default Home;
  

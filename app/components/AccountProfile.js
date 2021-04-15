@@ -19,7 +19,7 @@ function AccountProfile({ serversentuser, history }) {
 
   useEffect(() => {
     makereq();
-    const url = window.location.href;
+    const url = window.location.href; 
     if (url.includes("?change=success")) {
       setSuccess(true);
     }
