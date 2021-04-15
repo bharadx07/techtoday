@@ -26,7 +26,7 @@ router.post("/jobs/:topic/", ValidateToken, async (req, res) => {
 
   return res.send(response);
   } catch (err) {
-    return res.status(500).send([]);
+    return res.status(500).send([err]);
   }
 
 });
