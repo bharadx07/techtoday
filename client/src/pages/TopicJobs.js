@@ -3,6 +3,7 @@ import ClientJobsContent from "../components/ClientJobsContent";
 import axios from "axios";
 import { TopicListURLQueries } from "../constants/TopicInfo";
 import NavBar from "../components/NavBar";
+import swal from "sweetalert";
 
 let jobs_cache = {};
 
@@ -60,13 +61,25 @@ function TopicJobs({ match, history }) {
 
 
     if (jobs_cache[jobTopic] === undefined) {
-      makeJobsReq();
+      makeJobsReq().catch(err => {
+        if(err.message.includes("500")) {
+          swal({
+            title: "Error Getting Jobs",
+            text: "There was an error fetching jobs. We will try to fix it. If it does not fix after multiple tries, please close and reopen the tab",
+            icon: "error",
+            buttons: true,
+          });
+          window.location.reload()
+        } else {
+          history.push("/login")
+        }
+      });
     } else {
       setJobs(jobs_cache[jobTopic])
     }
 
 
-  }, [jobTopic]);
+  }, [jobTopic, history]);
 
   return (
     <div>

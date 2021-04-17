@@ -19,17 +19,21 @@ router.post("/news/:topic/:page", ValidateToken, async (req, res) => {
 router.post("/jobs/:topic/", ValidateToken, async (req, res) => {
   try {
   const request = await fetch(
-    `https://api.adzuna.com/v1/api/jobs/gb/search/10?app_id=${process.env.JOBS_APPLICATION_KEY}&app_key=${process.env.JOBS_API_KEY}&results_per_page=27&what=${req.params.topic}&content-type=application/json`
+    `https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=${process.env.JOBS_APPLICATION_KEY}&app_key=${process.env.JOBS_API_KEY}&results_per_page=27&what=${req.params.topic}&content-type=application/json`
   );
-
+  
+  
   const response = await request.json();
+  
 
   return res.send(response);
   } catch (err) {
     return res.status(500).send([err]);
+    
+
   }
 
 });
-
+ 
 module.exports = router; 
   

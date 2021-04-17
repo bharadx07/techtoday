@@ -53,7 +53,7 @@ const Home = ({ navigation }) => {
         </Text>
         <View style={styles.difTopics}>
           <Entypo name="code" size={64} style={styles.difTopicIcon} />
-          <Text style={styles.difTopicame}>Software</Text>
+          <Text style={styles.difTopicName}>Software</Text>
         </View>
         <View>
           <Ionicons name="hardware-chip-sharp" size={64} style={styles.difTopicIcon} />
@@ -67,10 +67,11 @@ const Home = ({ navigation }) => {
           <Ionicons name="business" size={64} style={styles.difTopicIcon} />
           <Text style={styles.difTopicName}>Buisness</Text>
         </View>
+        <Text style={styles.vallTopics}>View All Topics ⇾</Text>
       </View>
       <View>
-        <Text>Features</Text>
-        <View>
+        <Text style={styles.featuresTitle}>Features</Text>
+        <View style={styles.featureType}>
           <Text>One Click Away</Text>
           <Text>
             Though you can view quick snippets, and bits of information
@@ -78,7 +79,7 @@ const Home = ({ navigation }) => {
             seeing the entire story
           </Text>
         </View>
-        <View>
+        <View style={styles.featureType}>
           <Text>Clean User Interface</Text>
           <Text>
             TechToday has a Clean User Interface that allows you to find the
@@ -172,11 +173,25 @@ const styles = StyleSheet.create({
     color: PRIMARY_COLOR,
   },
 
-  difTopicName: {},
+  difTopicName: {
+    marginTop:5,
+    marginBottom: 10,
+    fontSize: 20,
+     
+  },
 
-  vallTopics: {},
+  vallTopics: {
+    marginBottom: 10,
+    color: PRIMARY_COLOR,
+    fontSize: 20
 
-  featuresTitle: {},
+  },
+
+  featuresTitle: {
+    marginTop: 20,
+    fontWeight: "bold",
+    fontSize: 28
+  },
 
   featureType: {},
 
