@@ -71,17 +71,17 @@ const Home = ({ navigation }) => {
       </View>
       <View>
         <Text style={styles.featuresTitle}>Features</Text>
-        <View style={styles.featureType}>
-          <Text>One Click Away</Text>
-          <Text>
+        <View>
+          <Text style={styles.featureType}>One Click Away</Text>
+          <Text style={styles.featureParagraph}>
             Though you can view quick snippets, and bits of information
             regarding current news, and jobs, you are allways one click way from
             seeing the entire story
           </Text>
         </View>
-        <View style={styles.featureType}>
-          <Text>Clean User Interface</Text>
-          <Text>
+        <View>
+          <Text style={styles.featureType}>Clean User Interface</Text>
+          <Text style={styles.featureParagraph}>
             TechToday has a Clean User Interface that allows you to find the
             information you need without trouble or confusion
           </Text>
