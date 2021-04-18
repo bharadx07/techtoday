@@ -3,6 +3,6 @@
         "node_modules{,/**}",
         ".vscode{,/**}"
     ],
-    "appService.defaultWebAppToDeploy": "/subscriptions/09ce7a0f-11db-4145-834c-fef7af80d88c/resourceGroups/appsvc_linux_centralus_premium/providers/Microsoft.Web/sites/techtoday",
-    "appService.deploySubpath": "."
+    "appService.deploySubpath": ".",
+    "appService.defaultWebAppToDeploy": "/subscriptions/09ce7a0f-11db-4145-834c-fef7af80d88c/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/techtoday"
 }
