@@ -67,7 +67,9 @@ const Home = ({ navigation }) => {
           <Ionicons name="business" size={64} style={styles.difTopicIcon} />
           <Text style={styles.difTopicName}>Buisness</Text>
         </View>
-        <Text style={styles.vallTopics}>View All Topics ⇾</Text>
+        <Text style={styles.vallTopics} onPress={() => {
+            navigation.navigate("Register");
+          }}>View All Topics ⇾</Text>
       </View>
       <View>
         <Text style={styles.featuresTitle}>Features</Text>
@@ -87,14 +89,14 @@ const Home = ({ navigation }) => {
           </Text>
         </View>
       </View>
-      <View>
-        <Text>
-          Ready to Try <Text>TechToday</Text>
+      <View style={styles.ctaWrap}>
+        <Text style={styles.ctaTitle}>
+          Ready to Try <Text style={styles.ctaSpecial}>TechToday</Text>
         </Text>
-        <Text>Create An Account</Text>
+        <View style={{ flex: 1, alignItems: "center", marginTop: 10, marginBottom: 10 }} onPress={() => {navigation.navigate("Register")}}><Text  style={styles.ctaBTN}  onPress={() => {navigation.navigate("Register")}}>Create An Account</Text></View>
       </View>
-      <View>
-        <Text>&copy; TechToday 2021 | All Rights Reserved</Text>
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>&copy; TechToday 2021 | All Rights Reserved</Text>
       </View>
     </ScrollView>
   );
@@ -176,14 +178,14 @@ const styles = StyleSheet.create({
   difTopicName: {
     marginTop:5,
     marginBottom: 10,
-    fontSize: 20,
+    fontSize: 17,
      
   },
 
   vallTopics: {
     marginBottom: 10,
     color: PRIMARY_COLOR,
-    fontSize: 20
+    fontSize: 17
 
   },
 
@@ -193,21 +195,54 @@ const styles = StyleSheet.create({
     fontSize: 28
   },
 
-  featureType: {},
+  featureType: {
+    marginTop: 10,
+    fontWeight: "bold",
+    fontSize: 18
+  },
 
-  featureParagraph: {},
+  featureParagraph: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 10
 
-  ctaWrap: {},
+  },
 
-  ctaTitle: {},
+  ctaWrap: {
+    backgroundColor: "lightgray",
+    marginTop: 10
+  },
 
-  ctaSpecial: {},
+  ctaTitle: {
+    marginTop: 10,
+    fontSize: 17
+  },
 
-  ctaBTN: {},
+  ctaSpecial: {
+    color: PRIMARY_COLOR
+  },
 
-  footer: {},
+  ctaBTN: {
+    backgroundColor: PRIMARY_COLOR,
+    width: "70%",
+    borderRadius: 4,
+    paddingTop: 9,
+    paddingBottom: 9,
+    color: "white",
+    fontSize: 14
 
-  footerText: {},
+  },
+
+  footer: {
+    backgroundColor: "black"
+  },
+
+  footerText: {
+    color: "white",
+    fontSize: 17,
+    paddingTop: 10,
+    paddingBottom: 10
+  },
 });
 
 export default Home;
