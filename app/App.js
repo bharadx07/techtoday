@@ -37,6 +37,7 @@ export default function App() {
                 {...props}
                 setshowLinks={setshowLinks}
                 showLinks={showLinks}
+                navigation={RootNavigation}
               />
             ),
             headerLeft: null
@@ -51,6 +52,7 @@ export default function App() {
                 {...props}
                 setshowLinks={setshowLinks}
                 showLinks={showLinks}
+                navigation={RootNavigation}
               />
             ),
             headerLeft: null
@@ -61,6 +63,7 @@ export default function App() {
                 {...props}
                 setshowLinks={setshowLinks}
                 showLinks={showLinks}
+                navigation={RootNavigation}
               />
             ),
             headerLeft: null
@@ -71,6 +74,7 @@ export default function App() {
                 {...props}
                 setshowLinks={setshowLinks}
                 showLinks={showLinks}
+                navigation={RootNavigation}
               />
             ),
             headerLeft: null
@@ -85,6 +89,7 @@ export default function App() {
                 {...props}
                 setshowLinks={setshowLinks}
                 showLinks={showLinks}
+                navigation={RootNavigation}
               />
             ),
             headerLeft: null

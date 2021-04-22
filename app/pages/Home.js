@@ -56,20 +56,33 @@ const Home = ({ navigation }) => {
           <Text style={styles.difTopicName}>Software</Text>
         </View>
         <View>
-          <Ionicons name="hardware-chip-sharp" size={64} style={styles.difTopicIcon} />
+          <Ionicons
+            name="hardware-chip-sharp"
+            size={64}
+            style={styles.difTopicIcon}
+          />
           <Text style={styles.difTopicName}>Hardware</Text>
         </View>
         <View>
-          <MaterialCommunityIcons name="finance" size={64} style={styles.difTopicIcon} />
+          <MaterialCommunityIcons
+            name="finance"
+            size={64}
+            style={styles.difTopicIcon}
+          />
           <Text style={styles.difTopicName}>Finance</Text>
         </View>
         <View>
           <Ionicons name="business" size={64} style={styles.difTopicIcon} />
           <Text style={styles.difTopicName}>Buisness</Text>
         </View>
-        <Text style={styles.vallTopics} onPress={() => {
+        <Text
+          style={styles.vallTopics}
+          onPress={() => {
             navigation.navigate("Register");
-          }}>View All Topics ⇾</Text>
+          }}
+        >
+          View All Topics ⇾
+        </Text>
       </View>
       <View>
         <Text style={styles.featuresTitle}>Features</Text>
@@ -93,10 +106,31 @@ const Home = ({ navigation }) => {
         <Text style={styles.ctaTitle}>
           Ready to Try <Text style={styles.ctaSpecial}>TechToday</Text>
         </Text>
-        <View style={{ flex: 1, alignItems: "center", marginTop: 10, marginBottom: 10 }} onPress={() => {navigation.navigate("Register")}}><Text  style={styles.ctaBTN}  onPress={() => {navigation.navigate("Register")}}>Create An Account</Text></View>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            marginTop: 10,
+            marginBottom: 10,
+          }}
+          onPress={() => {
+            navigation.navigate("Register");
+          }}
+        >
+          <Text
+            style={styles.ctaBTN}
+            onPress={() => {
+              navigation.navigate("Register");
+            }}
+          >
+            Create An Account
+          </Text>
+        </View>
       </View>
       <View style={styles.footer}>
-        <Text style={styles.footerText}>&copy; TechToday 2021 | All Rights Reserved</Text>
+        <Text style={styles.footerText}>
+          &copy; TechToday 2021 | All Rights Reserved
+        </Text>
       </View>
     </ScrollView>
   );
@@ -111,137 +145,149 @@ const styles = StyleSheet.create({
 
   name: {
     color: PRIMARY_COLOR,
-    marginTop: "1rem",
-    fontSize: "40px",
+    marginTop: 10,
+    textAlign: "center",
+    fontSize: 40,
   },
 
   tagLine: {
-    fontSize: "1rem",
+    fontSize: 15,
     paddingLeft: 20,
     paddingRight: 20,
+    textAlign: "center",
   },
 
   tryNow: {
     fontWeight: "bold",
-    fontSize: "17px",
-    cursor: "pointer",
-    border: "none",
-    outline: "none",
+    fontSize: 17,
     color: "#fff",
     backgroundColor: PRIMARY_COLOR,
     padding: 10,
-    borderRadius: "4px",
+    borderRadius: 4,
     textAlign: "center",
-    marginTop: "1rem",
+    marginTop: 15,
   },
 
   hub: {
-    fontSize: "1rem",
+    fontSize: 17,
     color: PRIMARY_COLOR,
     fontWeight: "bold",
     marginTop: 20,
+    textAlign: "center",
   },
 
-  hubTagLine: { fontWeight: "normal", marginTop: 5, fontSize: 16 },
+  hubTagLine: { fontWeight: "normal", marginTop: 5, fontSize: 16, textAlign: "center", },
 
-  productTitle: { fontWeight: "bold", fontSize: 25, marginTop: 10 },
+  productTitle: { fontWeight: "bold", fontSize: 25, marginTop: 10,  textAlign: "center", },
 
-  productTypeDescription: { paddingLeft: 20, paddingRight: 20 },
+  productTypeDescription: { paddingLeft: 20, paddingRight: 20,  textAlign: "center", },
 
-  icon: { color: PRIMARY_COLOR, marginTop: 15 },
+  icon: { color: PRIMARY_COLOR, marginTop: 15,  textAlign: "center", },
 
   topics: {
     backgroundColor: "lightgray",
     marginTop: 15,
+    textAlign: "center",
   },
 
   topicsTitle: {
     marginTop: 10,
     fontWeight: "bold",
     fontSize: 25,
+    textAlign: "center",
   },
 
   topicsTagLine: {
     paddingLeft: 20,
     paddingRight: 20,
     marginTop: 10,
+    textAlign: "center",
   },
 
   difTopics: {
     marginTop: 5,
+    textAlign: "center",
   },
 
   difTopicIcon: {
     color: PRIMARY_COLOR,
+    textAlign: "center",
   },
 
   difTopicName: {
-    marginTop:5,
+    marginTop: 5,
     marginBottom: 10,
     fontSize: 17,
-     
+    textAlign: "center",
   },
 
   vallTopics: {
     marginBottom: 10,
     color: PRIMARY_COLOR,
-    fontSize: 17
-
+    fontSize: 17,
+    textAlign: "center",
   },
 
   featuresTitle: {
     marginTop: 20,
     fontWeight: "bold",
-    fontSize: 28
+    fontSize: 28,
+    textAlign: "center",
   },
 
   featureType: {
     marginTop: 10,
     fontWeight: "bold",
-    fontSize: 18
+    fontSize: 18,
+    textAlign: "center",
   },
 
   featureParagraph: {
     marginLeft: 10,
     marginRight: 10,
-    marginTop: 10
-
+    marginTop: 10,
+    textAlign: "center",
   },
 
   ctaWrap: {
     backgroundColor: "lightgray",
-    marginTop: 10
+    marginTop: 10,
+    textAlign: "center",
   },
 
   ctaTitle: {
     marginTop: 10,
-    fontSize: 17
+    fontSize: 17,
+    textAlign: "center",
   },
 
   ctaSpecial: {
-    color: PRIMARY_COLOR
+    color: PRIMARY_COLOR,
+    textAlign: "center",
   },
 
   ctaBTN: {
     backgroundColor: PRIMARY_COLOR,
+    textAlign: "center",
     width: "70%",
     borderRadius: 4,
     paddingTop: 9,
     paddingBottom: 9,
     color: "white",
-    fontSize: 14
-
+    fontSize: 14,
   },
 
   footer: {
-    backgroundColor: "black"
+    backgroundColor: "black",
+    textAlign: "center",
   },
 
   footerText: {
     color: "white",
     fontSize: 17,
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
+    textAlign: "center",
   },
 });
 

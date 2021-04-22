@@ -10,7 +10,7 @@ function HomeTopics() {
     return (
         <div className="info-topics">
             <h1>Topics</h1>
-            <h3>Explore information in Tech, Buisness and Other Related Fields</h3>
+            <h3>Explore information in Tech, Business and Other Related Fields</h3>
             <section>
                 <div>
                 <Icon icon={bxCodeAlt} style={{color: '#cb4745', fontSize: '69px'}} />
@@ -31,7 +31,7 @@ function HomeTopics() {
                 </div>
                 <div>
                 <Icon icon={businessIcon} style={{color: '#cb4745', fontSize: '69px'}} />
-                <h1>Buisness</h1>
+                <h1>Business</h1>
 
                 </div>
             </section>

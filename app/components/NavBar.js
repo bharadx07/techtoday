@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import Icon from "react-native-vector-icons/Octicons";
 
-const NavBar = ({ setshowLinks, showLinks }) => {
+const NavBar = ({ setshowLinks, showLinks, navigation }) => {
+
   
   return (
     <View style={wrapper}>
-      <Text style={headText}>TechToday</Text>
+      <Text style={headText} onPress={() => {navigation.navigate("Home")}}>TechToday</Text>
       <Icon
         name="three-bars"
         size={30}
@@ -28,7 +29,7 @@ const { wrapper, headText, navLinks } = StyleSheet.create({
   },
   headText: {
     color: "#cb4745",
-    fontSize: "1.3rem",
+    fontSize: 13,
   }
 });
 

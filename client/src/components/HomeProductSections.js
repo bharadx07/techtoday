@@ -34,7 +34,7 @@ function HomeProductSections() {
         <div>
           <h1>Jobs</h1>
           <p>
-            Wanting to find a job in a certain topic? Check the job section of that field and view the availible jobs in that industry
+            Wanting to find a job in a certain topic? Check the job section of that field and view the availible jobs in that industry.
           </p>
         </div>
         <Icon

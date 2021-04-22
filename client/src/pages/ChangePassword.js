@@ -49,7 +49,7 @@ function ChangePassword({ match, history }) {
             <h1>Change Password</h1>
             <h4>Enter a new password below to change your password</h4>
             <label>New Password</label>
-            <Field className="input" type="text" name="password" />
+            <Field className="input" type="password" name="password" />
             <ErrorMessage name="password" component="div" />
             <button type="submit" disabled={isSubmitting}>
               Change Password

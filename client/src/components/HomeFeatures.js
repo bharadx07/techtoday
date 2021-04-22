@@ -10,15 +10,15 @@ function HomeFeatures() {
             <section>
             <Icon icon={cursorHandClickLine} style={{color: '#cb4745', fontSize: '100px'}} className="icon"/>
                 <div>
-                    <h1>Onc Click Away</h1>
-                    <p>Though you can view quick snippets, and bits of information regarding current news, and jobs, you are allways one click way from seeing the entire story</p>
+                    <h1>One Click Away</h1>
+                    <p>Though you can view quick snippets, and bits of information regarding current news, and jobs, you are allways one click way from seeing the entire story.</p>
                 </div>
             </section>
             <section>
             <Icon icon={websiteIcon} style={{color: '#cb4745', fontSize: '55px'}} className="icon"/>
                 <div>
                     <h1>Clean User Interface</h1>
-                    <p>TechToday has a Clean User Interface that allows you to find the information you need without trouble or confusion</p>
+                    <p>TechToday has a Clean User Interface that allows you to find the information you need without trouble or confusion.</p>
                 </div>
             </section>
         </div>

@@ -106,7 +106,7 @@ function Register({ history }) {
               Register
             </button>
             <Link to="/login" className="Link">
-              Allready have an account? <span>Login</span>
+              Already have an account? <span>Login</span>
             </Link>
           </Form>
         )}
