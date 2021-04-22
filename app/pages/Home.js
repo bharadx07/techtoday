@@ -49,7 +49,7 @@ const Home = ({ navigation }) => {
       <View style={styles.topics}>
         <Text style={styles.topicsTitle}>Topics</Text>
         <Text style={styles.topicsTagLine}>
-          Explore information in Tech, Buisness and Other Related Fields
+          Explore information in Tech, Business and Other Related Fields
         </Text>
         <View style={styles.difTopics}>
           <Entypo name="code" size={64} style={styles.difTopicIcon} />
@@ -73,7 +73,7 @@ const Home = ({ navigation }) => {
         </View>
         <View>
           <Ionicons name="business" size={64} style={styles.difTopicIcon} />
-          <Text style={styles.difTopicName}>Buisness</Text>
+          <Text style={styles.difTopicName}>Business</Text>
         </View>
         <Text
           style={styles.vallTopics}

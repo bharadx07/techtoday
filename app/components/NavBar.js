@@ -29,7 +29,7 @@ const { wrapper, headText, navLinks } = StyleSheet.create({
   },
   headText: {
     color: "#cb4745",
-    fontSize: 13,
+    fontSize: 17,
   }
 });
 
