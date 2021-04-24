@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Formik } from "formik";
 import { AntDesign } from '@expo/vector-icons'; 
+import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
 
 const ForgotPassword = ({ navigation }) => {
   const [success, setSuccess] = useState(false);
@@ -22,7 +23,7 @@ const ForgotPassword = ({ navigation }) => {
         <View style={styles.formWrapper}>
           {!success && (
             <View style={styles.form}>
-              <View style={{ flex: 1, alignItems: "center" }}>
+              {/* <View style={{ flex: 1, alignItems: "center" }}>
                 <Image
                   style={styles.tinyLogo}
             
@@ -30,7 +31,7 @@ const ForgotPassword = ({ navigation }) => {
                     navigation.navigate("Home");
                   }}
                 />
-              </View>
+              </View> */}
               <Text style={styles.welcome}>Forgot Password?</Text>
 
               <Text style={styles.label}>Email Address</Text>
@@ -50,7 +51,7 @@ const ForgotPassword = ({ navigation }) => {
                 <Text
                   onPress={handleSubmit}
                   title="Submit"
-                  style={styles.registerBTN}
+                  style={styles.BTN}
                 >
                   Generate Reset Link
                 </Text>
@@ -97,7 +98,7 @@ const ForgotPassword = ({ navigation }) => {
                 <Text
                   onPress={() => setSuccess(false)}
                   title="Submit"
-                  style={styles.registerBTN}
+                  style={styles.BTN}
                 >
                   Resend Email
                 </Text>
@@ -110,7 +111,7 @@ const ForgotPassword = ({ navigation }) => {
   );
 };
 
-const PRIMARY_COLOR = "#cb4745";
+
 
 const styles = StyleSheet.create({
   formWrapper: {
@@ -160,21 +161,23 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
   },
 
-  registerBTN: {
+  BTN: {
     color: "white",
     backgroundColor: PRIMARY_COLOR,
     paddingTop: 8,
     paddingBottom: 8,
     borderRadius: 5,
   },
+
   already: {
-    marginTop: 15,
-    textAlign: "left",
+    marginTop: 12,
+    textAlign: "left"
   },
   aspecial: {
     color: PRIMARY_COLOR,
-    marginLeft: 5,
-  },
+    marginLeft: 5
+  }
+
 });
 
 export default ForgotPassword;

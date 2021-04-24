@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TextInput, StyleSheet, Image, TouchableHighlight } from "react-native";
 import { Formik } from "formik";
+import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
  
 const Login = ({navigation}) => {
   return (
@@ -11,11 +12,11 @@ const Login = ({navigation}) => {
   {({ handleChange, handleBlur, handleSubmit, values }) => (
     <View style={styles.formWrapper}>
       <View style={styles.form}>
-        <View style={{flex: 1, alignItems: "center"}}  ><Image
+        {/* <View style={{flex: 1, alignItems: "center"}}  ><Image
           style={styles.tinyLogo}
 
           onPress={() => {navigation.navigate("Home")}}
-        /></View>
+        /></View> */}
         <Text style={styles.welcome}>Welcome</Text>
         <Text style={styles.continue}>Login to TechToday to Continue</Text>
         <Text style={styles.label}>Email Address</Text>
@@ -53,7 +54,6 @@ const Login = ({navigation}) => {
 };
 
 
- const PRIMARY_COLOR = "#cb4745";
 
 const styles = StyleSheet.create({
   formWrapper: {

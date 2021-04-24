@@ -8,7 +8,8 @@ import {
   TouchableHighlight,
 } from "react-native";
 import { Formik } from "formik";
-import HeadLogo from "../assets/HeadLogo.PNG";
+import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
+
 
 const Register = ({ navigation }) => {
   return (
@@ -19,15 +20,7 @@ const Register = ({ navigation }) => {
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <View style={styles.formWrapper}>
           <View style={styles.form}>
-            <View style={{ flex: 1, alignItems: "center" }}>
-              <Image
-                source={HeadLogo}
-                style={styles.tinyLogo}
-                onPress={() => {
-                  navigation.navigate("Home");
-                }}
-              />
-            </View>
+            {/* Add Image Soon */}
             <Text style={styles.welcome}>Welcome</Text>
             <Text style={styles.continue}>
               Register to TechToday to Continue
@@ -49,7 +42,7 @@ const Register = ({ navigation }) => {
             <Text style={styles.label}>Password</Text>
             <TextInput
               onChangeText={handleChange("password")}
-              onBlur={handleBlur("password")} 
+              onBlur={handleBlur("password")}  
               value={values.password} 
               style={styles.input}
             />
@@ -68,6 +61,7 @@ const Register = ({ navigation }) => {
                 Register
               </Text>
             </TouchableHighlight>
+            <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
             <Text
               style={styles.already}
               onPress={() => {
@@ -75,8 +69,12 @@ const Register = ({ navigation }) => {
               }}
             >
               Allready have an account?
-              <Text style={styles.aspecial}>Login</Text>
+              
             </Text>
+            <View style={styles.aspecial}><Text style={{color: "#cb4745"}} onPress={() => {
+                navigation.navigate("Login");
+              }}>Login</Text></View>
+            </View>
           </View>
         </View>
       )}
@@ -84,7 +82,6 @@ const Register = ({ navigation }) => {
   );
 };
 
-const PRIMARY_COLOR = "#cb4745";
 
 const styles = StyleSheet.create({
   formWrapper: {
@@ -113,11 +110,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 19,
     fontWeight: "bold",
+    textAlign: "center"
   },
   continue: {
     marginLeft: 20,
     marginRight: 20,
     marginTop: 10,
+    textAlign: "center"
   },
 
   label: {
@@ -140,6 +139,7 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     borderRadius: 5,
+    textAlign: "center"
   },
   already: {
     marginTop: 15,
@@ -148,6 +148,8 @@ const styles = StyleSheet.create({
   aspecial: {
     color: PRIMARY_COLOR,
     marginLeft: 5,
+    marginTop: 15,
+   
   },
 });
 

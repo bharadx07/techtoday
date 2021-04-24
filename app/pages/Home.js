@@ -6,6 +6,7 @@ import {
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
 
 const Home = ({ navigation }) => {
   return (
@@ -136,7 +137,7 @@ const Home = ({ navigation }) => {
   );
 };
 
-const PRIMARY_COLOR = "#cb4745";
+
 
 const styles = StyleSheet.create({
   main: {
