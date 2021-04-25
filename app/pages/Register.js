@@ -61,7 +61,7 @@ const Register = ({ navigation }) => {
                 Register
               </Text>
             </TouchableHighlight>
-            <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
+            <View style={{flexDirection: "row"}}>
             <Text
               style={styles.already}
               onPress={() => {
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     fontSize: 19,
     fontWeight: "bold",
     textAlign: "center"
-  },
+  }, 
   continue: {
     marginLeft: 20,
     marginRight: 20,

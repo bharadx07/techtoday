@@ -43,9 +43,20 @@ const Login = ({navigation}) => {
           
         <Text onPress={handleSubmit} title="Submit" style={styles.registerBTN} >Login</Text>
         </TouchableHighlight> 
-        <Text style={styles.already} onPress={() => {navigation.navigate("Register")}}>
-          Dont have an account?<Text style={styles.aspecial}>Register</Text>
-        </Text>
+        <View style={{flexDirection: "row"}}>
+            <Text
+              style={styles.already}
+              onPress={() => {
+                navigation.navigate("Register");
+              }}
+            >
+              Dont have an account?
+              
+            </Text>
+            <View style={styles.aspecial}><Text style={{color: "#cb4745"}} onPress={() => {
+                navigation.navigate("Register");
+              }}>Register</Text></View>
+            </View>
       </View>
     </View>
   )}
@@ -82,17 +93,20 @@ const styles = StyleSheet.create({
   welcome: {
     marginTop: 10,
     fontSize: 19,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    textAlign: "center"
   },
 continue: {
   marginLeft: 20,
   marginRight: 20,
-  marginTop: 10
+  marginTop: 10,
+  textAlign: "center"
 },
 
 label: {
   textAlign: "left",
-  marginTop: 10
+  marginTop: 10,
+
 },
 
 input: {
@@ -110,16 +124,19 @@ registerBTN: {
   paddingTop: 8,
   paddingBottom: 8,
   borderRadius:5,
+  textAlign: "center"
 
 },
 already: {
   marginTop: 15,
-  textAlign: "left"
+  textAlign: "left",
 },
 aspecial: {
   color: PRIMARY_COLOR,
-  marginLeft: 5
-}
+  marginLeft: 5,
+  marginTop: 15,
+ 
+},
 
 });
 

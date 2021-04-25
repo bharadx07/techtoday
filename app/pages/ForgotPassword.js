@@ -82,7 +82,7 @@ const ForgotPassword = ({ navigation }) => {
                 width: 280
               }}
             >
-              <AntDesign name="checkcircleo" size={64} color="green" />
+              <AntDesign name="checkcircleo" size={64} color="green" style={{textAlign: "center"}}/>
               <Text style={styles.welcome}>Check Your Email</Text>
               <Text style={styles.continue}>
                 If this account exists, Instructions regarding how to change the
@@ -140,11 +140,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 23,
     fontWeight: "bold",
+    textAlign: "center"
   },
   continue: {
     marginLeft: 20,
     marginRight: 20,
     marginTop: 10,
+    textAlign: "center"
   },
 
   label: {
@@ -167,6 +169,7 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     borderRadius: 5,
+    textAlign: "center"
   },
 
   already: {

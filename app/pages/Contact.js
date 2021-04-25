@@ -1,33 +1,31 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 import PRIMARY_COLOR from '../constants/PRIMARY_COLOR'
+import openURL from '../utils/OpenURL'
 
 const Contact = () => {
+  const PUB_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfAWXmeWFGRH3NciBCGrH0-4H2Z9S2UFgoQtSwToE37UFJshA/viewform"
+
   return (
-    <View style={styles.wrapper}>
+    <ScrollView style={styles.wrapper} contentContainerStyle={{flex: 1, alignItems: "center"}}>
       <Text style={styles.meet}>Meet The Creator</Text>
       <Text style={styles.name}>Bharadwaj Duggaraju</Text>
       <View style={styles.meeted}>
         <View style={{flex: 1, alignItems: "center"}}><Image style={styles.img} source={{uri: "https://techtoday.azurewebsites.net/static/media/pfp.18825e08.png"}}></Image></View>
         <Text style={styles.para}>Bharadwaj Duggaraju is the solo developer for this project. He enjoyes coding, hardware and design. If you have any bugs or tweaks, or just want to contact him, click the link below.</Text>
-        <Text style={styles.button}>Contact Bharadwaj</Text>
+        <View style={{flex: 1, alignItems: "stretch"}}><Text style={styles.button} onPress={() => {openURL(PUB_FORM_URL)}}>Contact Bharadwaj</Text></View>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    alignItems: "center",
-    marginTop: 20
-
-  },
 
   meet: {
     color: PRIMARY_COLOR,
     fontSize: 30,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    marginTop: 20
 
   },
 
@@ -39,7 +37,7 @@ const styles = StyleSheet.create({
 
   meeted: {
     backgroundColor: "lightgray",
-    marginTop: 20,
+    marginTop: 20, 
     padding: 20,
     marginLeft: 20,
     marginRight: 20
@@ -49,13 +47,13 @@ const styles = StyleSheet.create({
   img: {
     width: 120,
     height: 150,
-    borderRadius: 10
+    borderRadius: 10,
 
 
   },
 
   para: {
-    marginTop: 13,
+    paddingTop: 27,
     paddingLeft: 20,
     paddingRight: 20,
     fontSize: 15,
@@ -64,13 +62,16 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    color: "white",
+    fontWeight: "bold",
+    fontSize: 17,
+    color: "#fff",
     backgroundColor: PRIMARY_COLOR,
-    flex: 1,
-    marginTop: 13,
+    padding: 10,
+    borderRadius: 4,
     textAlign: "center",
-    paddingTop: 10,
-    paddingBottom: 10
+    marginTop: 15,
+    
+    
 
   }
 })

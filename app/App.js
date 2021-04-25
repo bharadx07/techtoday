@@ -24,7 +24,9 @@ const Stack = createStackNavigator();
 
 
 export default function App() {
-  const [showLinks, setshowLinks] = useState(false);
+  const [showPublicLinks, setshowPublicLinks] = useState(false);
+  const [showPrivateOuterLinks, setshowPrivateOuterLinks] = useState(false);
+  const [showPrivateInnerLinks, setshowPrivateInnerLinks] = useState(false);
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator>
@@ -35,8 +37,8 @@ export default function App() {
             headerTitle: (props) => (
               <Navbar
                 {...props}
-                setshowLinks={setshowLinks}
-                showLinks={showLinks}
+                setshowLinks={setshowPublicLinks}
+                showLinks={showPublicLinks}
                 navigation={RootNavigation}
               />
             ),
@@ -80,7 +82,17 @@ export default function App() {
             headerLeft: null
           }} />
         <Stack.Screen name="Settings" component={Settings}  />
-        <Stack.Screen name="Topics" component={Topics} />
+        <Stack.Screen name="Topics" component={Topics} options={{
+            headerTitle: (props) => (
+              <Navbar
+                {...props}
+                setshowLinks={setshowLinks}
+                showLinks={showLinks}
+                navigation={RootNavigation}
+              />
+            ),
+            headerLeft: null
+          }} />
         <Stack.Screen name="Jobs" component={TopicJobs} />
         <Stack.Screen name="News" component={TopicNews} />
         <Stack.Screen name="Contact" component={Contact} options={{
@@ -96,22 +108,22 @@ export default function App() {
           }} />
       </Stack.Navigator>
       <StatusBar style="auto" />
-      {showLinks === true && (
+      {showPublicLinks === true && (
         <View style={styles.navLinks}>
           <View style={styles.wrapper}>
             <Icon
               name="close"
               onPress={() => {
-                setshowLinks(false);
+                setshowPublicLinks(false);
               }}
               style={styles.close}
               size={30}
               color="white"
             ></Icon>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Home'); setshowLinks(false)}}>Home</Text>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Contact');setshowLinks(false)}}>Contact</Text>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Login');setshowLinks(false)}}>Login</Text>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Register');setshowLinks(false)}}>Register</Text>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Home'); setshowPublicLinks(false)}}>Home</Text>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Contact');setshowPublicLinks(false)}}>Contact</Text>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Login');setshowPublicLinks(false)}}>Login</Text>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Register');setshowPublicLinks(false)}}>Register</Text>
           </View>
         </View>
       )}
