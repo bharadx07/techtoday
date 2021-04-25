@@ -1,5 +1,5 @@
 <a href="https://techtoday.azurewebsites.net"><p align="center">
-<img height=90 src="https://raw.githubusercontent.com/bharadwajduggaraju/techtoday/main/TechToday.svg?token=AQSEE3F2SZNIEFCEELR4FUTAQXOCC"/>
+<img height=90 src="https://raw.githubusercontent.com/bharadwajduggaraju/TechToday/master/TechToday.svg"/>
 
 </p></a>
 <p align="center">
