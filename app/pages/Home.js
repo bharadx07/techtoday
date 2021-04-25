@@ -79,7 +79,7 @@ const Home = ({ navigation }) => {
         <Text
           style={styles.vallTopics}
           onPress={() => {
-            navigation.navigate("Register");
+            navigation.navigate("Login");
           }}
         >
           View All Topics ⇾

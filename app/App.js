@@ -27,6 +27,17 @@ export default function App() {
   const [showPublicLinks, setshowPublicLinks] = useState(false);
   const [showPrivateOuterLinks, setshowPrivateOuterLinks] = useState(false);
   const [showPrivateInnerLinks, setshowPrivateInnerLinks] = useState(false);
+
+  const navProps = {
+    showPublicLinks, 
+    setshowPublicLinks,
+    showPrivateOuterLinks, 
+    setshowPrivateOuterLinks,
+    showPrivateInnerLinks, 
+    setshowPrivateInnerLinks,
+    navigation: RootNavigation   
+  }
+
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator>
@@ -37,9 +48,8 @@ export default function App() {
             headerTitle: (props) => (
               <Navbar
                 {...props}
-                setshowLinks={setshowPublicLinks}
-                showLinks={showPublicLinks}
-                navigation={RootNavigation}
+                {...navProps}
+                page="public"
               />
             ),
             headerLeft: null
@@ -51,10 +61,9 @@ export default function App() {
         <Stack.Screen name="Forgot Password" component={ForgotPassword} options={{
             headerTitle: (props) => (
               <Navbar
-                {...props}
-                setshowLinks={setshowLinks}
-                showLinks={showLinks}
-                navigation={RootNavigation}
+              {...props}
+              {...navProps}
+              page="public"
               />
             ),
             headerLeft: null
@@ -62,10 +71,9 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} options={{
             headerTitle: (props) => (
               <Navbar
-                {...props}
-                setshowLinks={setshowLinks}
-                showLinks={showLinks}
-                navigation={RootNavigation}
+              {...props}
+              {...navProps}
+              page="public"
               />
             ),
             headerLeft: null
@@ -73,35 +81,59 @@ export default function App() {
         <Stack.Screen name="Register" component={Register} options={{
             headerTitle: (props) => (
               <Navbar
-                {...props}
-                setshowLinks={setshowLinks}
-                showLinks={showLinks}
-                navigation={RootNavigation}
+              {...props}
+              {...navProps}
+              page="public"
               />
             ),
             headerLeft: null
           }} />
-        <Stack.Screen name="Settings" component={Settings}  />
+        <Stack.Screen name="Settings" component={Settings} options={{
+            headerTitle: (props) => (
+              <Navbar
+              {...props}
+              {...navProps}
+              page="privateouter"
+              />
+            ),
+            headerLeft: null
+          }} />
         <Stack.Screen name="Topics" component={Topics} options={{
             headerTitle: (props) => (
               <Navbar
-                {...props}
-                setshowLinks={setshowLinks}
-                showLinks={showLinks}
-                navigation={RootNavigation}
+              {...props}
+              {...navProps}
+              page="privateouter"
               />
             ),
             headerLeft: null
           }} />
-        <Stack.Screen name="Jobs" component={TopicJobs} />
-        <Stack.Screen name="News" component={TopicNews} />
-        <Stack.Screen name="Contact" component={Contact} options={{
+        <Stack.Screen name="Jobs" component={TopicJobs} options={{
             headerTitle: (props) => (
               <Navbar
                 {...props}
-                setshowLinks={setshowLinks}
-                showLinks={showLinks}
-                navigation={RootNavigation}
+                {...navProps}
+                page="privateinner"
+              />
+            ),
+            headerLeft: null
+          }}/>
+        <Stack.Screen name="News" component={TopicNews} options={{
+            headerTitle: (props) => (
+              <Navbar
+                {...props}
+                {...navProps}
+                page="privateinner"
+              />
+            ),
+            headerLeft: null
+          }}/>
+        <Stack.Screen name="Contact" component={Contact} options={{
+            headerTitle: (props) => (
+              <Navbar
+              {...props}
+              {...navProps}
+              page="public"
               />
             ),
             headerLeft: null
@@ -124,6 +156,43 @@ export default function App() {
             <Text style={styles.text} onPress={() => {RootNavigation.navigate('Contact');setshowPublicLinks(false)}}>Contact</Text>
             <Text style={styles.text} onPress={() => {RootNavigation.navigate('Login');setshowPublicLinks(false)}}>Login</Text>
             <Text style={styles.text} onPress={() => {RootNavigation.navigate('Register');setshowPublicLinks(false)}}>Register</Text>
+          </View>
+        </View>
+      )}
+      {showPrivateOuterLinks === true && (
+        <View style={styles.navLinks}>
+          <View style={styles.wrapper}>
+            <Icon
+              name="close"
+              onPress={() => {
+                setshowPrivateOuterLinks(false);
+              }}
+              style={styles.close}
+              size={30}
+              color="white"
+            ></Icon>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Topics'); setshowPrivateOuterLinks(false)}}>Topics</Text>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Settings');setshowPrivateOuterLinks(false)}}>Settings</Text>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Home');setshowPrivateOuterLinks(false)}}>Logout</Text>
+          </View>
+        </View>
+      )}
+      {showPrivateInnerLinks === true && (
+        <View style={styles.navLinks}>
+          <View style={styles.wrapper}>
+            <Icon
+              name="close"
+              onPress={() => {
+                setshowPrivateInnerLinks(false);
+              }}
+              style={styles.close}
+              size={30}
+              color="white"
+            ></Icon>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('News'); setshowPrivateInnerLinks(false);}}>News</Text>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Jobs');setshowPrivateInnerLinks(false);}}>Jobs</Text>
+            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Topics');setshowPrivateInnerLinks(false);}}>Back</Text>
+           
           </View>
         </View>
       )}

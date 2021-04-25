@@ -1,10 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-const TopicNews = () => {
+const TopicNews = ({route}) => {
+  
   return (
     <View>
-      <Text>topic jobs</Text>
+      <Text>topic news</Text>
+      <Text>{route.params.topicName}</Text>
     </View>
   )
 }
