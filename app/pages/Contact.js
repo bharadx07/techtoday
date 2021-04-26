@@ -7,13 +7,13 @@ const Contact = () => {
   const PUB_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfAWXmeWFGRH3NciBCGrH0-4H2Z9S2UFgoQtSwToE37UFJshA/viewform"
 
   return (
-    <ScrollView style={styles.wrapper} contentContainerStyle={{flex: 1, alignItems: "center"}}>
+    <ScrollView contentContainerStyle={{ alignItems: "center"}}>
       <Text style={styles.meet}>Meet The Creator</Text>
-      <Text style={styles.name}>Bharadwaj Duggaraju</Text>
+      <Text style={styles.name}>Bharadwaj Duggaraju</Text>  
       <View style={styles.meeted}>
-        <View style={{flex: 1, alignItems: "center"}}><Image style={styles.img} source={{uri: "https://techtoday.azurewebsites.net/static/media/pfp.18825e08.png"}}></Image></View>
+        <View style={{alignItems: "center"}}><Image style={styles.img} source={{uri: "https://techtoday.azurewebsites.net/static/media/pfp.18825e08.png"}}></Image></View>
         <Text style={styles.para}>Bharadwaj Duggaraju is the solo developer for this project. He enjoyes coding, hardware and design. If you have any bugs or tweaks, or just want to contact him, click the link below.</Text>
-        <View style={{flex: 1, alignItems: "stretch"}}><Text style={styles.button} onPress={() => {openURL(PUB_FORM_URL)}}>Contact Bharadwaj</Text></View>
+        <View style={{alignItems: "stretch"}}><Text style={styles.button} onPress={() => {openURL(PUB_FORM_URL)}}>Contact Bharadwaj</Text></View>
       </View>
     </ScrollView>
   )

@@ -12,11 +12,6 @@ const Login = ({navigation}) => {
   {({ handleChange, handleBlur, handleSubmit, values }) => (
     <View style={styles.formWrapper}>
       <View style={styles.form}>
-        {/* <View style={{flex: 1, alignItems: "center"}}  ><Image
-          style={styles.tinyLogo}
-
-          onPress={() => {navigation.navigate("Home")}}
-        /></View> */}
         <Text style={styles.welcome}>Welcome</Text>
         <Text style={styles.continue}>Login to TechToday to Continue</Text>
         <Text style={styles.label}>Email Address</Text>
@@ -91,7 +86,7 @@ const styles = StyleSheet.create({
   },
 
   welcome: {
-    marginTop: 10,
+    marginTop: 5,
     fontSize: 19,
     fontWeight: "bold",
     textAlign: "center"
