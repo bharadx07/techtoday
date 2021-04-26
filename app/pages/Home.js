@@ -142,6 +142,7 @@ const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
   main: {
     textAlign: "center",
+    backgroundColor: "white"
   },
 
   name: {
@@ -186,7 +187,7 @@ const styles = StyleSheet.create({
   icon: { color: PRIMARY_COLOR, marginTop: 15,  textAlign: "center", },
 
   topics: {
-    backgroundColor: "lightgray",
+    backgroundColor: "#f3f2f2",
     marginTop: 15,
     textAlign: "center",
   },
@@ -230,7 +231,7 @@ const styles = StyleSheet.create({
   },
 
   featuresTitle: {
-    marginTop: 20,
+    marginTop: 15,
     fontWeight: "bold",
     fontSize: 28,
     textAlign: "center",
@@ -251,7 +252,7 @@ const styles = StyleSheet.create({
   },
 
   ctaWrap: {
-    backgroundColor: "lightgray",
+    backgroundColor: "#f3f2f2",
     marginTop: 10,
     textAlign: "center",
   },

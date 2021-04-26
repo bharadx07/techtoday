@@ -7,7 +7,7 @@ const Contact = () => {
   const PUB_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfAWXmeWFGRH3NciBCGrH0-4H2Z9S2UFgoQtSwToE37UFJshA/viewform"
 
   return (
-    <ScrollView contentContainerStyle={{ alignItems: "center"}}>
+    <ScrollView contentContainerStyle={{ alignItems: "center"}} style={{backgroundColor: "white"}}>
       <Text style={styles.meet}>Meet The Creator</Text>
       <Text style={styles.name}>Bharadwaj Duggaraju</Text>  
       <View style={styles.meeted}>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
 
   meeted: {
-    backgroundColor: "lightgray",
+    backgroundColor: "#f3f2f2",
     marginTop: 20, 
     padding: 20,
     marginLeft: 20,
