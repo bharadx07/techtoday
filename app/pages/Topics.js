@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
   topicItem: {
     textAlign: "center",
     backgroundColor: "#f7f7f7",
-    marginTop: 30,
-    marginLeft: 20,
-    marginRight: 20,
+    marginTop: 35,
+    marginLeft: 35,
+    marginRight: 30,
   },
 
   topicImg: {
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 20,
     fontSize: 30,
+    fontWeight: "500"
 
   },
 
@@ -76,7 +77,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 10,
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
+    fontWeight: "500"
   },
 
   topicBTN: {

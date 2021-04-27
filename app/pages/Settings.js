@@ -1,10 +1,13 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 
 const Settings = () => {
   return (
     <View>
-      <Text>settings</Text>
+      <ScrollView>
+        <View><Text>Account Settings</Text></View>
+        
+      </ScrollView>
     </View>
   )
 }
@@ -12,4 +15,4 @@ const Settings = () => {
 export default Settings
 
 
-//
+// 

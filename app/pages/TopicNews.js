@@ -83,7 +83,7 @@ const MOCK_NEWS = [
 const TopicNews = ({ route }) => {
   return (
     <View style={{backgroundColor: "white"}}>
-      <Text style={{textAlign: "center", paddingTop: 30}}>{route.params.topicName} News</Text>
+      <Text style={styles.topicTitle}>{route.params.topicName} News</Text>
     <ScrollView style={styles.wrapper}>
       
       {MOCK_NEWS.map((newsItem) => {
@@ -95,21 +95,32 @@ const TopicNews = ({ route }) => {
         const link = newsItem.link
         return (
           <View key={uuidv4()} style={styles.newsItem}>
-            <View>
-              <Text>{company}</Text>
-              <Text>{date}</Text>
+            <View style={styles.stats}>
+              <Text style={styles.stat}>{company}</Text>
+              <Text style={styles.stat}>{date}</Text>
             </View>
-            <Text>{title}</Text>
-            <Text>{desc}</Text>
-            <Text>{by}</Text>
+            <Text style={styles.newsTitle}>{title}</Text>
+            <Text style={styles.newsDescription}>{desc}</Text>
+            <Text style={styles.by}>By {by}</Text>
             <Text onPress={() => {
               openURL(link)
-            }}>View Full Article</Text>
+            }} style={styles.newsBTN}>View Full Article</Text>
 
           </View>
         );
       })}
+      <View style={{ flex: 1, alignItems: "center" }}>
+        <Text
+          style={styles.showMore}
+          onPress={() => {
+            navigation.navigate("Register");
+          }}
+        >
+          Show More
+        </Text>
+      </View>
     </ScrollView>
+
     </View>
   );
 };
@@ -122,46 +133,82 @@ const styles = StyleSheet.create({
     backgroundColor: "white"
   },
 
+  topicTitle: {
+    fontSize: 25,
+    fontWeight: "bold",
+    textAlign: "center", 
+    paddingTop: 30
+  },
+
   newsItem: {
     textAlign: "center",
     backgroundColor: "#f7f7f7",
-    marginTop: 20,
+    marginTop: 30,
+    marginLeft: 40,
+    marginRight: 40,
+  },
+
+
+  stats: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 10,
+    marginRight: 10,
     marginLeft: 20,
-    marginRight: 20,
+    marginRight: 20
   },
 
-  topicImg: {
-    height: 200,
-    flex: 1,
-    width: null,
+  stat: {
+    fontWeight: "500",
+    fontSize: 13
   },
 
-  topicName: {
-    textAlign: "center",
-    marginTop: 20,
-    fontSize: 30,
+  newsTitle: {
+    fontSize: 21,
+    marginTop: 10,
+    fontWeight: "bold",
+    paddingLeft: 10,
+    paddingRight: 10
 
   },
 
-  topicDescription: {
+  newsDescription: {
     textAlign: "center",
     marginTop: 10,
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
+    color: "#808080"
   },
 
-  topicBTN: {
+  by: {
+    marginTop: 10,
+    fontWeight: "500"
+
+  },
+
+  newsBTN: {
     textAlign: "center",
     backgroundColor: PRIMARY_COLOR,
     flex: 1,
     width: null,
-    marginTop: 30,
+    marginTop: 20,
     paddingTop: 10,
     paddingBottom: 10,
     color: "white",
     fontSize: 15
     
   },
+
+  showMore: {
+    fontWeight: "bold",
+    fontSize: 17,
+    color: "#fff",
+    backgroundColor: "black",
+    padding: 10,
+    borderRadius: 4,
+    textAlign: "center",
+    marginTop: 15,
+  }
 });
 
 export default TopicNews;
