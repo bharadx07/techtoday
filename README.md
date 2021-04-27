@@ -40,7 +40,7 @@
 
 ## About
 
-#### TechToday was Created by Bharadwaj Duggaraju as a Side Project to create a Hub for News and Jobs, in a clean UI.
+#### TechToday was Created by Bharadwaj Duggaraju as a Side Project: It is a  Hub for News and Jobs, in a clean UI.
 
 ## Attributions & Sources
 
@@ -65,7 +65,7 @@
 ### Server
 
 1. Clone the Server Folder
-2. Install node modules with  ```npm install``
+2. Install node modules with  ```npm install```
 3. Create an .env file in the config folder and Add: 
 ```env
 DB_URI=MongoDBURI
@@ -80,7 +80,7 @@ JOBS_API_KEY=adzunaapikey
 ```
 ## Issues
 
-Leave an Issues in the [Issues](https://github.com/bharadwajduggaraju/techtoday/issues) tab
+Leave an Issue in the [Issues](https://github.com/bharadwajduggaraju/techtoday/issues) tab
 
 ## License
 
