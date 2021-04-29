@@ -35,7 +35,7 @@
 | [models](models)     |   Mongoose    | Schema of DB Entities    |
 | [routes](routes)     |   ExpressJS    | API Routes    |
 | [utils](utils)       |      Nodemailer       | Utility Functions    |
-| [validation](validation)|      JOI       | The Validations for DB Entities and JWT's |
+| [validation](validation)|      JOI , JWT      | The Validations for DB Entities and JWT's |
 
 
 ## About

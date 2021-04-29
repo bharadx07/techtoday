@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TextInput, StyleSheet, Image, TouchableHighlight } from "react-native";
+import { View, Text, TextInput, StyleSheet, TouchableHighlight } from "react-native";
 import { Formik } from "formik";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
  
