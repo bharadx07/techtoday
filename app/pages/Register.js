@@ -10,7 +10,6 @@ import { Formik } from "formik";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
 import axios from "../constants/AxiosClient";
 
-
 const Register = ({ navigation }) => {
   return (
     <Formik
@@ -28,12 +27,34 @@ const Register = ({ navigation }) => {
         };
 
         try {
-          await axios.post("/api/v1/users/register", {}, config)
+          await axios.post("/api/v1/users/register", values, config);
         } catch (err) {
-          console.log(err)
-          errors.email = "emails error trigger";
-          errors.password = "paswored error";
-          errors.name = "name error";
+          const ErrorMessages = err.response.data;
+          if (ErrorMessages === "Email Allready Exists") {
+            errors.email = "Email Allready Exists";
+
+            return errors;
+          }
+
+          ErrorMessages.forEach((ErrorMessage) => {
+            if (ErrorMessage.message === '"name" is not allowed to be empty') {
+              errors.name = "Name is Required";
+            } else if (
+              ErrorMessage.message === '"email" is not allowed to be empty'
+            ) {
+              errors.email = "Email is Required";
+            } else if (
+              ErrorMessage.message === '"password" is not allowed to be empty'
+            ) {
+              errors.password = "Password is Required";
+            } else if (
+              ErrorMessage.message === '"email" must be a valid email'
+            ) {
+              errors.email = "Invalid Email";
+            } else {
+              errors.password = "Needs to be 6+ Characters Long";
+            }
+          });
         }
 
         return errors;
