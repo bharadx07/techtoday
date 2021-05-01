@@ -107,7 +107,7 @@ const Settings = () => {
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <View style={styles.formWrapper}>
-              <View style={styles.form}>
+              <View style={styles.formbt}>
                 <Text style={styles.welcome}>Preferences</Text>
                 <Text style={styles.label}>Topics (Check At Least One)</Text>
                 {TopicsList.map((topic) => {
@@ -119,9 +119,7 @@ const Settings = () => {
                         unfillColor="#FFFFFF"
                         text={topic}
                         iconStyle={{ borderColor: "black" }}
-                        onPress={(isChecked) => {
-                          
-                        }}
+                        onPress={(isChecked) => {}}
                         textStyle={{
                           textDecorationLine: "none",
                           color: "black",
@@ -139,7 +137,6 @@ const Settings = () => {
                   onBlur={handleBlur("jobsDefCount")}
                   value={values.jobsDefCount}
                   style={styles.input}
-                 
                 />
                 <Text style={styles.label}>News Default Count (1-9)</Text>
                 <TextInput
@@ -147,9 +144,8 @@ const Settings = () => {
                   onBlur={handleBlur("newsDefCount")}
                   value={values.newsDefCount}
                   style={styles.input}
-          
                 />
-                
+
                 <TouchableHighlight
                   style={{
                     backgroundColor: "#cb4745",
@@ -178,9 +174,9 @@ export default Settings;
 
 const styles = StyleSheet.create({
   formWrapper: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "center",
+
   },
   form: {
     backgroundColor: "white",
@@ -194,6 +190,26 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     shadowOpacity: 0.9,
     elevation: 10,
+    marginTop: 20,
+
+    textAlign: "center",
+    marginLeft: 20,
+    marginRight: 20,
+  },
+
+  formbt: {
+    backgroundColor: "white",
+    width: "100%",
+    paddingTop: 30,
+    paddingBottom: 30,
+    paddingLeft: 30,
+    paddingRight: 30,
+    borderRadius: 6,
+    textAlign: "center",
+    shadowColor: "black",
+    shadowOpacity: 0.9,
+    elevation: 10,
+    marginBottom: 20,
     marginTop: 20,
     textAlign: "center",
     marginLeft: 20,
@@ -228,8 +244,19 @@ const styles = StyleSheet.create({
     marginTop: 10,
     height: 30,
     borderRadius: 4,
-    paddingLeft: 4,
+    paddingLeft: 7,
+    
+  },
+
+  inputCenter: {
+    borderWidth: 1,
+    borderColor: "black",
+    marginTop: 10,
+    height: 30,
+    borderRadius: 4,
+    paddingLeft: 7,
     textAlign: "center"
+    
   },
 
   registerBTN: {
@@ -256,7 +283,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
-    boxShadow: "1px 1px 2px 2px rgba(0,0,0,0.1)",
+    marginBottom: 20
   },
 
   topSettings: {

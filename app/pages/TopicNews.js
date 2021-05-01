@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
 import openURL from "../utils/OpenURL";
 
-
 const MOCK_NEWS = [
   {
     company: "NY Times",
@@ -12,7 +11,7 @@ const MOCK_NEWS = [
     title: "News Title",
     desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
     link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju"
+    by: "Bharadwaj Duggaraju",
   },
   {
     company: "NY Times",
@@ -20,7 +19,7 @@ const MOCK_NEWS = [
     title: "News Title",
     desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
     link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju"
+    by: "Bharadwaj Duggaraju",
   },
   {
     company: "NY Times",
@@ -28,7 +27,7 @@ const MOCK_NEWS = [
     title: "News Title",
     desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
     link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju"
+    by: "Bharadwaj Duggaraju",
   },
   {
     company: "NY Times",
@@ -36,7 +35,7 @@ const MOCK_NEWS = [
     title: "News Title",
     desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
     link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju"
+    by: "Bharadwaj Duggaraju",
   },
   {
     company: "NY Times",
@@ -44,7 +43,7 @@ const MOCK_NEWS = [
     title: "News Title",
     desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
     link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju"
+    by: "Bharadwaj Duggaraju",
   },
   {
     company: "NY Times",
@@ -52,7 +51,7 @@ const MOCK_NEWS = [
     title: "News Title",
     desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
     link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju"
+    by: "Bharadwaj Duggaraju",
   },
   {
     company: "NY Times",
@@ -60,7 +59,7 @@ const MOCK_NEWS = [
     title: "News Title",
     desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
     link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju"
+    by: "Bharadwaj Duggaraju",
   },
   {
     company: "NY Times",
@@ -68,7 +67,7 @@ const MOCK_NEWS = [
     title: "News Title",
     desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
     link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju"
+    by: "Bharadwaj Duggaraju",
   },
   {
     company: "NY Times",
@@ -76,51 +75,53 @@ const MOCK_NEWS = [
     title: "News Title",
     desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
     link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju"
+    by: "Bharadwaj Duggaraju",
   },
 ];
 
 const TopicNews = ({ route }) => {
   return (
-    <View style={{backgroundColor: "white"}}>
+    <View style={{ backgroundColor: "white" }}>
       <Text style={styles.topicTitle}>{route.params.topicName} News</Text>
-    <ScrollView style={styles.wrapper}>
-      
-      {MOCK_NEWS.map((newsItem) => {
-        const company = newsItem.company;
-        const date = newsItem.date
-        const title = newsItem.title;
-        const by = newsItem.by
-        const desc = newsItem.desc
-        const link = newsItem.link
-        return (
-          <View key={uuidv4()} style={styles.newsItem}>
-            <View style={styles.stats}>
-              <Text style={styles.stat}>{company}</Text>
-              <Text style={styles.stat}>{date}</Text>
+      <ScrollView style={styles.wrapper}>
+        {MOCK_NEWS.map((newsItem) => {
+          const company = newsItem.company;
+          const date = newsItem.date;
+          const title = newsItem.title;
+          const by = newsItem.by;
+          const desc = newsItem.desc;
+          const link = newsItem.link;
+          return (
+            <View key={uuidv4()} style={styles.newsItem}>
+              <View style={styles.stats}>
+                <Text style={styles.stat}>{company}</Text>
+                <Text style={styles.stat}>{date}</Text>
+              </View>
+              <Text style={styles.newsTitle}>{title}</Text>
+              <Text style={styles.newsDescription}>{desc}</Text>
+              <Text style={styles.by}>By {by}</Text>
+              <Text
+                onPress={() => {
+                  openURL(link);
+                }}
+                style={styles.newsBTN}
+              >
+                View Full Article
+              </Text>
             </View>
-            <Text style={styles.newsTitle}>{title}</Text>
-            <Text style={styles.newsDescription}>{desc}</Text>
-            <Text style={styles.by}>By {by}</Text>
-            <Text onPress={() => {
-              openURL(link)
-            }} style={styles.newsBTN}>View Full Article</Text>
-
-          </View>
-        );
-      })}
-      <View style={{ flex: 1, alignItems: "center" }}>
-        <Text
-          style={styles.showMore}
-          onPress={() => {
-            navigation.navigate("Register");
-          }}
-        >
-          Show More
-        </Text>
-      </View>
-    </ScrollView>
-
+          );
+        })}
+        <View style={{ flex: 1, alignItems: "center" }}>
+          <Text
+            style={styles.showMore}
+            onPress={() => {
+              navigation.navigate("Register");
+            }}
+          >
+            Show More
+          </Text>
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -130,14 +131,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 10,
     marginBottom: 30,
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
 
   topicTitle: {
     fontSize: 25,
     fontWeight: "bold",
-    textAlign: "center", 
-    paddingTop: 30
+    textAlign: "center",
+    paddingTop: 30,
   },
 
   newsItem: {
@@ -148,19 +149,20 @@ const styles = StyleSheet.create({
     marginRight: 40,
   },
 
-
   stats: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 10,
     marginRight: 10,
     marginLeft: 20,
-    marginRight: 20
+    marginRight: 20,
+    textAlign: "center",
   },
 
   stat: {
     fontWeight: "500",
-    fontSize: 13
+    fontSize: 13,
+    textAlign: "center",
   },
 
   newsTitle: {
@@ -168,8 +170,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontWeight: "bold",
     paddingLeft: 10,
-    paddingRight: 10
-
+    paddingRight: 10,
+    textAlign: "center",
   },
 
   newsDescription: {
@@ -177,13 +179,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingLeft: 20,
     paddingRight: 20,
-    color: "#808080"
+    color: "#808080",
+    textAlign: "center",
   },
 
   by: {
     marginTop: 10,
-    fontWeight: "500"
-
+    fontWeight: "500",
+    textAlign: "center",
   },
 
   newsBTN: {
@@ -195,8 +198,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     color: "white",
-    fontSize: 15
-    
+    fontSize: 15,
+    textAlign: "center",
   },
 
   showMore: {
@@ -208,7 +211,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     textAlign: "center",
     marginTop: 15,
-  }
+    marginBottom: 50,
+  },
 });
 
 export default TopicNews;
