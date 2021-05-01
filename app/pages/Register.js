@@ -10,14 +10,26 @@ import {
 import { Formik } from "formik";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
 
-
 const Register = ({ navigation }) => {
   return (
     <Formik
       initialValues={{ email: "", password: "", name: "" }}
-      onSubmit={(values) => navigation.navigate("Topics")}
+      validateOnChange={false}
+      validateOnSubmit={true}
+      validateOnBlur={false}
+      validate={async (values) => {
+        const errors = {};
+        
+
+        errors.email = "emails error trigger"
+        errors.password = "paswored error"
+        errors.name = "name error"
+
+        return errors;
+      }}
+      onSubmit={(_) => navigation.navigate("Topics")}
     >
-      {({ handleChange, handleBlur, handleSubmit, values }) => (
+      {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View style={styles.formWrapper}>
           <View style={styles.form}>
             {/* Add Image Soon */}
@@ -32,20 +44,23 @@ const Register = ({ navigation }) => {
               value={values.name}
               style={styles.input}
             />
-            <Text style={styles.label}>Email Address</Text>
+            {errors.name && <Text style={styles.error}>{errors.name}</Text>}
+            <Text style={styles.label}>Email Address</Text> 
             <TextInput
               onChangeText={handleChange("email")}
               onBlur={handleBlur("email")}
               value={values.email}
               style={styles.input}
             />
+            {errors.email && <Text style={styles.error}>{errors.email}</Text>}
             <Text style={styles.label}>Password</Text>
             <TextInput
               onChangeText={handleChange("password")}
-              onBlur={handleBlur("password")}  
-              value={values.password} 
+              onBlur={handleBlur("password")}
+              value={values.password}
               style={styles.input}
             />
+            {errors.password && <Text style={styles.error}>{errors.password}</Text>}
             <TouchableHighlight
               style={{
                 backgroundColor: "#cb4745",
@@ -61,19 +76,25 @@ const Register = ({ navigation }) => {
                 Register
               </Text>
             </TouchableHighlight>
-            <View style={{flexDirection: "row"}}>
-            <Text
-              style={styles.already}
-              onPress={() => {
-                navigation.navigate("Login");
-              }}
-            >
-              Allready have an account?
-              
-            </Text>
-            <View style={styles.aspecial}><Text style={{color: "#cb4745"}} onPress={() => {
-                navigation.navigate("Login");
-              }}>Login</Text></View>
+            <View style={{ flexDirection: "row" }}>
+              <Text
+                style={styles.already}
+                onPress={() => {
+                  navigation.navigate("Login");
+                }}
+              >
+                Allready have an account?
+              </Text>
+              <View style={styles.aspecial}>
+                <Text
+                  style={{ color: "#cb4745" }}
+                  onPress={() => {
+                    navigation.navigate("Login");
+                  }}
+                >
+                  Login
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -81,7 +102,6 @@ const Register = ({ navigation }) => {
     </Formik>
   );
 };
-
 
 const styles = StyleSheet.create({
   formWrapper: {
@@ -110,13 +130,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 19,
     fontWeight: "bold",
-    textAlign: "center"
-  }, 
+    textAlign: "center",
+  },
   continue: {
     marginLeft: 20,
     marginRight: 20,
     marginTop: 10,
-    textAlign: "center"
+    textAlign: "center",
   },
 
   label: {
@@ -139,7 +159,7 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     borderRadius: 5,
-    textAlign: "center"
+    textAlign: "center",
   },
   already: {
     marginTop: 15,
@@ -149,8 +169,12 @@ const styles = StyleSheet.create({
     color: PRIMARY_COLOR,
     marginLeft: 5,
     marginTop: 15,
-   
   },
+
+  error: {
+    marginTop: 8,
+    color: "red"
+  }
 });
 
 export default Register;

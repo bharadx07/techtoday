@@ -7,6 +7,7 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
+import axios from "../constants/AxiosClient";
 
 const Home = ({ navigation }) => {
   return (
@@ -98,7 +99,7 @@ const Home = ({ navigation }) => {
         <View>
           <Text style={styles.featureType}>Clean User Interface</Text>
           <Text style={styles.featureParagraph}>
-            TechToday has a Clean User Interface that allows you to find the
+            TechToday has a clean user interface that allows you to find the
             information you need without trouble or confusion
           </Text>
         </View>
@@ -137,12 +138,10 @@ const Home = ({ navigation }) => {
   );
 };
 
-
-
 const styles = StyleSheet.create({
   main: {
     textAlign: "center",
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
 
   name: {
@@ -178,13 +177,27 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
-  hubTagLine: { fontWeight: "normal", marginTop: 5, fontSize: 16, textAlign: "center", },
+  hubTagLine: {
+    fontWeight: "normal",
+    marginTop: 5,
+    fontSize: 16,
+    textAlign: "center",
+  },
 
-  productTitle: { fontWeight: "bold", fontSize: 25, marginTop: 10,  textAlign: "center", },
+  productTitle: {
+    fontWeight: "bold",
+    fontSize: 25,
+    marginTop: 10,
+    textAlign: "center",
+  },
 
-  productTypeDescription: { paddingLeft: 20, paddingRight: 20,  textAlign: "center", },
+  productTypeDescription: {
+    paddingLeft: 20,
+    paddingRight: 20,
+    textAlign: "center",
+  },
 
-  icon: { color: PRIMARY_COLOR, marginTop: 15,  textAlign: "center", },
+  icon: { color: PRIMARY_COLOR, marginTop: 15, textAlign: "center" },
 
   topics: {
     backgroundColor: "#f3f2f2",
