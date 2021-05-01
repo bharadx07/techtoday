@@ -5,10 +5,12 @@ import {
   TextInput,
   StyleSheet,
   TouchableHighlight,
+  Alert,
 } from "react-native";
 import { Formik } from "formik";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
 import axios from "../constants/AxiosClient";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Register = ({ navigation }) => {
   return (
@@ -59,7 +61,41 @@ const Register = ({ navigation }) => {
 
         return errors;
       }}
-      onSubmit={(_) => navigation.navigate("Topics")}
+      onSubmit={async (values) => {
+        try {
+          //Login the User
+          const config = {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+          const payload = {
+            email: values.email,
+            password: values.password,
+          };
+          const request = await axios.post(
+            "/api/v1/users/login",
+            payload,
+            config
+          );
+          //Store the jwt
+          const jwt = request.data;
+          //Send Them To The Topics Page
+          history.push("/topics");
+        } catch (error) {
+          Alert.alert(
+            "Error",
+            "An internal server error occured. Please close and reopen this app.",
+            [
+              {
+                text: "Understood",
+                style: "cancel",
+              },
+            ],
+            { cancelable: true }
+          );
+        }
+      }}
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View style={styles.formWrapper}>
