@@ -4,11 +4,12 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  Image,
   TouchableHighlight,
 } from "react-native";
 import { Formik } from "formik";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
+import axios from "../constants/AxiosClient";
+
 
 const Register = ({ navigation }) => {
   return (
@@ -19,11 +20,21 @@ const Register = ({ navigation }) => {
       validateOnBlur={false}
       validate={async (values) => {
         const errors = {};
-        
 
-        errors.email = "emails error trigger"
-        errors.password = "paswored error"
-        errors.name = "name error"
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+        try {
+          await axios.post("/api/v1/users/register", {}, config)
+        } catch (err) {
+          console.log(err)
+          errors.email = "emails error trigger";
+          errors.password = "paswored error";
+          errors.name = "name error";
+        }
 
         return errors;
       }}
@@ -32,7 +43,6 @@ const Register = ({ navigation }) => {
       {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View style={styles.formWrapper}>
           <View style={styles.form}>
-            {/* Add Image Soon */}
             <Text style={styles.welcome}>Welcome</Text>
             <Text style={styles.continue}>
               Register to TechToday to Continue
@@ -45,7 +55,7 @@ const Register = ({ navigation }) => {
               style={styles.input}
             />
             {errors.name && <Text style={styles.error}>{errors.name}</Text>}
-            <Text style={styles.label}>Email Address</Text> 
+            <Text style={styles.label}>Email Address</Text>
             <TextInput
               onChangeText={handleChange("email")}
               onBlur={handleBlur("email")}
@@ -60,7 +70,9 @@ const Register = ({ navigation }) => {
               value={values.password}
               style={styles.input}
             />
-            {errors.password && <Text style={styles.error}>{errors.password}</Text>}
+            {errors.password && (
+              <Text style={styles.error}>{errors.password}</Text>
+            )}
             <TouchableHighlight
               style={{
                 backgroundColor: "#cb4745",
@@ -173,8 +185,8 @@ const styles = StyleSheet.create({
 
   error: {
     marginTop: 8,
-    color: "red"
-  }
+    color: "red",
+  },
 });
 
 export default Register;

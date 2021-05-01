@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f7f7f7",
     marginTop: 35,
     marginLeft: 35,
-    marginRight: 30,
+    marginRight: 35,
   },
 
   topicImg: {
