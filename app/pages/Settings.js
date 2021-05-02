@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -13,18 +13,45 @@ import openURL from "../utils/OpenURL";
 import { TopicsList } from "../constants/TopicInfo";
 import { v4 as uuidv4 } from "uuid";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import db from "@react-native-async-storage/async-storage";
+import axios from "../constants/AxiosClient";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const FAKE_CHANGE_PASSWORD_INTERNAL_TOKEN =
-  "ksfjsdfsajflkejrjkfjdskflsadkfjljdsjksdajdsksklsjdj";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDhlMmQyMDUxZTBlNjAwMzNhODNkODkiLCJpYXQiOjE2MTk5ODA3MzEsImV4cCI6MTYyMDU4NTUzMX0.YbHKGXLohlp2KcIglFwxdbGyR280yXiGE9lWrj7pEGk";
 
-const Settings = () => {
-  const [user, setuser] = useState({
-    name: "Bharadwaj Duggaraju",
-    email: "bharadwaj.duggaraju@outlook.com",
-    topics: ["Finance", "Business"],
-    jobsDefCount: 9,
-    newsDefCount: 9,
-  });
+const Settings = ({ navigation }) => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      const jwt = await db.getItem("jwt");
+
+      if (jwt) {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": jwt,
+          },
+        };
+        const request = await axios.get("/api/v1/users/auth", config);
+        setUser(request?.data);
+      } else {
+        navigation.navigate("Login");
+      }
+    };
+
+    makeRequest().catch((error) => {
+      if (!error.message.includes("500")) {
+        navigation.navigate("Login");
+      }
+    });
+  }, [navigation]);
+
+  if (!user) {
+    return <Spinner visible={true} textContent={""} />;
+  }
+
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
       <View style={styles.mainSettingsWrapper}>
@@ -100,8 +127,8 @@ const Settings = () => {
         </Formik>
         <Formik
           initialValues={{
-            jobsDefCount: user.jobsDefCount,
-            newsDefCount: user.newsDefCount,
+            jobsDefCount: user.jobsDefaultCount,
+            newsDefCount: user.newsDefaultCount,
           }}
           onSubmit={(values) => console.log(values)}
         >
@@ -136,14 +163,14 @@ const Settings = () => {
                   onChangeText={handleChange("jobsDefCount")}
                   onBlur={handleBlur("jobsDefCount")}
                   value={values.jobsDefCount}
-                  style={styles.input}
+                  style={styles.inputCenter}
                 />
                 <Text style={styles.label}>News Default Count (1-9)</Text>
                 <TextInput
                   onChangeText={handleChange("newsDefCount")}
                   onBlur={handleBlur("newsDefCount")}
                   value={values.newsDefCount}
-                  style={styles.input}
+                  style={styles.inputCenter}
                 />
 
                 <TouchableHighlight
@@ -176,7 +203,6 @@ const styles = StyleSheet.create({
   formWrapper: {
     alignItems: "center",
     justifyContent: "center",
-
   },
   form: {
     backgroundColor: "white",
@@ -245,7 +271,6 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 4,
     paddingLeft: 7,
-    
   },
 
   inputCenter: {
@@ -255,8 +280,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 4,
     paddingLeft: 7,
-    textAlign: "center"
-    
+    textAlign: "center",
   },
 
   registerBTN: {
@@ -283,7 +307,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
-    marginBottom: 20
+    marginBottom: 20,
   },
 
   topSettings: {

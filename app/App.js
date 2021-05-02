@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { NavigationContainer} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -15,31 +15,29 @@ import TopicJobs from "./pages/TopicJobs";
 import TopicNews from "./pages/TopicNews";
 import Topics from "./pages/Topics";
 import Navbar from "./components/NavBar";
-import {navigationRef} from './/RootNavigation';
-import * as RootNavigation from './RootNavigation';
+import { navigationRef } from ".//RootNavigation";
+import * as RootNavigation from "./RootNavigation";
 
 //Database
-import db from "@react-native-async-storage/async-storage"
-
-
+import db from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
-
 
 export default function App() {
   const [showPublicLinks, setshowPublicLinks] = useState(false);
   const [showPrivateOuterLinks, setshowPrivateOuterLinks] = useState(false);
   const [showPrivateInnerLinks, setshowPrivateInnerLinks] = useState(false);
+  const [currentTopic, setCurrentTopic] = useState("");
 
   const navProps = {
-    showPublicLinks, 
+    showPublicLinks,
     setshowPublicLinks,
-    showPrivateOuterLinks, 
+    showPrivateOuterLinks,
     setshowPrivateOuterLinks,
-    showPrivateInnerLinks, 
+    showPrivateInnerLinks,
     setshowPrivateInnerLinks,
-    navigation: RootNavigation   
-  }
+    navigation: RootNavigation,
+  };
 
   return (
     <NavigationContainer ref={navigationRef}>
@@ -49,98 +47,93 @@ export default function App() {
           component={Home}
           options={{
             headerTitle: (props) => (
-              <Navbar
-                {...props}
-                {...navProps}
-                page="public"
-              />
+              <Navbar {...props} {...navProps} page="public" />
             ),
-            headerLeft: null
+            headerLeft: null,
           }}
           header
-
-          
         />
-        <Stack.Screen name="Forgot Password" component={ForgotPassword} options={{
+        <Stack.Screen
+          name="Forgot Password"
+          component={ForgotPassword}
+          options={{
             headerTitle: (props) => (
-              <Navbar
-              {...props}
-              {...navProps}
-              page="public"
-              />
+              <Navbar {...props} {...navProps} page="public" />
             ),
-            headerLeft: null
-          }}/>
-        <Stack.Screen name="Login" component={Login} options={{
+            headerLeft: null,
+          }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
             headerTitle: (props) => (
-              <Navbar
-              {...props}
-              {...navProps}
-              page="public"
-              />
+              <Navbar {...props} {...navProps} page="public" />
             ),
-            headerLeft: null
-          }} />
-        <Stack.Screen name="Register" component={Register} options={{
+            headerLeft: null,
+          }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{
             headerTitle: (props) => (
-              <Navbar
-              {...props}
-              {...navProps}
-              page="public"
-              />
+              <Navbar {...props} {...navProps} page="public" />
             ),
-            headerLeft: null
-          }} />
-        <Stack.Screen name="Settings" component={Settings} options={{
+            headerLeft: null,
+          }}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={Settings}
+          options={{
             headerTitle: (props) => (
-              <Navbar
-              {...props}
-              {...navProps}
-              page="privateouter"
-              />
+              <Navbar {...props} {...navProps} page="privateouter" />
             ),
-            headerLeft: null
-          }} />
-        <Stack.Screen name="Topics" component={Topics} options={{
+            headerLeft: null,
+          }}
+        />
+        <Stack.Screen
+          name="Topics"
+          options={{
             headerTitle: (props) => (
-              <Navbar
-              {...props}
-              {...navProps}
-              page="privateouter"
-              />
+              <Navbar {...props} {...navProps} page="privateouter" />
             ),
-            headerLeft: null
-          }} />
-        <Stack.Screen name="Jobs" component={TopicJobs} options={{
+            headerLeft: null,
+          }}
+        >
+          {(props) => <Topics {...props} setCurrentTopic={setCurrentTopic} />}
+        </Stack.Screen>
+        <Stack.Screen
+          name="Jobs"
+          component={TopicJobs}
+          options={{
             headerTitle: (props) => (
-              <Navbar
-                {...props}
-                {...navProps}
-                page="privateinner"
-              />
+              <Navbar {...props} {...navProps} page="privateinner" />
             ),
-            headerLeft: null
-          }}/>
-        <Stack.Screen name="News" component={TopicNews} options={{
+            headerLeft: null,
+          }}
+        />
+        <Stack.Screen
+          name="News"
+          component={TopicNews}
+          options={{
             headerTitle: (props) => (
-              <Navbar
-                {...props}
-                {...navProps}
-                page="privateinner"
-              />
+              <Navbar {...props} {...navProps} page="privateinner" />
             ),
-            headerLeft: null
-          }}/>
-        <Stack.Screen name="Contact" component={Contact} options={{
+            headerLeft: null,
+          }}
+        />
+        <Stack.Screen
+          name="Contact"
+          component={Contact}
+          options={{
             headerTitle: (props) => (
-              <Navbar
-              {...props}
-              {...navProps}
-              page="public"
-              />
+              <Navbar {...props} {...navProps} page="public" />
             ),
-            headerLeft: null
-          }} />
+            headerLeft: null,
+          }}
+        />
       </Stack.Navigator>
       <StatusBar style="auto" />
       {showPublicLinks === true && (
@@ -155,10 +148,42 @@ export default function App() {
               size={30}
               color="white"
             ></Icon>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Home'); setshowPublicLinks(false)}}>Home</Text>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Contact');setshowPublicLinks(false)}}>Contact</Text>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Login');setshowPublicLinks(false)}}>Login</Text>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Register');setshowPublicLinks(false)}}>Register</Text>
+            <Text
+              style={styles.text}
+              onPress={() => {
+                RootNavigation.navigate("Home");
+                setshowPublicLinks(false);
+              }}
+            >
+              Home
+            </Text>
+            <Text
+              style={styles.text}
+              onPress={() => {
+                RootNavigation.navigate("Contact");
+                setshowPublicLinks(false);
+              }}
+            >
+              Contact
+            </Text>
+            <Text
+              style={styles.text}
+              onPress={() => {
+                RootNavigation.navigate("Login");
+                setshowPublicLinks(false);
+              }}
+            >
+              Login
+            </Text>
+            <Text
+              style={styles.text}
+              onPress={() => {
+                RootNavigation.navigate("Register");
+                setshowPublicLinks(false);
+              }}
+            >
+              Register
+            </Text>
           </View>
         </View>
       )}
@@ -174,9 +199,34 @@ export default function App() {
               size={30}
               color="white"
             ></Icon>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Topics'); setshowPrivateOuterLinks(false)}}>Topics</Text>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Settings');setshowPrivateOuterLinks(false)}}>Settings</Text>
-            <Text style={styles.text} onPress={async () => {await db.removeItem("jwt");RootNavigation.navigate('Home');setshowPrivateOuterLinks(false)}}>Logout</Text>
+            <Text
+              style={styles.text}
+              onPress={() => {
+                RootNavigation.navigate("Topics");
+                setshowPrivateOuterLinks(false);
+              }}
+            >
+              Topics
+            </Text>
+            <Text
+              style={styles.text}
+              onPress={() => {
+                RootNavigation.navigate("Settings");
+                setshowPrivateOuterLinks(false);
+              }}
+            >
+              Settings
+            </Text>
+            <Text
+              style={styles.text}
+              onPress={async () => {
+                await db.removeItem("jwt");
+                RootNavigation.navigate("Home");
+                setshowPrivateOuterLinks(false);
+              }}
+            >
+              Logout
+            </Text>
           </View>
         </View>
       )}
@@ -192,10 +242,33 @@ export default function App() {
               size={30}
               color="white"
             ></Icon>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('News'); setshowPrivateInnerLinks(false);}}>News</Text>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Jobs');setshowPrivateInnerLinks(false);}}>Jobs</Text>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Topics');setshowPrivateInnerLinks(false);}}>Back</Text>
-           
+            <Text
+              style={styles.text}
+              onPress={() => {
+                RootNavigation.navigate("News", { topicName: currentTopic });
+                setshowPrivateInnerLinks(false);
+              }}
+            >
+              News
+            </Text>
+            <Text
+              style={styles.text}
+              onPress={() => {
+                RootNavigation.navigate("Jobs", { topicName: currentTopic });
+                setshowPrivateInnerLinks(false);
+              }}
+            >
+              Jobs
+            </Text>
+            <Text
+              style={styles.text}
+              onPress={() => {
+                RootNavigation.navigate("Topics");
+                setshowPrivateInnerLinks(false);
+              }}
+            >
+              Back
+            </Text>
           </View>
         </View>
       )}

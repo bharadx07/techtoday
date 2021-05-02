@@ -71,13 +71,8 @@ const MOCK_JOBS = [
   },
 ];
 
-const TopicJobs = () => {
-  //temp route
-  const route = {
-    params: {
-      topicName: "Software",
-    },
-  };
+const TopicJobs = ({route}) => {
+
   return (
     <View style={{ backgroundColor: "white" }}>
       <Text style={styles.topicTitle}>{route.params.topicName} Jobs</Text>

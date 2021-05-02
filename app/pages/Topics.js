@@ -3,35 +3,45 @@ import { ScrollView, Text, Image, View, StyleSheet } from "react-native";
 import TopicsInfo from "../constants/TopicInfo";
 import { v4 as uuidv4 } from "uuid";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
-import db from "@react-native-async-storage/async-storage"
+import db from "@react-native-async-storage/async-storage";
+import axios from "../constants/AxiosClient";
+import Spinner from "react-native-loading-spinner-overlay";
 
-const MOCK_TOPICS = [
-  "Programming",
-  "Hardware",
-  "Finance",
-  "Business",
-  "Auto",
-  "Medical",
-  "Travel",
-  "Retail",
-];
-
-const Topics = ({ navigation }) => {
-  const [jwt, setJwt] = useState("token")
+const Topics = ({ navigation, setCurrentTopic }) => {
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const makereq = async () => {
-      const jwtValue = await db.getItem("jwt");
-      setJwt(jwtValue)
-    }
+    const makeRequest = async () => {
+      const jwt = await db.getItem("jwt");
 
-    makereq()
-  }, [])
+      if (jwt) {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": jwt,
+          },
+        };
+        const request = await axios.get("/api/v1/users/auth", config);
+        setUser(request?.data);
+      } else {
+        navigation.navigate("Login");
+      }
+    };
+
+    makeRequest().catch((error) => {
+      if (!error.message.includes("500")) {
+        navigation.navigate("Login");
+      }
+    });
+  }, [navigation]);
+
+  if (!user) {
+    return <Spinner visible={true} textContent={""} />;
+  }
 
   return (
     <ScrollView style={styles.wrapper}>
-      <Text>{jwt}</Text>
-      {MOCK_TOPICS.map((topic) => {
+      {user.topics.map((topic) => {
         return (
           <View key={uuidv4()} style={styles.topicItem}>
             <Image
@@ -44,7 +54,7 @@ const Topics = ({ navigation }) => {
               {TopicsInfo[topic].description}
             </Text>
             <Text
-              onPress={() => navigation.navigate("News", { topicName: topic })}
+              onPress={() => {navigation.navigate("News", { topicName: topic }); setCurrentTopic(topic)}}
               style={styles.topicBTN}
             >
               Explore
@@ -61,7 +71,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 0,
     marginBottom: 30,
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
 
   topicItem: {
@@ -82,8 +92,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 20,
     fontSize: 30,
-    fontWeight: "500"
-
+    fontWeight: "500",
   },
 
   topicDescription: {
@@ -91,7 +100,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingLeft: 20,
     paddingRight: 20,
-    fontWeight: "500"
+    fontWeight: "500",
   },
 
   topicBTN: {
@@ -103,8 +112,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     color: "white",
-    fontSize: 15
-    
+    fontSize: 15,
   },
 });
 

@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  Image,
   TouchableHighlight,
 } from "react-native";
 import { Formik } from "formik";
@@ -14,7 +13,6 @@ import axios from "../constants/AxiosClient";
 
 const ForgotPassword = ({ navigation }) => {
   const [success, setSuccess] = useState(false);
-  
 
   return (
     <Formik
@@ -30,7 +28,11 @@ const ForgotPassword = ({ navigation }) => {
               "Content-Type": "application/json",
             },
           };
-          await axios.post("/api/v1/users/forgot-password", {email: values.email}, config);
+          await axios.post(
+            "/api/v1/users/forgot-password",
+            { email: values.email, app: true },
+            config
+          );
         } catch (error) {
           const ErrorMessage = error.response.data[0].message;
           if (ErrorMessage === '"email" is not allowed to be empty') {
@@ -49,15 +51,6 @@ const ForgotPassword = ({ navigation }) => {
         <View style={styles.formWrapper}>
           {!success && (
             <View style={styles.form}>
-              {/* <View style={{ flex: 1, alignItems: "center" }}>
-                <Image
-                  style={styles.tinyLogo}
-            
-                  onPress={() => {
-                    navigation.navigate("Home");
-                  }}
-                />
-              </View> */}
               <Text style={styles.welcome}>Forgot Password?</Text>
 
               <Text style={styles.label}>Email Address</Text>

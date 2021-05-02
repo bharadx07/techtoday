@@ -107,6 +107,7 @@ const Login = ({ navigation }) => {
               onBlur={handleBlur("password")}
               value={values.password}
               style={styles.input}
+              secureTextEntry={true}
             />
             {errors.password && (
               <Text style={styles.error}>{errors.password}</Text>
