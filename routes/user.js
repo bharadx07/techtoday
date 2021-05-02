@@ -95,6 +95,8 @@ router.post("/forgot-password", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
 
   if (user) {
+    const fromApp = req.body.app
+
     //Setting Up Email Transporter
     const transporter = nodemailer.createTransport({
       host: "smtp-mail.outlook.com", // hostname
@@ -114,7 +116,7 @@ router.post("/forgot-password", async (req, res) => {
     });
 
     //Message To User
-    messageToUser = generateTemplate(changePasswordToken);
+    messageToUser = generateTemplate(changePasswordToken, fromApp);
 
     //Message Options
     const messageOptions = {

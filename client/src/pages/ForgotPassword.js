@@ -24,10 +24,9 @@ function ForgotPassword({ history }) {
                 "Content-Type": "application/json",
               },
             };
-            await axios.post("/api/v1/users/forgot-password", values, config);
+            await axios.post("/api/v1/users/forgot-password", {email: values.email}, config);
           } catch (error) {
             const ErrorMessage = error.response.data[0].message;
-            console.log(ErrorMessage);
             if (ErrorMessage === '"email" is not allowed to be empty') {
               errors.email = "Email is Required";
             } else {

@@ -8,18 +8,44 @@ import {
   TouchableHighlight,
 } from "react-native";
 import { Formik } from "formik";
-import { AntDesign } from '@expo/vector-icons'; 
+import { AntDesign } from "@expo/vector-icons";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
+import axios from "../constants/AxiosClient";
 
 const ForgotPassword = ({ navigation }) => {
   const [success, setSuccess] = useState(false);
+  
 
   return (
     <Formik
       initialValues={{ email: "" }}
-      onSubmit={(values) => setSuccess(true)}
+      validateOnChange={false}
+      validateOnSubmit={true}
+      validateOnBlur={false}
+      validate={async (values) => {
+        const errors = {};
+        try {
+          const config = {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+          await axios.post("/api/v1/users/forgot-password", {email: values.email}, config);
+        } catch (error) {
+          const ErrorMessage = error.response.data[0].message;
+          if (ErrorMessage === '"email" is not allowed to be empty') {
+            errors.email = "Email is Required";
+          } else {
+            errors.email = "Invalid Email";
+          }
+        }
+        return errors;
+      }}
+      onSubmit={async (values, { setSubmitting }) => {
+        setSuccess(true);
+      }}
     >
-      {({ handleChange, handleBlur, handleSubmit, values }) => (
+      {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View style={styles.formWrapper}>
           {!success && (
             <View style={styles.form}>
@@ -41,6 +67,7 @@ const ForgotPassword = ({ navigation }) => {
                 value={values.email}
                 style={styles.input}
               />
+              {errors.email && <Text style={styles.error}>{errors.email}</Text>}
               <TouchableHighlight
                 style={{
                   backgroundColor: "#cb4745",
@@ -48,14 +75,10 @@ const ForgotPassword = ({ navigation }) => {
                   borderRadius: 20,
                 }}
               >
-                <Text
-                  onPress={handleSubmit}
-                  title="Submit"
-                  style={styles.BTN}
-                >
+                <Text onPress={handleSubmit} title="Submit" style={styles.BTN}>
                   Generate Reset Link
                 </Text>
-              </TouchableHighlight> 
+              </TouchableHighlight>
               <Text
                 style={styles.already}
                 onPress={() => {
@@ -79,10 +102,15 @@ const ForgotPassword = ({ navigation }) => {
                 shadowColor: "black",
                 shadowOpacity: 0.9,
                 elevation: 10,
-                width: 280
+                width: 280,
               }}
             >
-              <AntDesign name="checkcircleo" size={64} color="green" style={{textAlign: "center"}}/>
+              <AntDesign
+                name="checkcircleo"
+                size={64}
+                color="green"
+                style={{ textAlign: "center" }}
+              />
               <Text style={styles.welcome}>Check Your Email</Text>
               <Text style={styles.continue}>
                 If this account exists, Instructions regarding how to change the
@@ -93,7 +121,7 @@ const ForgotPassword = ({ navigation }) => {
                   backgroundColor: "#cb4745",
                   marginTop: 15,
                   borderRadius: 20,
-                }} 
+                }}
               >
                 <Text
                   onPress={() => setSuccess(false)}
@@ -110,8 +138,6 @@ const ForgotPassword = ({ navigation }) => {
     </Formik>
   );
 };
-
-
 
 const styles = StyleSheet.create({
   formWrapper: {
@@ -140,13 +166,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 23,
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   continue: {
     marginLeft: 20,
     marginRight: 20,
     marginTop: 10,
-    textAlign: "center"
+    textAlign: "center",
   },
 
   label: {
@@ -169,18 +195,21 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     borderRadius: 5,
-    textAlign: "center"
+    textAlign: "center",
   },
 
   already: {
     marginTop: 12,
-    textAlign: "left"
+    textAlign: "left",
   },
   aspecial: {
     color: PRIMARY_COLOR,
-    marginLeft: 5
-  }
-
+    marginLeft: 5,
+  },
+  error: {
+    marginTop: 8,
+    color: "red",
+  },
 });
 
 export default ForgotPassword;

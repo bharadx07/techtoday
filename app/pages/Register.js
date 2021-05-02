@@ -10,7 +10,7 @@ import {
 import { Formik } from "formik";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
 import axios from "../constants/AxiosClient";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import db from "@react-native-async-storage/async-storage";
 
 const Register = ({ navigation }) => {
   return (
@@ -27,6 +27,7 @@ const Register = ({ navigation }) => {
             "Content-Type": "application/json",
           },
         };
+        
 
         try {
           await axios.post("/api/v1/users/register", values, config);
@@ -80,8 +81,9 @@ const Register = ({ navigation }) => {
           );
           //Store the jwt
           const jwt = request.data;
+          await db.setItem("jwt", jwt)
           //Send Them To The Topics Page
-          history.push("/topics");
+          navigation.navigate("Topics")
         } catch (error) {
           Alert.alert(
             "Error",

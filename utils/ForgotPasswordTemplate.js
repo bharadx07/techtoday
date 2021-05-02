@@ -1,6 +1,7 @@
-const generateTemplate = (token) => {
+const generateTemplate = (token, fromApp) => {
+  const addApp = fromApp === true ? "?from=app" : "";
 
-  changePasswordLink = `${process.env.WEBSITE_HOST}change-password/${token}/`;
+  changePasswordLink = `${process.env.WEBSITE_HOST}change-password/${token}${addApp}`;
 
   const template = `
 
@@ -23,4 +24,3 @@ const generateTemplate = (token) => {
 };
 
 module.exports = generateTemplate;
- 

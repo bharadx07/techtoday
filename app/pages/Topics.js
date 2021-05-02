@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, Text, Image, View, StyleSheet } from "react-native";
 import TopicsInfo from "../constants/TopicInfo";
 import { v4 as uuidv4 } from "uuid";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
+import db from "@react-native-async-storage/async-storage"
 
 const MOCK_TOPICS = [
   "Programming",
@@ -16,8 +17,20 @@ const MOCK_TOPICS = [
 ];
 
 const Topics = ({ navigation }) => {
+  const [jwt, setJwt] = useState("token")
+
+  useEffect(() => {
+    const makereq = async () => {
+      const jwtValue = await db.getItem("jwt");
+      setJwt(jwtValue)
+    }
+
+    makereq()
+  }, [])
+
   return (
     <ScrollView style={styles.wrapper}>
+      <Text>{jwt}</Text>
       {MOCK_TOPICS.map((topic) => {
         return (
           <View key={uuidv4()} style={styles.topicItem}>

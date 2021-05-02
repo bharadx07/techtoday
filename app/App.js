@@ -18,6 +18,9 @@ import Navbar from "./components/NavBar";
 import {navigationRef} from './/RootNavigation';
 import * as RootNavigation from './RootNavigation';
 
+//Database
+import db from "@react-native-async-storage/async-storage"
+
 
 
 const Stack = createStackNavigator();
@@ -173,7 +176,7 @@ export default function App() {
             ></Icon>
             <Text style={styles.text} onPress={() => {RootNavigation.navigate('Topics'); setshowPrivateOuterLinks(false)}}>Topics</Text>
             <Text style={styles.text} onPress={() => {RootNavigation.navigate('Settings');setshowPrivateOuterLinks(false)}}>Settings</Text>
-            <Text style={styles.text} onPress={() => {RootNavigation.navigate('Home');setshowPrivateOuterLinks(false)}}>Logout</Text>
+            <Text style={styles.text} onPress={async () => {await db.removeItem("jwt");RootNavigation.navigate('Home');setshowPrivateOuterLinks(false)}}>Logout</Text>
           </View>
         </View>
       )}

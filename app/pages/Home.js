@@ -7,7 +7,7 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
-import axios from "../constants/AxiosClient";
+
 
 const Home = ({ navigation }) => {
   return (

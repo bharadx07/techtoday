@@ -17,7 +17,8 @@ const NavBar = ({
       <Text
         style={headText}
         onPress={() => {
-          navigation.navigate("Home");
+          const locationFinal = page === "public" ? "Home" : "Topics"
+          navigation.navigate(locationFinal);
         }}
       >
         TechToday
