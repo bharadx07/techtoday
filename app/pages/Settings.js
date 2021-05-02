@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableHighlight,
   ScrollView,
+  Alert
 } from "react-native";
 import { Formik } from "formik";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
@@ -17,11 +18,27 @@ import db from "@react-native-async-storage/async-storage";
 import axios from "../constants/AxiosClient";
 import Spinner from "react-native-loading-spinner-overlay";
 
-const FAKE_CHANGE_PASSWORD_INTERNAL_TOKEN =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDhlMmQyMDUxZTBlNjAwMzNhODNkODkiLCJpYXQiOjE2MTk5ODA3MzEsImV4cCI6MTYyMDU4NTUzMX0.YbHKGXLohlp2KcIglFwxdbGyR280yXiGE9lWrj7pEGk";
-
 const Settings = ({ navigation }) => {
   const [user, setUser] = useState(null);
+  const [changePasswordToken, setChangePasswordToken] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    const getPassToken = async () => {
+      const jwt = await db.getItem("jwt");
+
+      const req = await axios.get(
+        "/api/v1/users/change-password-internal-get-token",
+        { headers: { "auth-token": jwt } }
+      );
+
+      setChangePasswordToken(req.data);
+    }; 
+
+    getPassToken()
+
+
+  }, []);
 
   useEffect(() => {
     const makeRequest = async () => {
@@ -47,6 +64,30 @@ const Settings = ({ navigation }) => {
       }
     });
   }, [navigation]);
+
+  const handleDeleteAccount = () => {
+    Alert.alert(
+      "Are you sure?",
+      "If you delete you account, you cannot retirve it!",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        { text: "OK", onPress: async () => {
+          const jwt = await db.getItem("jwt")
+
+          await axios.delete("/api/v1/users/delete-account", {
+            headers: { "auth-token": jwt },
+          });
+          
+          await db.removeItem("jwt")
+
+          navigation.navigate("Home") 
+        } }
+      ]
+    );
+  }
 
   if (!user) {
     return <Spinner visible={true} textContent={""} />;
@@ -85,7 +126,7 @@ const Settings = ({ navigation }) => {
                   style={{ marginTop: 10, textAlign: "left", color: "#cb4745" }}
                   onPress={() => {
                     openURL(
-                      `https://techtoday.azurewebsites.net/change-password/${FAKE_CHANGE_PASSWORD_INTERNAL_TOKEN}?from=app`
+                      `https://techtoday.azurewebsites.net/change-password/${changePasswordToken}?from=app`
                     );
                   }}
                 >
@@ -99,9 +140,9 @@ const Settings = ({ navigation }) => {
                   }}
                 >
                   <Text
-                    onPress={handleSubmit}
                     title="Submit"
                     style={styles.registerBTN}
+                    onPress={handleDeleteAccount}
                   >
                     Delete Account
                   </Text>
@@ -127,8 +168,8 @@ const Settings = ({ navigation }) => {
         </Formik>
         <Formik
           initialValues={{
-            jobsDefCount: user.jobsDefaultCount,
-            newsDefCount: user.newsDefaultCount,
+            jobsDefCount: user.jobDefaultCount.toString(),
+            newsDefCount: user.newsDefaultCount.toString(),
           }}
           onSubmit={(values) => console.log(values)}
         >
@@ -203,6 +244,7 @@ const styles = StyleSheet.create({
   formWrapper: {
     alignItems: "center",
     justifyContent: "center",
+    width: "90%",
   },
   form: {
     backgroundColor: "white",
@@ -219,8 +261,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
 
     textAlign: "center",
-    marginLeft: 20,
-    marginRight: 20,
   },
 
   formbt: {
