@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TouchableHighlight,
   ScrollView,
-  Alert
+  Alert,
 } from "react-native";
 import { Formik } from "formik";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
@@ -21,7 +21,8 @@ import Spinner from "react-native-loading-spinner-overlay";
 const Settings = ({ navigation }) => {
   const [user, setUser] = useState(null);
   const [changePasswordToken, setChangePasswordToken] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [profileSuccess, setProfileSuccess] = useState(false);
+  const [prefSuccess, setPrefSuccess] = useState(false);
 
   useEffect(() => {
     const getPassToken = async () => {
@@ -33,11 +34,9 @@ const Settings = ({ navigation }) => {
       );
 
       setChangePasswordToken(req.data);
-    }; 
+    };
 
-    getPassToken()
-
-
+    getPassToken();
   }, []);
 
   useEffect(() => {
@@ -72,22 +71,25 @@ const Settings = ({ navigation }) => {
       [
         {
           text: "Cancel",
-          style: "cancel"
+          style: "cancel",
         },
-        { text: "OK", onPress: async () => {
-          const jwt = await db.getItem("jwt")
+        {
+          text: "OK",
+          onPress: async () => {
+            const jwt = await db.getItem("jwt");
 
-          await axios.delete("/api/v1/users/delete-account", {
-            headers: { "auth-token": jwt },
-          });
-          
-          await db.removeItem("jwt")
+            await axios.delete("/api/v1/users/delete-account", {
+              headers: { "auth-token": jwt },
+            });
 
-          navigation.navigate("Home") 
-        } }
+            await db.removeItem("jwt");
+
+            navigation.navigate("Home");
+          },
+        },
       ]
     );
-  }
+  };
 
   if (!user) {
     return <Spinner visible={true} textContent={""} />;
@@ -100,7 +102,77 @@ const Settings = ({ navigation }) => {
 
         <Formik
           initialValues={{ email: "", name: "" }}
-          onSubmit={(values) => console.log(values)}
+          validateOnChange={false}
+          validateOnSubmit={true}
+          validateOnBlur={false}
+          validate={async (values) => {
+            const errors = {};
+
+            const chooseRedirect = (errorstatus) => {
+              if (errorstatus === 403 || errorstatus === 401) {
+                history.push("/login");
+              }
+            };
+
+            const jwt = db.getItem("jwt");
+
+            const commonauthconfig = {
+              headers: {
+                "Content-Type": "application/json",
+                "auth-token": jwt,
+              },
+            };
+
+            let newname = user?.name;
+            let newemail = user?.email;
+
+            let succeeded = true;
+
+            try {
+              if (values.name !== "") {
+                const res = await axios.put(
+                  "/api/v1/users/change-name",
+                  { newname: values.name },
+                  commonauthconfig
+                );
+
+                newname = res.data;
+              }
+            } catch (error) {
+              chooseRedirect(error.response.status);
+              setProfileSuccess(false);
+              errors.name = error.response.data.message;
+              succeeded = false;
+            }
+
+            try {
+              if (values.email !== "") {
+                const response = await axios.put(
+                  "/api/v1/users/change-email",
+                  { newemail: values.email },
+                  commonauthconfig
+                );
+
+                newemail = response.data;
+              }
+            } catch (error) {
+              chooseRedirect(error.response.status);
+              setProfileSuccess(false);
+              errors.email = error.response.data;
+              succeeded = false;
+            }
+
+            if (succeeded) {
+              setProfileSuccess(true);
+            }
+
+            setUser({ ...user, name: newname, email: newemail });
+
+            return errors;
+          }}
+          onSubmit={async (values, { setSubmitting, resetForm }) => {
+            resetForm();
+          }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <View style={styles.formWrapper}>
@@ -162,6 +234,17 @@ const Settings = ({ navigation }) => {
                     Update Profile
                   </Text>
                 </TouchableHighlight>
+                {profileSuccess && (
+                  <Text
+                    style={{
+                      color: "green",
+                      textAlign: "center",
+                      marginTop: 20,
+                    }}
+                  >
+                    Updated Profile!
+                  </Text>
+                )}
               </View>
             </View>
           )}
@@ -229,6 +312,17 @@ const Settings = ({ navigation }) => {
                     Update Preferences
                   </Text>
                 </TouchableHighlight>
+                {prefSuccess && (
+                  <Text
+                    style={{
+                      color: "green",
+                      textAlign: "center",
+                      marginTop: 20,
+                    }}
+                  >
+                    Updated Preferences!
+                  </Text>
+                )}
               </View>
             </View>
           )}

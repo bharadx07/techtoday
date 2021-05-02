@@ -5,6 +5,6 @@
   "expoServerNgrokUrl": "https://hp-ge5.bharadwajd.app.exp.direct",
   "packagerNgrokUrl": "https://packager.hp-ge5.bharadwajd.app.exp.direct",
   "ngrokPid": 7048,
-  "webpackServerPort": null,
+  "webpackServerPort": 19006,
   "packagerPid": null
 }

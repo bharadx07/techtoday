@@ -1,0 +1,791 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap");
+header {
+  text-align: center;
+  background: white center center / auto 100%;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  position: fixed;
+  -webkit-box-align: center;
+  align-items: center;
+  border-bottom: 3px solid rgba(221, 226, 227, 0.2);
+  z-index: 5; }
+
+.nav-brand {
+  color: #4a45b9;
+  font-size: 2rem;
+  margin: 1.5rem 0;
+  margin-left: 3rem;
+  height: 51px;
+  width: 150px;
+  border-radius: 0px;
+  display: flex;
+  align-items: center; }
+
+nav {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  margin-right: 3rem; }
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 17px;
+  padding: 0 35px 0 0;
+  cursor: pointer; }
+
+.special {
+  color: #fff;
+  background-color: #cb4745;
+  font-weight: bold;
+  padding: 0.7rem 3rem;
+  border-radius: 4px; }
+
+.menuicon {
+  color: black;
+  font-size: 2.5rem;
+  display: none;
+  margin: 1.5rem 0;
+  margin-right: 3rem;
+  cursor: pointer; }
+
+.closeicon {
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem; }
+
+.nav-wrap {
+  max-width: 1503px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%; }
+
+.home-top {
+  text-align: center;
+  margin-top: 8rem; }
+  .home-top h1 {
+    font-weight: 300;
+    font-size: 45px;
+    color: #cb4745; }
+  .home-top h4 {
+    font-size: 1.3rem;
+    color: black;
+    font-weight: normal;
+    padding: 0 2rem;
+    margin-top: 1.3rem; }
+  .home-top button {
+    font-weight: 300;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #cb4745;
+    font-weight: bold;
+    padding: 0.7rem 3rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 1.3rem; }
+  .home-top button * {
+    color: white;
+    text-decoration: none; }
+
+.home-products-section {
+  text-align: center;
+  margin-top: 2.5rem; }
+  .home-products-section h1 {
+    font-size: 1.87rem;
+    color: #cb4745;
+    font-weight: normal; }
+  .home-products-section h5 {
+    color: #000000;
+    font-weight: 300;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 700px;
+    font-size: 1.16rem;
+    padding: 1rem 1rem; }
+  .home-products-section section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 650px;
+    margin: auto;
+    margin-top: .3rem; }
+    .home-products-section section .icon {
+      color: #cb4745;
+      font-size: 11rem;
+      width: 90%; }
+    .home-products-section section .iconSpecial {
+      color: #cb4745;
+      font-size: 14rem;
+      width: 100%; }
+    .home-products-section section .hide {
+      display: none; }
+    .home-products-section section .show {
+      display: block; }
+    .home-products-section section div {
+      text-align: left; }
+      .home-products-section section div h1 {
+        color: black; }
+      .home-products-section section div p {
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        font-weight: 300; }
+  .home-products-section .right div {
+    margin: 0 3.4rem; }
+
+.info-topics {
+  text-align: center;
+  background-color: #f3f2f2;
+  margin: 2rem auto;
+  padding: 2rem; }
+  .info-topics h1 {
+    font-weight: normal;
+    font-size: 30px;
+    color: #000000; }
+  .info-topics h3 {
+    font-size: 20px;
+    color: #000000;
+    padding: 1rem 0;
+    font-weight: 300; }
+  .info-topics h2 {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 500;
+    font-size: 1.3rem; }
+    .info-topics h2 * {
+      color: #cb4745;
+      text-decoration: none; }
+  .info-topics section {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto; }
+    .info-topics section div {
+      margin: 1rem 5rem; }
+      .info-topics section div h1 {
+        font-weight: normal;
+        font-size: 20px;
+        color: #000000; }
+
+.home-features {
+  text-align: center;
+  font-weight: 300; }
+  .home-features h1 {
+    font-weight: normal;
+    font-size: 30px;
+    color: #000000; }
+  .home-features section {
+    display: flex;
+    justify-content: center;
+    width: 650px;
+    margin: 2rem auto; }
+    .home-features section div {
+      border: none;
+      text-align: left;
+      margin: 0 2rem; }
+      .home-features section div h1 {
+        font-weight: normal;
+        font-size: 25px;
+        color: #000000; }
+      .home-features section div p {
+        margin-top: 1rem; }
+
+.cta {
+  text-align: center;
+  background-color: #f3f2f2;
+  padding: 2rem 0; }
+  .cta h1 {
+    font-weight: normal;
+    font-size: 25px;
+    color: #000000; }
+    .cta h1 span {
+      color: #cb4745; }
+  .cta button {
+    font-weight: 300;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #cb4745;
+    font-weight: bold;
+    padding: 0.7rem 3rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 1.3rem; }
+
+footer {
+  background: #000000;
+  color: white;
+  padding: 1.3rem;
+  text-align: center;
+  font-weight: 300;
+  font-size: 1.3rem;
+  color: #ffffff; }
+
+.register, .login, .forgot-password, .change-password {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  background-color: #e5e5e5; }
+  .register .form, .login .form, .forgot-password .form, .change-password .form {
+    background-color: white;
+    padding: 2.1rem;
+    margin: 0 auto;
+    border-radius: 6px;
+    text-align: center;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.1); }
+    .register .form *, .login .form *, .forgot-password .form *, .change-password .form * {
+      display: block; }
+    .register .form img, .login .form img, .forgot-password .form img, .change-password .form img {
+      width: 35px;
+      margin: 0 auto; }
+    .register .form h1, .login .form h1, .forgot-password .form h1, .change-password .form h1 {
+      font-weight: normal;
+      font-size: 1.8rem;
+      color: #000000;
+      margin: 1.2rem auto; }
+    .register .form h4, .register .form p, .login .form h4, .login .form p, .forgot-password .form h4, .forgot-password .form p, .change-password .form h4, .change-password .form p {
+      padding: 0 0 0.3rem 0;
+      font-weight: 300;
+      margin: 0 auto;
+      max-width: 250px; }
+    .register .form label, .login .form label, .forgot-password .form label, .change-password .form label {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1rem;
+      line-height: 23px;
+      margin: 0.7rem 0;
+      text-align: left;
+      color: #000000; }
+    .register .form .input, .register .form .input:focus, .register .form .input:hover, .login .form .input, .login .form .input:focus, .login .form .input:hover, .forgot-password .form .input, .forgot-password .form .input:focus, .forgot-password .form .input:hover, .change-password .form .input, .change-password .form .input:focus, .change-password .form .input:hover {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #808080;
+      height: 33px;
+      outline: none;
+      padding-left: .4rem;
+      display: block; }
+    .register .form input:-webkit-autofill, .login .form input:-webkit-autofill, .forgot-password .form input:-webkit-autofill, .change-password .form input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important; }
+    .register .form button, .login .form button, .forgot-password .form button, .change-password .form button {
+      width: 100%;
+      padding: .5rem 0;
+      margin: 1.1rem 0;
+      border: none;
+      outline: none;
+      background-color: #cb4745;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px; }
+    .register .form div, .login .form div, .forgot-password .form div, .change-password .form div {
+      text-align: left;
+      color: red;
+      padding-top: .5rem;
+      font-size: .9rem; }
+    .register .form .Link, .login .form .Link, .forgot-password .form .Link, .change-password .form .Link {
+      color: black;
+      text-decoration: none;
+      text-align: left;
+      width: 100%;
+      display: flex; }
+      .register .form .Link span, .login .form .Link span, .forgot-password .form .Link span, .change-password .form .Link span {
+        color: #cb4745;
+        padding-left: .3rem; }
+    .register .form .Forgot, .login .form .Forgot, .forgot-password .form .Forgot, .change-password .form .Forgot {
+      color: #cb4745;
+      margin: 1.2rem 0 0 0; }
+
+.contact {
+  margin: 11rem auto;
+  text-align: center; }
+  .contact h1 {
+    color: #cb4745;
+    font-size: 2.7rem;
+    margin: 2.5rem auto;
+    padding: 0 .8rem; }
+  .contact h3 {
+    margin: 2.5rem auto;
+    font-size: 1.7rem;
+    font-weight: 300;
+    padding: 0 .8rem; }
+  .contact section {
+    background-color: #f3f2f2;
+    width: 350px;
+    margin: 0 auto;
+    border-radius: 4px; }
+    .contact section img {
+      border-radius: 10%;
+      width: 47%;
+      margin-top: 1rem;
+      border: 10px solid white; }
+    .contact section p {
+      padding: 1.3rem;
+      font-weight: 300;
+      line-height: 1.875rem;
+      margin: 0 auto;
+      font-weight: 300;
+      font-family: Arial, Helvetica, sans-serif;
+      width: 100%; }
+    .contact section button {
+      width: 100%;
+      background-color: #cb4745;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 0.8rem 0;
+      cursor: pointer;
+      font-size: 1.2rem;
+      margin-top: 0.7rem; }
+      .contact section button a {
+        color: white;
+        text-decoration: none; }
+
+.topics-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-gap: 3rem;
+  justify-items: center;
+  justify-content: center;
+  margin-top: 9rem;
+  margin-bottom: 3rem; }
+  .topics-content section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 305px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f7f7f7; }
+    .topics-content section img {
+      width: 100%;
+      height: 190px; }
+    .topics-content section h1 {
+      font-weight: normal;
+      font-size: 30px;
+      margin-top: 1.3rem;
+      text-align: center;
+      color: #000000; }
+    .topics-content section p {
+      padding: 1rem 2rem; }
+    .topics-content section .button {
+      color: white;
+      text-decoration: none;
+      width: 100%; }
+      .topics-content section .button button {
+        width: 100%;
+        margin-top: 1rem;
+        border: none;
+        outline: none;
+        font-size: 1.1rem;
+        background-color: #cb4745;
+        color: white;
+        padding: 0.7rem 0;
+        cursor: pointer; }
+
+.news {
+  margin-top: 9rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center; }
+  .news h1 {
+    font-weight: normal; }
+  .news button {
+    background-color: black;
+    color: white;
+    margin: 0 auto 2rem auto;
+    border: none;
+    outline: none;
+    padding: 0.7rem 5rem;
+    cursor: pointer; }
+  .news section {
+    display: grid;
+    padding: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-gap: 4rem;
+    justify-items: center;
+    justify-content: center; }
+    .news section article {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      width: 605px;
+      text-align: center;
+      cursor: pointer; }
+      .news section article div {
+        display: flex;
+        background-color: #f7f7f7;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%; }
+        .news section article div div {
+          display: block;
+          text-align: left;
+          margin: 1rem 2rem; }
+          .news section article div div h2 {
+            font-size: 1.3rem;
+            margin-top: 1rem; }
+          .news section article div div p {
+            margin-top: 0.7rem;
+            color: #808080;
+            font-size: 1rem; }
+          .news section article div div h5 {
+            margin-top: 0.7rem; }
+          .news section article div div div {
+            margin: 0;
+            display: flex;
+            justify-content: space-between; }
+        .news section article div img {
+          width: 100%;
+          max-width: 120px; }
+      .news section article .button {
+        color: white;
+        text-decoration: none;
+        background-color: #cb4745;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 0.5rem 0;
+        font-size: 1rem; }
+
+.jobs {
+  margin-top: 9rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center; }
+  .jobs h1 {
+    font-weight: normal; }
+  .jobs button {
+    background-color: black;
+    color: white;
+    margin: 0 auto 2rem auto;
+    border: none;
+    outline: none;
+    padding: 0.7rem 5rem;
+    cursor: pointer; }
+  .jobs section {
+    display: grid;
+    padding: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(33rem, 1fr));
+    grid-gap: 4rem;
+    justify-items: center;
+    justify-content: center; }
+    .jobs section article {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
+      width: 405px;
+      align-items: center;
+      text-align: center;
+      cursor: pointer; }
+      .jobs section article .button {
+        color: white;
+        text-decoration: none;
+        background-color: #cb4745;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 0.5rem 0;
+        font-size: 1rem; }
+      .jobs section article div {
+        background-color: #f7f7f7; }
+        .jobs section article div div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          padding: 1rem 1rem; }
+        .jobs section article div h2 {
+          font-size: 1.3rem;
+          padding: 0 2rem; }
+        .jobs section article div p {
+          padding: 0.7rem 1rem;
+          color: #808080;
+          font-size: 1rem; }
+
+@media (max-width: 700px) {
+  .news section article {
+    width: 80%; }
+    .news section article * {
+      text-align: center; }
+    .news section article img {
+      display: none; }
+  .jobs section article {
+    width: 70%; } }
+
+@media (max-width: 500px) {
+  .news section article {
+    width: 50%; } }
+
+@media (max-width: 350px) {
+  .jobs section article {
+    width: 50%; } }
+
+.settings {
+  margin: 9rem auto;
+  text-align: center;
+  background-color: #e5e5e5;
+  width: 80%;
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1); }
+  .settings h1 {
+    padding: 1.3rem 1.3rem;
+    border-bottom: 3px solid lightgray;
+    width: 100%;
+    background-color: white;
+    text-align: left; }
+  .settings .wrapper {
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    margin: auto; }
+  .settings .profile,
+  .settings .preferences {
+    margin: 3rem auto; }
+    .settings .profile label,
+    .settings .preferences label {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1rem;
+      line-height: 23px;
+      margin: 0.7rem 0;
+      text-align: left;
+      color: #000000; }
+    .settings .profile .form,
+    .settings .preferences .form {
+      background-color: white;
+      padding: 2.1rem;
+      width: 300px;
+      margin: 0 auto;
+      border-radius: 6px;
+      text-align: center;
+      box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.1); }
+      .settings .profile .form .flexed,
+      .settings .preferences .form .flexed {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.86rem; }
+        .settings .profile .form .flexed label,
+        .settings .preferences .form .flexed label {
+          padding-left: 0.5rem;
+          line-height: initial;
+          margin: 0; }
+      .settings .profile .form *,
+      .settings .preferences .form * {
+        display: block; }
+      .settings .profile .form img,
+      .settings .preferences .form img {
+        width: 150px;
+        height: 150px;
+        cursor: pointer;
+        border-radius: 100%;
+        margin: 1rem auto; }
+      .settings .profile .form h1,
+      .settings .preferences .form h1 {
+        font-weight: normal;
+        font-size: 1.8rem;
+        color: #000000;
+        margin: 1.2rem auto; }
+      .settings .profile .form h4,
+      .settings .profile .form p,
+      .settings .preferences .form h4,
+      .settings .preferences .form p {
+        padding: 0 0 0.3rem 0;
+        font-weight: 300;
+        margin: 0 auto;
+        max-width: 250px; }
+      .settings .profile .form .input,
+      .settings .profile .form .input:focus,
+      .settings .profile .form .input:hover,
+      .settings .preferences .form .input,
+      .settings .preferences .form .input:focus,
+      .settings .preferences .form .input:hover {
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #808080;
+        height: 33px;
+        outline: none;
+        padding-left: 0.4rem;
+        display: block; }
+      .settings .profile .form input:-webkit-autofill,
+      .settings .preferences .form input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important; }
+      .settings .profile .form input[type="file"],
+      .settings .preferences .form input[type="file"] {
+        display: none; }
+      .settings .profile .form input[type="number"],
+      .settings .preferences .form input[type="number"] {
+        height: 28px;
+        text-align: center; }
+      .settings .profile .form button,
+      .settings .preferences .form button {
+        width: 100%;
+        padding: 0.5rem 0;
+        margin: 1.1rem 0;
+        border: none;
+        outline: none;
+        background-color: #cb4745;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 4px; }
+      .settings .profile .form div,
+      .settings .preferences .form div {
+        text-align: left;
+        color: red;
+        padding-top: 0.5rem;
+        font-size: 0.9rem; }
+      .settings .profile .form .Link,
+      .settings .preferences .form .Link {
+        color: #cb4745;
+        text-decoration: none;
+        text-align: left;
+        width: 100%;
+        margin-top: 1rem;
+        display: flex; }
+        .settings .profile .form .Link span,
+        .settings .preferences .form .Link span {
+          color: #cb4745;
+          padding-left: 0.3rem; }
+      .settings .profile .form .Forgot,
+      .settings .preferences .form .Forgot {
+        color: #cb4745;
+        margin: 1.2rem 0 0 0; }
+
+@media (max-width: 850px) {
+  .settings {
+    width: 90%; }
+    .settings h1 {
+      text-align: center; }
+    .settings .wrapper {
+      flex-direction: column; }
+    .settings .profile,
+    .settings .preferences {
+      margin: 0 auto;
+      margin-top: 1rem; }
+      .settings .profile .form,
+      .settings .preferences .form {
+        width: 300px; } }
+
+@media (max-width: 350px) {
+  .settings {
+    width: 90%; }
+    .settings h1 {
+      text-align: center; }
+    .settings .wrapper {
+      flex-direction: column; }
+    .settings .profile,
+    .settings .preferences {
+      margin: 0 auto;
+      margin-top: 1rem; }
+      .settings .profile .form,
+      .settings .preferences .form {
+        width: 100%; } }
+
+@media (max-width: 540px) {
+  .info-topics section {
+    flex-direction: column; }
+  .contact section {
+    width: 80%; } }
+
+@media (max-width: 740px) {
+  .home-products-section section {
+    flex-direction: column;
+    width: 100%; }
+    .home-products-section section div {
+      text-align: center; }
+    .home-products-section section .icon {
+      font-size: 9rem; }
+    .home-products-section section .iconSpecial {
+      font-size: 9rem; }
+    .home-products-section section .show {
+      display: none; }
+    .home-products-section section .hide {
+      display: block; }
+  .left div p {
+    margin: 0 3.4rem; }
+  .home-features section {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    justify-content: center; }
+    .home-features section div {
+      text-align: center; }
+    .home-features section .icon {
+      display: none; }
+  .topics-content {
+    width: 100%; } }
+
+@media (max-width: 940px) {
+  :root {
+    font-size: 14px; }
+  .menuicon {
+    display: block; }
+  nav {
+    flex-direction: column;
+    background-color: #cb4745;
+    margin: 0 auto;
+    padding: 5rem;
+    position: fixed;
+    z-index: 100;
+    top: -100vh;
+    height: 100vh;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */ }
+  nav::-webkit-scrollbar {
+    display: none; }
+  .nav-link {
+    color: white;
+    margin: 0.5rem auto;
+    text-align: center;
+    padding: 0; }
+  .special {
+    background-color: white;
+    color: var(--primary);
+    padding: 0.7rem 3rem; } }
+
+@keyframes diagonal {
+  0% {
+    top: -30rem;
+    right: -30rem; }
+  50% {
+    top: -15rem;
+    right: -15rem; }
+  100% {
+    top: 0;
+    right: 0; } }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-family: "Roboto", sans-serif; }

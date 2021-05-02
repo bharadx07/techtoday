@@ -1,0 +1,205 @@
+.news {
+  margin-top: 9rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center;
+
+  h1 {
+    font-weight: normal;
+  }
+
+  button {
+    background-color: black;
+    color: white;
+    margin: 0 auto 2rem auto;
+    border: none;
+    outline: none;
+    padding: 0.7rem 5rem;
+    cursor: pointer;
+  }
+
+  section {
+    display: grid;
+    padding: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-gap: 4rem;
+    justify-items: center;
+
+    justify-content: center;
+
+    article {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      width: 605px;
+      text-align: center;
+      cursor: pointer;
+
+      div {
+        display: flex;
+        background-color: #f7f7f7;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        div {
+          display: block;
+          text-align: left;
+          margin: 1rem 2rem;
+
+          h2 {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+          }
+          p {
+            margin-top: 0.7rem;
+            color: #808080;
+            font-size: 1rem;
+          }
+
+          h5 {
+            margin-top: 0.7rem;
+          }
+
+          div {
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+
+        img {
+          width: 100%;
+          max-width: 120px;
+        }
+      }
+
+      .button {
+        color: white;
+        text-decoration: none;
+        background-color: $subbackground;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 0.5rem 0;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.jobs {
+  margin-top: 9rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center;
+
+  h1 {
+    font-weight: normal;
+  }
+
+  button {
+    background-color: black;
+    color: white;
+    margin: 0 auto 2rem auto;
+    border: none;
+    outline: none;
+    padding: 0.7rem 5rem;
+    cursor: pointer;
+  }
+
+  section {
+    display: grid;
+    padding: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(33rem, 1fr));
+    grid-gap: 4rem;
+    justify-items: center;
+
+    justify-content: center;
+
+    article {
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
+      width: 405px;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+
+      .button {
+        color: white;
+        text-decoration: none;
+        background-color: $subbackground;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 0.5rem 0;
+        font-size: 1rem;
+      }
+
+      div {
+        background-color: #f7f7f7;
+        div {
+          display: flex;
+          justify-content: space-between; 
+          align-items: center;
+          width: 100%;
+          padding: 1rem 1rem;
+        }
+
+        h2 {
+          font-size: 1.3rem;
+          padding: 0 2rem;
+        }
+        p {
+          padding: 0.7rem 1rem;
+          color: #808080;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .news {
+    section {
+      article {
+        width: 80%;
+        * {
+          text-align: center;
+        }
+        img {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .jobs section article {
+    width: 70%;
+  }
+}
+
+@media (max-width: 500px) {
+  .news section article {
+    width: 50%;
+  }
+
+  
+}
+
+
+@media (max-width: 350px) {
+  .jobs section article {
+    width: 50%;
+  }
+
+  
+}

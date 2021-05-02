@@ -1,0 +1,60 @@
+.topics-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-gap: 3rem;
+  justify-items: center;
+  justify-content: center;
+  margin-top: 9rem;
+  margin-bottom: 3rem;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+   
+
+    margin: 0 auto;
+    width: 305px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f7f7f7;
+
+    img {
+      width: 100%;
+      height: 190px;
+     
+    }
+
+    h1 {
+      font-weight: normal;
+      font-size: 30px;
+      margin-top: 1.3rem;
+      text-align: center;
+      color: #000000;
+    }
+
+    p {
+      padding: 1rem 2rem;
+    }
+
+    .button {
+      button {
+        width: 100%;
+        margin-top: 1rem;
+        border: none;
+        outline: none;
+        font-size: 1.1rem;
+        background-color: $subbackground;
+        color: white;
+        padding: 0.7rem 0;
+        cursor: pointer;
+      }
+
+      color: white;
+      text-decoration: none;
+      width: 100%;
+    
+     
+    }
+  }
+}

@@ -1,0 +1,208 @@
+.settings {
+  margin: 9rem auto;
+  text-align: center;
+  background-color: #e5e5e5;
+  width: 80%;
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    padding: 1.3rem 1.3rem;
+    border-bottom: 3px solid lightgray;
+    width: 100%;
+    background-color: white;
+    text-align: left;
+  }
+
+  .wrapper {
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+  }
+
+  .profile,
+  .preferences {
+    margin: 3rem auto;
+
+    label {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1rem;
+      line-height: 23px;
+      margin: 0.7rem 0;
+      text-align: left;
+
+      color: #000000;
+    }
+
+    .form {
+      background-color: white;
+      padding: 2.1rem;
+      width: 300px;
+      margin: 0 auto;
+      border-radius: 6px;
+      text-align: center;
+
+      box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.1);
+      .flexed {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.86rem;
+
+        label {
+          padding-left: 0.5rem;
+          line-height: initial;
+          margin: 0;
+        }
+      }
+
+      * {
+        display: block;
+      }
+
+      img {
+        width: 150px;
+        height: 150px;
+        cursor: pointer;
+        border-radius: 100%;
+        margin: 1rem auto;
+      }
+
+      h1 {
+        font-weight: normal;
+        font-size: 1.8rem;
+        color: #000000;
+
+        margin: 1.2rem auto;
+      }
+
+      h4,
+      p {
+        padding: 0 0 0.3rem 0;
+        font-weight: 300;
+        margin: 0 auto;
+        max-width: 250px;
+      }
+
+      .input,
+      .input:focus,
+      .input:hover {
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #808080;
+        height: 33px;
+        outline: none;
+        padding-left: 0.4rem;
+        display: block;
+      }
+
+      input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      input[type="number"] {
+        height: 28px;
+        text-align: center;
+      }
+
+      button {
+        width: 100%;
+        padding: 0.5rem 0;
+        margin: 1.1rem 0;
+        border: none;
+        outline: none;
+        background-color: $subbackground;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      div {
+        text-align: left;
+        color: red;
+        padding-top: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .Link {
+        color: $subbackground;
+        text-decoration: none;
+        text-align: left;
+        width: 100%;
+        margin-top: 1rem;
+        display: flex;
+
+        span {
+          color: $subbackground;
+          padding-left: 0.3rem;
+        }
+      }
+
+      .Forgot {
+        color: $subbackground;
+        margin: 1.2rem 0 0 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .settings {
+    width: 90%;
+
+    h1 {
+      text-align: center;
+    }
+    .wrapper {
+      flex-direction: column;
+      
+    }
+
+    .profile,
+    .preferences {
+      margin: 0 auto;
+      margin-top: 1rem;
+
+      .form {
+        width: 300px;
+      }
+    
+
+    }
+  }
+}
+
+
+@media (max-width: 350px) {
+  .settings {
+    width: 90%;
+
+    h1 {
+      text-align: center;
+    }
+    .wrapper {
+      flex-direction: column;
+      
+    }
+
+    .profile,
+    .preferences {
+      margin: 0 auto;
+      margin-top: 1rem;
+
+      .form {
+        width: 100%;
+      }
+    
+
+    }
+  }
+}  
