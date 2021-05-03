@@ -8,7 +8,7 @@ const path = require('path'),
 let mainWindow;
    
 const createWindow = () => {
-  mainWindow = new BrowserWindow({ width: 480, height: 320, icon: __dirname + '/Logo.png' })
+  mainWindow = new BrowserWindow({ width: 480, height: 320, icon: __dirname + '/MiniHeadLogo.png' })
   const appUrl = isDev ? 'http://localhost:3000' :
     `file://${path.join(__dirname, '../build/index.html')}`
   mainWindow.loadURL(appUrl)

@@ -110,11 +110,12 @@ const Settings = ({ navigation }) => {
 
             const chooseRedirect = (errorstatus) => {
               if (errorstatus === 403 || errorstatus === 401) {
-                history.push("/login");
+                navigation.navigate("Login")
               }
             };
 
-            const jwt = db.getItem("jwt");
+            const jwt = await db.getItem("jwt");
+            
 
             const commonauthconfig = {
               headers: {
@@ -139,6 +140,7 @@ const Settings = ({ navigation }) => {
                 newname = res.data;
               }
             } catch (error) {
+              console.log(error.response.data)
               chooseRedirect(error.response.status);
               setProfileSuccess(false);
               errors.name = error.response.data.message;
@@ -170,11 +172,11 @@ const Settings = ({ navigation }) => {
 
             return errors;
           }}
-          onSubmit={async (values, { setSubmitting, resetForm }) => {
+          onSubmit={async (values, { resetForm }) => {
             resetForm();
           }}
         >
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
+          {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <View style={styles.formWrapper}>
               <View style={styles.form}>
                 <Text style={styles.welcome}>Profile</Text>
@@ -186,6 +188,7 @@ const Settings = ({ navigation }) => {
                   style={styles.input}
                   placeholder={user.name}
                 />
+                {errors.name && <Text style={styles.error}>{errors.name}</Text>}
                 <Text style={styles.label}>Your Email</Text>
                 <TextInput
                   onChangeText={handleChange("email")}
@@ -194,6 +197,7 @@ const Settings = ({ navigation }) => {
                   style={styles.input}
                   placeholder={user.email}
                 />
+                {errors.email && <Text style={styles.error}>{errors.email}</Text>}
                 <Text
                   style={{ marginTop: 10, textAlign: "left", color: "#cb4745" }}
                   onPress={() => {
@@ -338,7 +342,7 @@ const styles = StyleSheet.create({
   formWrapper: {
     alignItems: "center",
     justifyContent: "center",
-    width: "90%",
+    width: "94%",
   },
   form: {
     backgroundColor: "white",
@@ -457,5 +461,9 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     shadowOpacity: 1.9,
     elevation: 10,
+  },
+  error: {
+    marginTop: 8,
+    color: "red",
   },
 });
