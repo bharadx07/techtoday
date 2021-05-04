@@ -110,12 +110,11 @@ const Settings = ({ navigation }) => {
 
             const chooseRedirect = (errorstatus) => {
               if (errorstatus === 403 || errorstatus === 401) {
-                navigation.navigate("Login")
+                navigation.navigate("Login");
               }
             };
 
             const jwt = await db.getItem("jwt");
-            
 
             const commonauthconfig = {
               headers: {
@@ -140,7 +139,7 @@ const Settings = ({ navigation }) => {
                 newname = res.data;
               }
             } catch (error) {
-              console.log(error.response.data)
+              console.log(error.response.data);
               chooseRedirect(error.response.status);
               setProfileSuccess(false);
               errors.name = error.response.data.message;
@@ -197,7 +196,9 @@ const Settings = ({ navigation }) => {
                   style={styles.input}
                   placeholder={user.email}
                 />
-                {errors.email && <Text style={styles.error}>{errors.email}</Text>}
+                {errors.email && (
+                  <Text style={styles.error}>{errors.email}</Text>
+                )}
                 <Text
                   style={{ marginTop: 10, textAlign: "left", color: "#cb4745" }}
                   onPress={() => {
@@ -214,6 +215,7 @@ const Settings = ({ navigation }) => {
                     marginTop: 15,
                     borderRadius: 20,
                   }}
+                  onPress={handleDeleteAccount}
                 >
                   <Text
                     title="Submit"
@@ -229,6 +231,7 @@ const Settings = ({ navigation }) => {
                     marginTop: 15,
                     borderRadius: 20,
                   }}
+                  onPress={handleSubmit}
                 >
                   <Text
                     onPress={handleSubmit}
@@ -258,14 +261,14 @@ const Settings = ({ navigation }) => {
             jobsDefCount: user.jobDefaultCount.toString(),
             newsDefCount: user.newsDefaultCount.toString(),
           }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => console.log(user.topics)}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <View style={styles.formWrapper}>
               <View style={styles.formbt}>
                 <Text style={styles.welcome}>Preferences</Text>
                 <Text style={styles.label}>Topics (Check At Least One)</Text>
-                {TopicsList.map((topic) => {
+                {TopicsList.map((topic,i) => {
                   return (
                     <View key={uuidv4()}>
                       <BouncyCheckbox
@@ -274,7 +277,19 @@ const Settings = ({ navigation }) => {
                         unfillColor="#FFFFFF"
                         text={topic}
                         iconStyle={{ borderColor: "black" }}
-                        onPress={(isChecked) => {}}
+                        onPress={(_) => {
+                          if (user.topics.includes(topic)) {
+                            if (user.topics.length !== 1) {
+                              const newtopics = user.topics.filter((v, i, a) => {
+                                return v !== topic;
+                              });
+                              setUser({ ...user, topics: newtopics });
+                            }
+                          } else {
+                            const topicsusers = user.topics
+                            setUser({ ...user, topics: [...topicsusers, topic] });
+                          }
+                        }}
                         textStyle={{
                           textDecorationLine: "none",
                           color: "black",
@@ -322,7 +337,7 @@ const Settings = ({ navigation }) => {
                       color: "green",
                       textAlign: "center",
                       marginTop: 20,
-                    }}
+                    }} 
                   >
                     Updated Preferences!
                   </Text>
