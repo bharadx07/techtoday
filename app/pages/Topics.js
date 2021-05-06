@@ -11,27 +11,26 @@ import { useIsFocused } from "@react-navigation/native";
 const Topics = ({ navigation, setCurrentTopic }) => {
   const [user, setUser] = useState(null);
 
-  const makeRequest = async () => {
-    const jwt = await db.getItem("jwt");
-    setUser(null);
-
-    if (jwt) {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": jwt,
-        },
-      };
-      const request = await axios.get("/api/v1/users/auth", config);
-      setUser(request?.data);
-    } else {
-      navigation.navigate("Login");
-    }
-  };
-
   const isFocused = useIsFocused();
 
   useEffect(() => {
+    setUser(null);
+    const makeRequest = async () => {
+      const jwt = await db.getItem("jwt");
+
+      if (jwt) {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": jwt,
+          },
+        };
+        const request = await axios.get("/api/v1/users/auth", config);
+        setUser(request?.data);
+      } else {
+        navigation.navigate("Login");
+      }
+    };
     makeRequest().catch((error) => {
       if (!error.message.includes("500")) {
         navigation.navigate("Login");
@@ -44,33 +43,33 @@ const Topics = ({ navigation, setCurrentTopic }) => {
   }
 
   return (
-    <View style={{flex: 1, backgroundColor: "white"}}>
-    <ScrollView style={styles.wrapper}>
-      {user.topics.map((topic) => {
-        return (
-          <View key={uuidv4()} style={styles.topicItem}>
-            <Image
-              source={{ uri: TopicsInfo[topic].img }}
-              style={styles.topicImg}
-            />
+    <View style={{ flex: 1, backgroundColor: "white" }}>
+      <ScrollView style={styles.wrapper}>
+        {user.topics.map((topic) => {
+          return (
+            <View key={uuidv4()} style={styles.topicItem}>
+              <Image
+                source={{ uri: TopicsInfo[topic].img }}
+                style={styles.topicImg}
+              />
 
-            <Text style={styles.topicName}>{TopicsInfo[topic].name}</Text>
-            <Text style={styles.topicDescription}>
-              {TopicsInfo[topic].description}
-            </Text>
-            <Text
-              onPress={() => {
-                navigation.navigate("News", { topicName: topic });
-                setCurrentTopic(topic);
-              }}
-              style={styles.topicBTN}
-            >
-              Explore
-            </Text>
-          </View>
-        );
-      })}
-    </ScrollView>
+              <Text style={styles.topicName}>{TopicsInfo[topic].name}</Text>
+              <Text style={styles.topicDescription}>
+                {TopicsInfo[topic].description}
+              </Text>
+              <Text
+                onPress={() => {
+                  navigation.navigate("News", { topicName: topic });
+                  setCurrentTopic(topic);
+                }}
+                style={styles.topicBTN}
+              >
+                Explore
+              </Text>
+            </View>
+          );
+        })}
+      </ScrollView>
     </View>
   );
 };

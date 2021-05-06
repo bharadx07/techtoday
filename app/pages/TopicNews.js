@@ -11,48 +11,51 @@ import { requestNews } from "../utils/getNews";
 
 
 const TopicNews = ({ route, navigation }) => {
-  const [news, setNews] = useState(null)
+  const [news, setNews] = useState([])
   const [user, setUser] = useState(null)
 
-  const makeRequest = async () => {
-    const jwt = await db.getItem("jwt");
-    
+  const newsMounted = useIsFocused()
 
-    if (jwt) {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": jwt,
-        },
-      };
-      const request = await axios.get("/api/v1/users/auth", config);
-      setUser(request?.data);
-    } else {
-      navigation.navigate("Login");
-    }
-  };
-
-  const isnFocused = useIsFocused();
 
   useEffect(() => {
+    setUser(null);
+    const makeRequest = async () => {
+      const jwt = await db.getItem("jwt");
+
+      if (jwt) {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": jwt,
+          },
+        };
+        const request = await axios.get("/api/v1/users/auth", config);
+        setUser(request?.data);
+      } else {
+        navigation.navigate("Login");
+      }
+    };
     makeRequest().catch((error) => {
       if (!error.message.includes("500")) {
         navigation.navigate("Login");
       }
     });
-  }, [navigation, isnFocused]);
+  }, [navigation]);
 
   useEffect(() => {
     const makeNewsReq = async () => {
       const jwt = await db.getItem("jwt");
-      const news = await requestNews(route.params.topicName.toLowerCase(), jwt, 1)
-      console.log(news)
+      const news = await requestNews(route.params.topicName.toLowerCase(), jwt, 1);
+
+      const limitedNews = news;
+
       setNews([])
- 
     }
 
     makeNewsReq()
-  }, [navigation, isnFocused])
+  }, [])
+
+
 
 
   if (!user || !news) {
