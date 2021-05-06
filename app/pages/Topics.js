@@ -6,40 +6,45 @@ import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
 import db from "@react-native-async-storage/async-storage";
 import axios from "../constants/AxiosClient";
 import Spinner from "react-native-loading-spinner-overlay";
+import { useIsFocused } from "@react-navigation/native";
 
 const Topics = ({ navigation, setCurrentTopic }) => {
   const [user, setUser] = useState(null);
 
+  const makeRequest = async () => {
+    const jwt = await db.getItem("jwt");
+    setUser(null);
+
+    if (jwt) {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": jwt,
+        },
+      };
+      const request = await axios.get("/api/v1/users/auth", config);
+      setUser(request?.data);
+    } else {
+      navigation.navigate("Login");
+    }
+  };
+
+  const isFocused = useIsFocused();
+
   useEffect(() => {
-    const makeRequest = async () => {
-      const jwt = await db.getItem("jwt");
-
-      if (jwt) {
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": jwt,
-          },
-        };
-        const request = await axios.get("/api/v1/users/auth", config);
-        setUser(request?.data);
-      } else {
-        navigation.navigate("Login");
-      }
-    };
-
     makeRequest().catch((error) => {
       if (!error.message.includes("500")) {
         navigation.navigate("Login");
       }
     });
-  }, [navigation]);
+  }, [navigation, isFocused]);
 
   if (!user) {
     return <Spinner visible={true} textContent={""} />;
   }
 
   return (
+    <View style={{flex: 1, backgroundColor: "white"}}>
     <ScrollView style={styles.wrapper}>
       {user.topics.map((topic) => {
         return (
@@ -54,7 +59,10 @@ const Topics = ({ navigation, setCurrentTopic }) => {
               {TopicsInfo[topic].description}
             </Text>
             <Text
-              onPress={() => {navigation.navigate("News", { topicName: topic }); setCurrentTopic(topic)}}
+              onPress={() => {
+                navigation.navigate("News", { topicName: topic });
+                setCurrentTopic(topic);
+              }}
               style={styles.topicBTN}
             >
               Explore
@@ -63,6 +71,7 @@ const Topics = ({ navigation, setCurrentTopic }) => {
         );
       })}
     </ScrollView>
+    </View>
   );
 };
 

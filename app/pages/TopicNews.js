@@ -1,90 +1,70 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { v4 as uuidv4 } from "uuid";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
 import openURL from "../utils/OpenURL";
+import db from "@react-native-async-storage/async-storage";
+import axios from "../constants/AxiosClient";
+import Spinner from "react-native-loading-spinner-overlay";
+import { useIsFocused } from "@react-navigation/native";
+import { requestNews } from "../utils/getNews";
 
-const MOCK_NEWS = [
-  {
-    company: "NY Times",
-    date: "Wed Apr 07 2021",
-    title: "News Title",
-    desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
-    link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju",
-  },
-  {
-    company: "NY Times",
-    date: "Wed Apr 07 2021",
-    title: "News Title",
-    desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
-    link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju",
-  },
-  {
-    company: "NY Times",
-    date: "Wed Apr 07 2021",
-    title: "News Title",
-    desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
-    link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju",
-  },
-  {
-    company: "NY Times",
-    date: "Wed Apr 07 2021",
-    title: "News Title",
-    desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
-    link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju",
-  },
-  {
-    company: "NY Times",
-    date: "Wed Apr 07 2021",
-    title: "News Title",
-    desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
-    link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju",
-  },
-  {
-    company: "NY Times",
-    date: "Wed Apr 07 2021",
-    title: "News Title",
-    desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
-    link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju",
-  },
-  {
-    company: "NY Times",
-    date: "Wed Apr 07 2021",
-    title: "News Title",
-    desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
-    link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju",
-  },
-  {
-    company: "NY Times",
-    date: "Wed Apr 07 2021",
-    title: "News Title",
-    desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
-    link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju",
-  },
-  {
-    company: "NY Times",
-    date: "Wed Apr 07 2021",
-    title: "News Title",
-    desc: "hello this si the edesfkdjfldjsdklfjslafsdkljasklfjsdljfldkfslfjd",
-    link: "https://youtube.com",
-    by: "Bharadwaj Duggaraju",
-  },
-];
 
-const TopicNews = ({ route }) => {
+const TopicNews = ({ route, navigation }) => {
+  const [news, setNews] = useState(null)
+  const [user, setUser] = useState(null)
+
+  const makeRequest = async () => {
+    const jwt = await db.getItem("jwt");
+    
+
+    if (jwt) {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": jwt,
+        },
+      };
+      const request = await axios.get("/api/v1/users/auth", config);
+      setUser(request?.data);
+    } else {
+      navigation.navigate("Login");
+    }
+  };
+
+  const isnFocused = useIsFocused();
+
+  useEffect(() => {
+    makeRequest().catch((error) => {
+      if (!error.message.includes("500")) {
+        navigation.navigate("Login");
+      }
+    });
+  }, [navigation, isnFocused]);
+
+  useEffect(() => {
+    const makeNewsReq = async () => {
+      const jwt = await db.getItem("jwt");
+      const news = await requestNews(route.params.topicName.toLowerCase(), jwt, 1)
+      console.log(news)
+      setNews([])
+ 
+    }
+
+    makeNewsReq()
+  }, [navigation, isnFocused])
+
+
+  if (!user || !news) {
+    return <Spinner visible={true} textContent={""} />;
+  }
+
+ 
   return (
-    <View style={{ backgroundColor: "white" }}>
+    <View style={{ backgroundColor: "white", flex: 1 }}>
       <Text style={styles.topicTitle}>{route.params.topicName} News</Text>
       <ScrollView style={styles.wrapper}>
-        {MOCK_NEWS.map((newsItem) => {
+        {news.map((newsItem) => {
           const company = newsItem.company;
           const date = newsItem.date;
           const title = newsItem.title;

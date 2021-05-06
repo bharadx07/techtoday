@@ -302,6 +302,6 @@ const styles = StyleSheet.create({
     color: "white",
     marginTop: 5,
     marginBottom: 5,
-    fontSize: 18,
+    fontSize: 20,
   },
 });

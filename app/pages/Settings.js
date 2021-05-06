@@ -261,9 +261,65 @@ const Settings = ({ navigation }) => {
             jobsDefCount: user.jobDefaultCount.toString(),
             newsDefCount: user.newsDefaultCount.toString(),
           }}
-          onSubmit={(values) => console.log(user.topics)}
+          validateOnChange={false}
+          validateOnSubmit={true}
+          validateOnBlur={false}
+          validate={async (values) => {
+            const errors = {};
+
+            if (!/^[0-9]+$/.test(values.newsDefCount) || parseInt(values.newsDefCount) <1 || parseInt(values.newsDefCount) > 9 ) {
+              errors.newsDefCount = "Must be from 1-9"
+            } 
+
+            if (!/^[0-9]+$/.test(values.jobsDefCount) || parseInt(values.jobsDefCount) <1 || parseInt(values.jobsDefCount) > 9 ) {
+              errors.jobsDefCount = "Must be from 1-9"
+            }
+
+            const intVJ = parseInt(values.jobsDefCount)
+            const intVN = parseInt(values.newsDefCount)
+
+            const jwt = await db.getItem("jwt")
+
+            const commonauthconfig = {
+              headers: {
+                "Content-Type": "application/json",
+                "auth-token": jwt,
+              },
+            };
+  
+            try {
+              await axios.put(
+                "/api/v1/users/change-topics",
+                { newtopics: user.topics },
+                commonauthconfig
+              );
+
+  
+              await axios.put("/api/v1/users/change-default-settings/news", {newvalue: intVN}, commonauthconfig);
+  
+              await axios.put("/api/v1/users/change-default-settings/jobs", {newvalue: intVJ}, commonauthconfig);
+  
+              setPrefSuccess(true)
+
+  
+  
+            } catch (error) {
+              setPrefSuccess(false)
+              if (
+                error.response.status === 401 ||
+                error.response.status === 403
+              ) {
+                navigation.navigate("Login")
+              }
+
+              console.log(error.response.data)
+            }
+
+            return errors;
+          }}
+          onSubmit={() => {}}
         >
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
+          {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <View style={styles.formWrapper}>
               <View style={styles.formbt}>
                 <Text style={styles.welcome}>Preferences</Text>
@@ -284,7 +340,7 @@ const Settings = ({ navigation }) => {
                                 return v !== topic;
                               });
                               setUser({ ...user, topics: newtopics });
-                            }
+                            } 
                           } else {
                             const topicsusers = user.topics
                             setUser({ ...user, topics: [...topicsusers, topic] });
@@ -297,24 +353,32 @@ const Settings = ({ navigation }) => {
                         style={{ marginTop: 10 }}
                         fillColor="black"
                         isChecked={user.topics.includes(topic)}
+                        disableBuiltInState={true}
                       />
                     </View>
                   );
                 })}
-                <Text style={styles.label}>Jobs Default Count (1-9)</Text>
-                <TextInput
-                  onChangeText={handleChange("jobsDefCount")}
-                  onBlur={handleBlur("jobsDefCount")}
-                  value={values.jobsDefCount}
-                  style={styles.inputCenter}
-                />
                 <Text style={styles.label}>News Default Count (1-9)</Text>
                 <TextInput
                   onChangeText={handleChange("newsDefCount")}
                   onBlur={handleBlur("newsDefCount")}
                   value={values.newsDefCount}
+                  keyboardType='numeric'
                   style={styles.inputCenter}
+                  minLength={1}
                 />
+                {errors.newsDefCount && <Text style={styles.error}>{errors.newsDefCount}</Text>}
+                <Text style={styles.label}>Jobs Default Count (1-9)</Text>
+                <TextInput
+                  onChangeText={handleChange("jobsDefCount")}
+                  onBlur={handleBlur("jobsDefCount")}
+                  value={values.jobsDefCount}
+                  keyboardType='numeric'
+                  style={styles.inputCenter}
+                  maxLength={10}  
+                  minLength={1}
+                />
+                {errors.jobsDefCount && <Text style={styles.error}>{errors.jobsDefCount}</Text>}
 
                 <TouchableHighlight
                   style={{
@@ -322,6 +386,7 @@ const Settings = ({ navigation }) => {
                     marginTop: 15,
                     borderRadius: 20,
                   }}
+                  onPress={handleSubmit}
                 >
                   <Text
                     onPress={handleSubmit}
