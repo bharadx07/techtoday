@@ -5,6 +5,8 @@ const electron = require("electron"),
 const path = require("path"),
   isDev = require("electron-is-dev");
 
+const { Tray, Menu } = electron;
+
 let mainWindow;
 let tray;
 
@@ -15,7 +17,30 @@ const createWindow = () => {
     icon: __dirname + "/MiniHeadLogo.png",
   });
 
-  tray = new electron.Tray(__dirname + "/MiniHeadLogo.png");
+  tray = new Tray(__dirname + "/MiniHeadLogo.png");
+  let contextMenu = Menu.buildFromTemplate([
+    {
+      label: "Open",
+      click: () => {
+        mainWindow.maximize();
+      },
+    },
+    {
+      label: "Quit",
+      click: () => {
+        app.isQuiting = true;
+        app.quit();
+      },
+    },
+  ]);
+  tray.setToolTip("TechToday");
+  tray.setContextMenu(contextMenu);
+  tray.on("right-click", () => {
+    tray.popUpContextMenu();
+  });
+  tray.on("click", () => {
+    mainWindow.maximize();
+  });
 
   const appUrl = isDev
     ? "http://localhost:3000"
