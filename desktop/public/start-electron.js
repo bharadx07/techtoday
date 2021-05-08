@@ -5,7 +5,7 @@ const electron = require("electron"),
 const path = require("path"),
   isDev = require("electron-is-dev");
 
-const { Tray, Menu } = electron;
+const { Tray, Menu, globalShortcut } = electron;
 
 let mainWindow;
 let tray;
@@ -41,6 +41,12 @@ const createWindow = () => {
   tray.on("click", () => {
     mainWindow.maximize();
   });
+
+  globalShortcut.register('CommandOrControl+Shift+X', () => {
+    app.isQuiting = true;
+    app.quit()
+  })
+
 
   const appUrl = isDev
     ? "http://localhost:3000"
