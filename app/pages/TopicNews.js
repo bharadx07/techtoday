@@ -8,10 +8,11 @@ import axios from "../constants/AxiosClient";
 import Spinner from "react-native-loading-spinner-overlay";
 import { useIsFocused } from "@react-navigation/native";
 import { requestNews } from "../utils/getNews";
+import * as dayjs from "dayjs"
 
 
 const TopicNews = ({ route, navigation }) => {
-  const [news, setNews] = useState([])
+  const [news, setNews] = useState(null)
   const [user, setUser] = useState(null)
 
   const newsMounted = useIsFocused()
@@ -47,9 +48,9 @@ const TopicNews = ({ route, navigation }) => {
       const jwt = await db.getItem("jwt");
       const news = await requestNews(route.params.topicName.toLowerCase(), jwt, 1);
 
-      const limitedNews = news;
+      const limitedNews = news.news[route.params.topicName.toLowerCase()][1].response.docs.slice(0,9)
 
-      setNews([])
+      setNews(limitedNews)
     }
 
     makeNewsReq()
@@ -68,12 +69,15 @@ const TopicNews = ({ route, navigation }) => {
       <Text style={styles.topicTitle}>{route.params.topicName} News</Text>
       <ScrollView style={styles.wrapper}>
         {news.map((newsItem) => {
-          const company = newsItem.company;
-          const date = newsItem.date;
-          const title = newsItem.title;
-          const by = newsItem.by;
-          const desc = newsItem.desc;
-          const link = newsItem.link;
+          const company = "NY Times";
+          const rud = new Date(newsItem.pub_date.substring(0,10))
+          const date = rud.toDateString()
+          const title = newsItem.headline.main;
+          const by = newsItem.byline.original;
+          const desc = newsItem.abstract; 
+          const link = newsItem.web_url;
+
+
           return (
             <View key={uuidv4()} style={styles.newsItem}>
               <View style={styles.stats}>

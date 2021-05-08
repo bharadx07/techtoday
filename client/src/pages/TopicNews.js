@@ -58,7 +58,7 @@ function TopicNews({ match, history }) {
           pagination
         );
         if (pagination === 1) {
-          setNews(requestedNews.news[topicName][pagination].response.docs);; 
+          setNews(requestedNews.news[topicName][pagination].response.docs);
         } else {
           
           setNews(news => [...news, ...requestedNews.news[topicName][pagination].response.docs]);

@@ -1,8 +1,14 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { v4 as uuidv4 } from "uuid";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
 import openURL from "../utils/OpenURL";
+import db from "@react-native-async-storage/async-storage";
+import axios from "../constants/AxiosClient";
+import Spinner from "react-native-loading-spinner-overlay";
+import { useIsFocused } from "@react-navigation/native";
+import { requestNews } from "../utils/getNews";
+import * as dayjs from "dayjs"
 
 const MOCK_JOBS = [
   {
@@ -71,7 +77,39 @@ const MOCK_JOBS = [
   },
 ];
 
-const TopicJobs = ({route}) => {
+const TopicJobs = ({route, navigation}) => {
+  const [news, setNews] = useState(null)
+  const [jobs, setJobs] = useState(null)
+
+  const newsMounted = useIsFocused()
+
+
+  useEffect(() => {
+    setUser(null);
+    const makeRequest = async () => {
+      const jwt = await db.getItem("jwt");
+
+      if (jwt) {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": jwt,
+          },
+        };
+        const request = await axios.get("/api/v1/users/auth", config);
+        setUser(request?.data);
+      } else {
+        navigation.navigate("Login");
+      }
+    };
+    makeRequest().catch((error) => {
+      if (!error.message.includes("500")) {
+        navigation.navigate("Login");
+      }
+    });
+  }, [navigation]);
+
+  
 
   return (
     <View style={{ backgroundColor: "white" }}>
