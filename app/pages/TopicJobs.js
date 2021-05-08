@@ -81,7 +81,7 @@ const TopicJobs = ({route, navigation}) => {
   const [news, setNews] = useState(null)
   const [jobs, setJobs] = useState(null)
 
-  const newsMounted = useIsFocused()
+  const jobsMounted = useIsFocused()
 
 
   useEffect(() => {

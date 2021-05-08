@@ -6,6 +6,7 @@ const path = require("path"),
   isDev = require("electron-is-dev");
 
 let mainWindow;
+let tray;
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
@@ -13,6 +14,9 @@ const createWindow = () => {
     height: 320,
     icon: __dirname + "/MiniHeadLogo.png",
   });
+
+  tray = new electron.Tray(__dirname + "/MiniHeadLogo.png");
+
   const appUrl = isDev
     ? "http://localhost:3000"
     : `file://${path.join(__dirname, "../build/index.html")}`;
