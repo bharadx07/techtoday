@@ -19,7 +19,7 @@
   <span> · </span>
   <a href="https://expo.io/@bharadwajd/projects/TechToday">App</a>
   <span> · </span>
-  <a href="https://github.com/FotieMConstant/dogehouse-docs">Desktop (In Progress)</a>
+  <a href="https://github.com/bharadwajduggaraju/TechToday/tree/master/desktop">Desktop</a>
 </h3>
 
 ---

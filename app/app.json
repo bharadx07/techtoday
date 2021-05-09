@@ -28,6 +28,7 @@
     "web": {
       "favicon": "./assets/icon.png"
     },
-    "description": "The hub for Tech News and Jobs, configured for you!"
+    "description": "The hub for Tech News and Jobs, configured for you!",
+    "githubUrl": "https://github.com/bharadwajduggaraju/techtoday"
   }
 }
