@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
+  "expoServerPort": 19000,
   "packagerPort": 19000,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://hp-ge5.bharadwajd.app.exp.direct",
+  "packagerNgrokUrl": "https://packager.hp-ge5.bharadwajd.app.exp.direct",
+  "ngrokPid": 4276,
   "webpackServerPort": null,
   "packagerPid": null
 }

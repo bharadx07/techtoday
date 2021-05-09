@@ -9,80 +9,17 @@ import Spinner from "react-native-loading-spinner-overlay";
 import { useIsFocused } from "@react-navigation/native";
 import { requestNews } from "../utils/getNews";
 import * as dayjs from "dayjs"
+import { TopicListURLQueries } from "../constants/TopicInfo";
 
-const MOCK_JOBS = [
-  {
-    company: "BD ENC",
-    location: "Seattle, Washington",
-    name: "Program Test Manager",
-    desc:
-      "Role: Program Test Manager Location: Southend(Currently Remote) Duration: 6 Months Job Specs: Role Description Project manager for External Test Management service. Working within",
-    link: "https://techtoday.azurewebsites.net",
-  },
-  {
-    company: "BD ENC",
-    location: "Seattle, Washington",
-    name: "Program Test Manager",
-    desc:
-      "Role: Program Test Manager Location: Southend(Currently Remote) Duration: 6 Months Job Specs: Role Description Project manager for External Test Management service. Working within",
-    link: "https://techtoday.azurewebsites.net",
-  },
-  {
-    company: "BD ENC",
-    location: "Seattle, Washington",
-    name: "Program Test Manager",
-    desc:
-      "Role: Program Test Manager Location: Southend(Currently Remote) Duration: 6 Months Job Specs: Role Description Project manager for External Test Management service. Working within",
-    link: "https://techtoday.azurewebsites.net",
-  },
-  {
-    company: "BD ENC",
-    location: "Seattle, Washington",
-    name: "Program Test Manager",
-    desc:
-      "Role: Program Test Manager Location: Southend(Currently Remote) Duration: 6 Months Job Specs: Role Description Project manager for External Test Management service. Working within",
-    link: "https://techtoday.azurewebsites.net",
-  },
-  {
-    company: "BD ENC",
-    location: "Seattle, Washington",
-    name: "Program Test Manager",
-    desc:
-      "Role: Program Test Manager Location: Southend(Currently Remote) Duration: 6 Months Job Specs: Role Description Project manager for External Test Management service. Working within",
-    link: "https://techtoday.azurewebsites.net",
-  },
-  {
-    company: "BD ENC",
-    location: "Seattle, Washington",
-    name: "Program Test Manager",
-    desc:
-      "Role: Program Test Manager Location: Southend(Currently Remote) Duration: 6 Months Job Specs: Role Description Project manager for External Test Management service. Working within",
-    link: "https://techtoday.azurewebsites.net",
-  },
-  {
-    company: "BD ENC",
-    location: "Seattle, Washington",
-    name: "Program Test Manager",
-    desc:
-      "Role: Program Test Manager Location: Southend(Currently Remote) Duration: 6 Months Job Specs: Role Description Project manager for External Test Management service. Working within",
-    link: "https://techtoday.azurewebsites.net",
-  },
-  {
-    company: "BD ENC",
-    location: "Seattle, Washington",
-    name: "Program Test Manager",
-    desc:
-      "Role: Program Test Manager Location: Southend(Currently Remote) Duration: 6 Months Job Specs: Role Description Project manager for External Test Management service. Working within",
-    link: "https://techtoday.azurewebsites.net",
-  },
-];
+const jobs_cache = {}
 
 const TopicJobs = ({route, navigation}) => {
-  const [news, setNews] = useState(null)
+  const [user, setUser] = useState(null)
   const [jobs, setJobs] = useState(null)
 
   const jobsMounted = useIsFocused()
-
+  const jobTopic = route.params.topicName
+ 
 
   useEffect(() => {
     setUser(null);
@@ -109,18 +46,63 @@ const TopicJobs = ({route, navigation}) => {
     });
   }, [navigation]);
 
+  useEffect(() => {
+
+    const makeJobsReq = async () => { 
+      const jwt = await db.getItem("jwt")
+      const res = await axios.post(`/api/v1/techtoday/jobs/${jobTopic}`, null, {
+        headers: {
+          "auth-token": jwt,
+        },
+      });
+
+      setJobs(res.data);
+
+      jobs_cache[jobTopic] = res.data;
+
+
+    };
+
+
+
+    if (jobs_cache[jobTopic] === undefined) {
+      makeJobsReq().catch(err => {
+        if(err) {
+          console.log(err.response.message)
+          navigation.navigate("Login")
+        }
+      });
+    } else {
+      setJobs(jobs_cache[jobTopic])
+    }
+
+
+  }, [jobTopic, navigation]);
+
+  if(!TopicListURLQueries.includes(jobTopic.toLowerCase())) {
+    navigation.navigate("Login")
+  }
+
+  if(!jobs || !user) {
+    return <Spinner textContent={""} visible={true} />
+  }
+
+
+  const displayJobs = jobs.results
+  
+
   
 
   return (
     <View style={{ backgroundColor: "white" }}>
       <Text style={styles.topicTitle}>{route.params.topicName} Jobs</Text>
       <ScrollView style={styles.wrapper}>
-        {MOCK_JOBS.map((newsItem) => {
-          const company = newsItem.company;
-          const location = newsItem.location;
-          const title = newsItem.name;
-          const desc = newsItem.desc;
-          const link = newsItem.link;
+        {displayJobs.map((newsItem) => {
+          const company = "pub";
+          const location ="hui";
+          const title = "h";
+          const desc = "hi";
+          const link = "hi";
           return (
             <View key={uuidv4()} style={styles.newsItem}>
               <View style={styles.stats}>
