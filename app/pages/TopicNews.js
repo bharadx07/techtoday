@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { v4 as uuidv4 } from "uuid";
 import PRIMARY_COLOR from "../constants/PRIMARY_COLOR";
@@ -7,16 +7,16 @@ import db from "@react-native-async-storage/async-storage";
 import axios from "../constants/AxiosClient";
 import Spinner from "react-native-loading-spinner-overlay";
 import { useIsFocused } from "@react-navigation/native";
-import { requestNews } from "../utils/getNews";
-import * as dayjs from "dayjs"
-
+import { requestNews, getNews } from "../utils/getNews";
+import * as dayjs from "dayjs";
 
 const TopicNews = ({ route, navigation }) => {
-  const [news, setNews] = useState(null)
-  const [user, setUser] = useState(null)
+  const [news, setNews] = useState(null);
+  const [user, setUser] = useState(null);
+  const [pagination, setPagination] = useState(1);
 
-  const newsMounted = useIsFocused()
-
+  const newsMounted = useIsFocused();
+  const topicName = route.params.topicName.toLowerCase()
 
   useEffect(() => {
     setUser(null);
@@ -45,38 +45,58 @@ const TopicNews = ({ route, navigation }) => {
 
   useEffect(() => {
     const makeNewsReq = async () => {
-      const jwt = await db.getItem("jwt");
-      const news = await requestNews(route.params.topicName.toLowerCase(), jwt, 1);
+      const jwt = await db.getItem("jwt")
 
-      const limitedNews = news.news[route.params.topicName.toLowerCase()][1].response.docs.slice(0,9)
+      console.log("we are here")
 
-      setNews(limitedNews)
-    }
+      let requestedNews = getNews();
+      
+      if (requestedNews.haveNews[topicName][pagination]) {
+        if (pagination === 1) {
+          setNews(requestedNews.news[topicName][pagination].response.docs);
+        } else {
+          setNews(news => [...news, ...requestedNews.news[topicName][pagination].response.docs]);
+        }
+      } else {
+        requestedNews = await requestNews(
+          topicName,
+          jwt,
+          pagination
+        );
+        if (pagination === 1) {
+          setNews(requestedNews.news[topicName][pagination].response.docs);
+        } else {
+          console.log('at this state')
+          setNews(news => [...news, ...requestedNews.news[topicName][pagination].response.docs]);
+        }
+      }
+    };
 
-    makeNewsReq()
-  }, [])
-
-
-
+    makeNewsReq();
+  }, [pagination]);
 
   if (!user || !news) {
     return <Spinner visible={true} textContent={""} />;
   }
 
- 
+  const displayNews = news.slice(0, user.newsDefaultCount * pagination);
+
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
       <Text style={styles.topicTitle}>{route.params.topicName} News</Text>
       <ScrollView style={styles.wrapper}>
-        {news.map((newsItem) => {
+        {displayNews.map((newsItem) => {
           const company = "NY Times";
-          const rud = new Date(newsItem.pub_date.substring(0,10))
-          const date = rud.toDateString()
+          const rud = new Date(newsItem.pub_date.substring(0, 10));
+          const date = rud.toDateString();
           const title = newsItem.headline.main;
-          const by = newsItem.byline.original;
-          const desc = newsItem.abstract; 
+          const by = newsItem.byline.original ?? "Unknown Author";
+          const desc = newsItem.abstract;
           const link = newsItem.web_url;
 
+          if(by === "By") {
+            by = "Unknown Author"
+          }
 
           return (
             <View key={uuidv4()} style={styles.newsItem}>
@@ -86,7 +106,7 @@ const TopicNews = ({ route, navigation }) => {
               </View>
               <Text style={styles.newsTitle}>{title}</Text>
               <Text style={styles.newsDescription}>{desc}</Text>
-              <Text style={styles.by}>By {by}</Text>
+              <Text style={styles.by}>{by}</Text>
               <Text
                 onPress={() => {
                   openURL(link);
@@ -102,10 +122,14 @@ const TopicNews = ({ route, navigation }) => {
           <Text
             style={styles.showMore}
             onPress={() => {
-              navigation.navigate("Register");
+              if (pagination === 3) {
+                setPagination(1);
+              } else {
+                setPagination(pagination + 1);
+              }
             }}
           >
-            Show More
+            {pagination === 3 ? "Show Less" : "Show More"}
           </Text>
         </View>
       </ScrollView>
@@ -116,7 +140,6 @@ const TopicNews = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   wrapper: {
     textAlign: "center",
-    marginTop: 10,
     marginBottom: 30,
     backgroundColor: "white",
   },
@@ -153,11 +176,11 @@ const styles = StyleSheet.create({
   },
 
   newsTitle: {
-    fontSize: 21,
+    fontSize: 19,
     marginTop: 10,
     fontWeight: "bold",
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
     textAlign: "center",
   },
 
@@ -174,6 +197,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontWeight: "500",
     textAlign: "center",
+    marginLeft: 10,
+    marginRight: 10
   },
 
   newsBTN: {

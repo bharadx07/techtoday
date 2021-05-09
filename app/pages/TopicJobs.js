@@ -16,6 +16,7 @@ const jobs_cache = {}
 const TopicJobs = ({route, navigation}) => {
   const [user, setUser] = useState(null)
   const [jobs, setJobs] = useState(null)
+  const [pagination, setPagination] = useState(1)
 
   const jobsMounted = useIsFocused()
   const jobTopic = route.params.topicName
@@ -85,32 +86,33 @@ const TopicJobs = ({route, navigation}) => {
 
   if(!jobs || !user) {
     return <Spinner textContent={""} visible={true} />
-  }
+  } 
 
 
-  const displayJobs = jobs.results
-  
+  const displayJobs = jobs.results.slice(0, user.jobDefaultCount*pagination)
+
 
   
 
   return (
-    <View style={{ backgroundColor: "white" }}>
+    <View style={{ backgroundColor: "white", flex: 1 }}>
       <Text style={styles.topicTitle}>{route.params.topicName} Jobs</Text>
       <ScrollView style={styles.wrapper}>
-        {displayJobs.map((newsItem) => {
-          const company = "pub";
-          const location ="hui";
-          const title = "h";
-          const desc = "hi";
-          const link = "hi";
+        {displayJobs.map((jobItem) => {
+          const company = jobItem.company.display_name;
+          const location =jobItem.location.display_name;
+          const title = jobItem.title;
+          const desc = jobItem.description;
+          const link = jobItem.redirect_url;
+
           return (
             <View key={uuidv4()} style={styles.newsItem}>
               <View style={styles.stats}>
                 <Text style={styles.stat}>{company}</Text>
                 <Text style={styles.stat}>{location}</Text>
               </View>
-              <Text style={styles.newsTitle}>{title}</Text>
-              <Text style={styles.newsDescription}>{desc}</Text>
+              <Text style={styles.newsTitle}>{title.replace(/<\/?[^>]+(>|$)/g, "")}</Text>
+              <Text style={styles.newsDescription}>{desc.substring(0, 200).replace(/<\/?[^>]+(>|$)/g, "") + "..."}</Text>
               <Text
                 onPress={() => {
                   openURL(link);
@@ -126,10 +128,14 @@ const TopicJobs = ({route, navigation}) => {
           <Text
             style={styles.showMore}
             onPress={() => {
-              navigation.navigate("Register");
+              if(pagination === 3) {
+                setPagination(1)
+              } else {
+                setPagination(pagination+1) 
+              }
             }}
           >
-            Show More
+            {pagination === 3 ? "Show Less" :"Show More"}
           </Text>
         </View>
       </ScrollView>
@@ -139,8 +145,7 @@ const TopicJobs = ({route, navigation}) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    textAlign: "center",
-    marginTop: 10,
+    textAlign: "center", 
     marginBottom: 30,
     backgroundColor: "white",
   },
@@ -172,16 +177,17 @@ const styles = StyleSheet.create({
 
   stat: {
     fontWeight: "500",
-    fontSize: 13,
+    fontSize: 8,
     textAlign: "center",
+    fontWeight: "bold"
   },
 
   newsTitle: {
-    fontSize: 21,
+    fontSize: 19,
     marginTop: 10,
     fontWeight: "bold",
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
     textAlign: "center",
   },
 
