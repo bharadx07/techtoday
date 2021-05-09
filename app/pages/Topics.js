@@ -14,7 +14,6 @@ const Topics = ({ navigation, setCurrentTopic }) => {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    
     const makeRequest = async () => {
       const jwt = await db.getItem("jwt");
 
