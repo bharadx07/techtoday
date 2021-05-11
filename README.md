@@ -81,11 +81,11 @@ JOBS_API_KEY=adzunaapikey
 ```
 ### Desktop
 
-Checkout how to use the desktop app [here][https://github.com/bharadwajduggaraju/TechToday/blob/master/desktop/UseDesktop.md]
+Checkout how to use the desktop app [here](https://github.com/bharadwajduggaraju/TechToday/blob/master/desktop/UseDesktop.md)
 
 ## Issues
 
-Leave an Issue in the [Issues][https://github.com/bharadwajduggaraju/techtoday/issues] tab
+Leave an Issue in the [Issues](https://github.com/bharadwajduggaraju/techtoday/issues) tab
 
 ## License
 
