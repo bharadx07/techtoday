@@ -85,7 +85,7 @@ Checkout how to use the desktop app [here][https://github.com/bharadwajduggaraju
 
 ## Issues
 
-Leave an Issue in the [Issues](https://github.com/bharadwajduggaraju/techtoday/issues) tab
+Leave an Issue in the [Issues][https://github.com/bharadwajduggaraju/techtoday/issues] tab
 
 ## License
 
