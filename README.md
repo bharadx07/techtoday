@@ -19,7 +19,7 @@
   <span> · </span>
   <a href="https://expo.io/@bharadwajd/projects/TechToday">App</a>
   <span> · </span>
-  <a href="https://github.com/bharadwajduggaraju/TechToday/tree/master/desktop">Desktop</a>
+  <a href="https://github.com/bharadwajduggaraju/TechToday/blob/master/desktop/UseDesktop.md">Desktop</a>
 </h3>
 
 ---
@@ -36,6 +36,7 @@
 | [routes](routes)     |   ExpressJS    | API Routes    |
 | [utils](utils)       |      Nodemailer       | Utility Functions    |
 | [validation](validation)|      JOI , JWT      | The Validations for DB Entities and JWT's |
+| [desktop](desktop)|      Electron, React      | The Desktop App of TechToday |
 
 
 ## About
@@ -80,7 +81,7 @@ JOBS_API_KEY=adzunaapikey
 ```
 ### Desktop
 
-Checkout how to use the desktop app here
+Checkout how to use the desktop app [here][https://github.com/bharadwajduggaraju/TechToday/blob/master/desktop/UseDesktop.md]
 
 ## Issues
 
