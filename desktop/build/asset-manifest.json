@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "./static/css/main.d14b3e13.chunk.css",
+    "main.js": "./static/js/main.893709b6.chunk.js",
+    "main.js.map": "./static/js/main.893709b6.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.bca41576.js",
+    "runtime-main.js.map": "./static/js/runtime-main.bca41576.js.map",
+    "static/css/2.373bc5f8.chunk.css": "./static/css/2.373bc5f8.chunk.css",
+    "static/js/2.ec6846af.chunk.js": "./static/js/2.ec6846af.chunk.js",
+    "static/js/2.ec6846af.chunk.js.map": "./static/js/2.ec6846af.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/2.373bc5f8.chunk.css.map": "./static/css/2.373bc5f8.chunk.css.map",
+    "static/css/main.d14b3e13.chunk.css.map": "./static/css/main.d14b3e13.chunk.css.map",
+    "static/js/2.ec6846af.chunk.js.LICENSE.txt": "./static/js/2.ec6846af.chunk.js.LICENSE.txt",
+    "static/media/Auto.abf4b6ef.jfif": "./static/media/Auto.abf4b6ef.jfif",
+    "static/media/Buisness.8343de62.png": "./static/media/Buisness.8343de62.png",
+    "static/media/Finance.3b584cf1.png": "./static/media/Finance.3b584cf1.png",
+    "static/media/Hardware.2a9cb71c.png": "./static/media/Hardware.2a9cb71c.png",
+    "static/media/HeadLogo.55b1851f.svg": "./static/media/HeadLogo.55b1851f.svg",
+    "static/media/Logo.b94e813f.svg": "./static/media/Logo.b94e813f.svg",
+    "static/media/Medical.3aeb27e2.jfif": "./static/media/Medical.3aeb27e2.jfif",
+    "static/media/Retail.a86e242b.jfif": "./static/media/Retail.a86e242b.jfif",
+    "static/media/Software.bb6de5da.png": "./static/media/Software.bb6de5da.png",
+    "static/media/StockNews.79407882.jfif": "./static/media/StockNews.79407882.jfif",
+    "static/media/Travel.ad62193e.jfif": "./static/media/Travel.ad62193e.jfif",
+    "static/media/pfp.18825e08.png": "./static/media/pfp.18825e08.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bca41576.js",
+    "static/css/2.373bc5f8.chunk.css",
+    "static/js/2.ec6846af.chunk.js",
+    "static/css/main.d14b3e13.chunk.css",
+    "static/js/main.893709b6.chunk.js"
+  ]
+}

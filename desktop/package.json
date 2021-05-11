@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "author": "Bharadwaj Duggaraju",
   "private": true,
   "dependencies": {
     "@iconify/icons-akar-icons": "^1.1.5",
@@ -45,8 +46,8 @@
     "eject": "react-scripts eject",
     "scss": "node-sass --watch src/scss -o src/css",
     "electron-dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron-package": "./node_modules/.bin/electron-builder -c.extraMetadata.main=build/start-electron.js",
-    "preelectron-package": "npm run build"
+    "electron-pack": "npx build --em.main=build/start-electron.js"
+   
   },
   "homepage": "./",
   "eslintConfig": {
@@ -67,6 +68,16 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8080/",
-  "main": "public/start-electron.js"
+  "proxy": "http://techtoday.azurewebsites.net/",
+  "main": "public/start-electron.js",
+  "build": {
+    "appId": "com.techtoday.app",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories":{
+      "buildResources": "assets"
+    }
+  }
 }

@@ -78,6 +78,10 @@ JOBS_APPLICATION_KEY=adzunaapplicationkey
 JOBS_API_KEY=adzunaapikey
 
 ```
+### Desktop
+
+Checkout how to use the desktop app here
+
 ## Issues
 
 Leave an Issue in the [Issues](https://github.com/bharadwajduggaraju/techtoday/issues) tab
