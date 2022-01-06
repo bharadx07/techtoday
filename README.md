@@ -41,7 +41,7 @@
 
 ## About
 
-#### TechToday was Created by Bharadwaj Duggaraju as a Side Project: It is a  Hub for News and Jobs, in a clean UI.
+#### TechToday was Created by Bharadwaj Duggaraju as a Side Project: It is a  Hub for News and Jobs, in a clean UI. As of 2022, we have 100+ users, which is amazing!
 
 ## Attributions & Sources
 
