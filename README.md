@@ -12,6 +12,9 @@
   <a href="https://github.com/bharadwajduggaraju/TechToday/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/bharadwajduggaraju/TechToday?style=for-the-badge" alt="license" />
   </a>
+  <a href="https://github.com/bharadwajduggaraju/TechToday/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/users-109-red?style=for-the-badge" alt="license" />
+  </a>
 </p>
 
 <h3 align="center">
@@ -41,13 +44,13 @@
 
 ## About
 
-#### TechToday was Created by Bharadwaj Duggaraju as a Side Project: It is a  Hub for News and Jobs, in a clean UI. As of 2022, we have 100+ users, which is amazing!
+TechToday was Created by Bharadwaj Duggaraju as a Side Project: It is a  Hub for News and Jobs, in an easily accessible UI.
 
 ## Attributions & Sources
 
-#### TechToday is dependent on two different API's besides its own primary API's. Data from these API's are fetched using 'node-fetch'
-1. NYTimes News Feed API: A great source for getting up to date news in many categories
-2. Adzuna Job Search API: An easy way to get jobs in many fields
+#### TechToday is dependent on two different API's besides its own primary API's. Data from these API's are fetched using ```node-fetch```
+1. NYTimes News Feed API: A great source for getting up to date news in many categories.
+2. Adzuna Job Search API: An easy way to get jobs in many fields.
 
 ## Running Locally on Your Machine 
 
