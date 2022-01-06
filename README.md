@@ -12,9 +12,7 @@
   <a href="https://github.com/bharadwajduggaraju/TechToday/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/bharadwajduggaraju/TechToday?style=for-the-badge" alt="license" />
   </a>
-  <a href="https://github.com/bharadwajduggaraju/TechToday/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/users-109-red?style=for-the-badge" alt="license" />
-  </a>
+  <img src="https://img.shields.io/badge/users-109-red?style=for-the-badge" alt="license" />
 </p>
 
 <h3 align="center">
